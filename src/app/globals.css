@@ -1,26 +1,96 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* OpsBrain Enterprise Palette (ServiceNow Style) */
+
+  /* Primary - Authoritative Navy */
+  --obs-navy: #030430;
+  /* Deepest Navy (Header/Footer) */
+  --obs-navy-secondary: #1C2B4B;
+  /* Muted Navy */
+
+  /* Text Colors */
+  --obs-text: #1d252d;
+  /* Primary Text (Dark Navy/Charcoal) */
+  --obs-text-muted: #4b5563;
+  /* Secondary Text */
+  --obs-text-dim: #64748b;
+  /* Tertiary Text */
+
+  /* Backgrounds & Surfaces (Light Mode) */
+  --obs-bg: #ffffff;
+  /* Main Background */
+  --obs-surface: #f8fafc;
+  /* Secondary Background (Light Gray) */
+  --obs-surface-bright: #ffffff;
+  --obs-border: #e2e8f0;
+  /* Light Border */
+
+  /* Accents - Professional & Restrained */
+  --obs-accent-blue: #0072C6;
+  /* Enterprise Blue */
+  --obs-accent-teal: #0D9488;
+  /* Confirm/Success Teal */
+  --obs-accent-green: #15803d;
+  /* Success Green */
+  --obs-accent-amber: #d97706;
+  /* Warning/Action */
+
+  /* Status */
+  --obs-success: #15803d;
+  --obs-warning: #b45309;
+  --obs-critical: #b91c1c;
+
+  /* Typography Defaults */
+  --font-inter: "Inter", sans-serif;
+  --font-heading: "Work Sans", sans-serif;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-background: var(--obs-bg);
+  --color-foreground: var(--obs-text);
+
+  --font-sans: var(--font-inter);
+  --font-heading: var(--font-heading);
+
+  /* Colors mapping */
+  --color-obs-navy: var(--obs-navy);
+  --color-obs-navy-secondary: var(--obs-navy-secondary);
+
+  --color-obs-text: var(--obs-text);
+  --color-obs-text-muted: var(--obs-text-muted);
+  --color-obs-text-dim: var(--obs-text-dim);
+
+  --color-obs-bg: var(--obs-bg);
+  --color-obs-surface: var(--obs-surface);
+  --color-obs-surface-bright: var(--obs-surface-bright);
+  --color-obs-border: var(--obs-border);
+
+  --color-obs-accent-blue: var(--obs-accent-blue);
+  --color-obs-accent-teal: var(--obs-accent-teal);
+  --color-obs-accent-green: var(--obs-accent-green);
+  --color-obs-accent-amber: var(--obs-accent-amber);
+
+  /* Shadows */
+  --shadow-enterprise: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  --shadow-enterprise-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  color-scheme: light;
+  /* Force light mode */
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--obs-bg);
+  color: var(--obs-text);
+  font-family: var(--font-inter), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.5;
+}
+
+::selection {
+  background: var(--obs-navy);
+  color: white;
 }
