@@ -94,3 +94,12 @@ body {
   background: var(--obs-navy);
   color: white;
 }
+
+/* Utility: hide scrollbars for horizontal chip rows (keep scroll behavior). */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE/Edge legacy */
+  scrollbar-width: none; /* Firefox */
+}

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Work_Sans } from "next/font/google";
 import "./globals.css";
 import { ToastProvider } from "./components/ui/Toast";
+import Chatbot from "./components/Chatbot";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const workSans = Work_Sans({ subsets: ["latin"], variable: "--font-heading" });
@@ -46,6 +47,7 @@ export default function RootLayout({
       <body className={`${inter.variable} ${workSans.variable} font-sans bg-obs-bg text-obs-text antialiased`}>
         <ToastProvider>
           {children}
+          <Chatbot />
         </ToastProvider>
       </body>
     </html>
