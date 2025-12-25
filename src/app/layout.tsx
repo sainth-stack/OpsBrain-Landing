@@ -8,7 +8,32 @@ const workSans = Work_Sans({ subsets: ["latin"], variable: "--font-heading" });
 
 export const metadata: Metadata = {
   title: "OpsBrain | Enterprise AI for Operations",
-  description: "Autonomous AI agents for enterprise observability and remediation.",
+  description: "Unified Enterprise AI platform. Connect PDFs, Databases, and Apps to a central brain. Ask natural language questions, get data-backed answers with strict RBAC.",
+  keywords: [
+    "OpsBrain AI",
+    "AI Agent",
+    "Put AI to Work",
+    "Put AI to Monitor",
+    "Enterprise AI",
+    "Operations",
+    "Data Integration",
+    "Multi-Source Analysis",
+    "Vector Database",
+    "Enterprise Search",
+    "Operational Intelligence",
+    "Automated Root Cause Analysis"
+  ],
+  openGraph: {
+    title: "OpsBrain | Enterprise AI for Operations",
+    description: "Unified Enterprise AI platform. Connect PDFs, Databases, and Apps to a central brain.",
+    type: "website",
+    siteName: "OpsBrain",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "OpsBrain | Enterprise AI for Operations",
+    description: "Unified Enterprise AI platform. Connect PDFs, Databases, and Apps to a central brain.",
+  },
 };
 
 export default function RootLayout({

@@ -1,9 +1,14 @@
-"use client";
-
 import { Container } from "../components/ui/Container";
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 import { FinalCTA } from "../components/FinalCTA";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Platform | AI Agents for Monitoring & Alerts",
+    description: "Proactive issue identification with AI agents. Automated deployment monitoring, anomaly detection, and predictive analytics.",
+    keywords: ["AI Monitoring", "Anomaly Detection", "Predictive Analytics", "Automated Alerts", "Deployment Validation"],
+};
 
 export default function PlatformPage() {
     return (

@@ -1,10 +1,15 @@
-"use client";
-
 import { Container } from "../components/ui/Container";
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 import { FinalCTA } from "../components/FinalCTA";
 import { SecuritySection } from "../components/SecuritySection";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Security | Enterprise Role-Based Access Control",
+    description: "Secure by design. Multi-tenant architecture with granular RBAC. Control access at the feature, data source, and file level.",
+    keywords: ["RBAC", "Role-Based Access Control", "Multi-Tenant", "Enterprise Security", "Data Governance", "Compliance"],
+};
 
 export default function SecurityPage() {
     return (

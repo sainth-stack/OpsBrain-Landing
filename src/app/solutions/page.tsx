@@ -1,10 +1,15 @@
-"use client";
-
 import { Container } from "../components/ui/Container";
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 import { FinalCTA } from "../components/FinalCTA";
 import { SolutionSection } from "../components/SolutionSection";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Solutions | Chaos to Clarity Data Integration",
+    description: "Solve data chaos with OpsBrain. Unified processing for CSV, PDF, JSON, and SQL. Intelligent file organization and semantic search for modern enterprises.",
+    keywords: ["Data Chaos", "Multi-Format Support", "Document Embedding", "Schema Discovery", "S3 Integration", "Vector Database"],
+};
 
 export default function SolutionsPage() {
     return (
