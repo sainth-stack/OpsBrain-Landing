@@ -330,6 +330,62 @@ html[data-theme="dark"] {
   }
 }
 
+@keyframes revenue-line-flow {
+  to {
+    stroke-dashoffset: -28;
+  }
+}
+
+.revenue-line-flow {
+  animation: revenue-line-flow 4s linear infinite;
+}
+
+@keyframes revenue-hub-glow {
+  0%,
+  100% {
+    box-shadow:
+      0 0 24px rgb(79 70 229 / 0.35),
+      0 0 48px rgb(79 70 229 / 0.12);
+  }
+  50% {
+    box-shadow:
+      0 0 32px rgb(129 140 248 / 0.5),
+      0 0 64px rgb(129 140 248 / 0.18);
+  }
+}
+
+.revenue-hub-glow {
+  animation: revenue-hub-glow 4s ease-in-out infinite;
+}
+
+@keyframes revenue-orbit-track {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 0.85;
+  }
+}
+
+.revenue-orbit-track {
+  animation: revenue-orbit-track 6s ease-in-out infinite;
+}
+
+@keyframes revenue-node-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.65;
+  }
+}
+
+.revenue-node-pulse {
+  animation: revenue-node-pulse 2.4s ease-in-out infinite;
+}
+
 @media (scripting: none) {
   .hero-fade-up {
     opacity: 1 !important;
@@ -348,6 +404,10 @@ html[data-theme="dark"] {
   .animate-waveform-bar,
   .hero-fade-up,
   .glow-pulse,
+  .revenue-line-flow,
+  .revenue-hub-glow,
+  .revenue-orbit-track,
+  .revenue-node-pulse,
   .card-tilt,
   .card-tilt:hover {
     animation: none !important;

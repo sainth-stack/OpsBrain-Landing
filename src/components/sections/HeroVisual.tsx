@@ -2,16 +2,16 @@
 
 import dynamic from "next/dynamic";
 
-const DashboardMockup = dynamic(
+const RevenueNetworkHero = dynamic(
   () =>
-    import("@/components/visuals/DashboardMockup").then(
-      (m) => m.DashboardMockup,
+    import("@/components/visuals/RevenueNetworkHero").then(
+      (m) => m.RevenueNetworkHero,
     ),
   {
     ssr: false,
     loading: () => (
       <div
-        className="mx-auto h-[380px] w-full max-w-lg animate-pulse rounded-2xl bg-surface-dark-elevated/80"
+        className="mx-auto h-[520px] w-full max-w-[920px] animate-pulse rounded-2xl bg-surface-dark-elevated/80 sm:h-[540px] md:h-[500px]"
         aria-hidden="true"
       />
     ),
@@ -21,7 +21,7 @@ const DashboardMockup = dynamic(
 export function HeroVisual() {
   return (
     <div className="hero-fade-up hero-delay-5">
-      <DashboardMockup className="lg:ml-auto" />
+      <RevenueNetworkHero className="lg:ml-auto" />
     </div>
   );
 }

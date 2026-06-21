@@ -54,6 +54,118 @@ export const hero = {
     { value: "24/7", label: "Always-on coverage" },
     { value: "60%", label: "Lower cost per meeting" },
   ],
+  visual: {
+    ariaLabel:
+      "OpsBrain AI employees prospect leads, call in regional languages, qualify opportunities, book meetings, sync to CRM, and grow pipeline automatically.",
+    centerLabel: "AI Employee",
+    commandCenterTitle: "OpsBrain Command Center",
+    commandCenterSubtitle: "Live revenue operations",
+    metricLabels: {
+      liveCalls: "Live Calls",
+      qualifiedLeads: "Qualified Leads",
+      meetingsBooked: "Meetings Booked",
+      pipeline: "Revenue Pipeline",
+    },
+    nodes: [
+      { label: "Leads", icon: "Megaphone" },
+      { label: "AI Calls", icon: "Phone" },
+      { label: "Bookings", icon: "CalendarCheck" },
+      { label: "CRM Sync", icon: "Database" },
+      { label: "Sales", icon: "TrendingUp" },
+    ],
+    sparklineBase: [22, 28, 25, 31, 29, 35, 33, 38, 36, 41, 44],
+    storySteps: [
+      {
+        message: "New lead found",
+        nodeIndex: 0,
+        languageChip: "TE · Telugu",
+        durationMs: 2600,
+        feedLabel: "Lead captured · Real Estate",
+        activeCallsNote: "+11 active now",
+        metrics: {
+          liveCalls: 46,
+          qualifiedLeads: 127,
+          meetingsBooked: 22,
+          pipeline: "₹18.2L",
+        },
+      },
+      {
+        message: "AI call started – Telugu",
+        nodeIndex: 1,
+        languageChip: "TE · Telugu",
+        durationMs: 3600,
+        feedLabel: "Outbound call · Telugu",
+        activeCallsNote: "+12 active now",
+        metrics: {
+          liveCalls: 47,
+          qualifiedLeads: 127,
+          meetingsBooked: 22,
+          pipeline: "₹18.2L",
+        },
+        voice: {
+          transcript:
+            "నమస్కారం, మీ property inquiry గురించి మాట్లాడదామా?",
+        },
+      },
+      {
+        message: "Lead qualified hot",
+        nodeIndex: 1,
+        languageChip: "TE · Telugu",
+        durationMs: 2600,
+        feedLabel: "Lead scored hot",
+        activeCallsNote: "+12 active now",
+        metrics: {
+          liveCalls: 47,
+          qualifiedLeads: 128,
+          meetingsBooked: 22,
+          pipeline: "₹18.2L",
+        },
+      },
+      {
+        message: "Meeting booked",
+        nodeIndex: 2,
+        languageChip: "HI · Hindi",
+        durationMs: 2600,
+        feedLabel: "Meeting scheduled",
+        activeCallsNote: "+12 active now",
+        metrics: {
+          liveCalls: 47,
+          qualifiedLeads: 128,
+          meetingsBooked: 23,
+          pipeline: "₹18.3L",
+        },
+      },
+      {
+        message: "CRM updated",
+        nodeIndex: 3,
+        languageChip: "EN · English",
+        durationMs: 2600,
+        feedLabel: "CRM synced · HubSpot",
+        activeCallsNote: "+11 active now",
+        metrics: {
+          liveCalls: 46,
+          qualifiedLeads: 128,
+          meetingsBooked: 23,
+          pipeline: "₹18.3L",
+        },
+      },
+      {
+        message: "Pipeline growing",
+        nodeIndex: 4,
+        languageChip: "TE · Telugu",
+        durationMs: 2800,
+        feedLabel: "Deal moved to pipeline",
+        activeCallsNote: "+11 active now",
+        metrics: {
+          liveCalls: 46,
+          qualifiedLeads: 128,
+          meetingsBooked: 23,
+          pipeline: "₹18.4L",
+        },
+        highlightPipeline: true,
+      },
+    ],
+  },
 } as const;
 
 export const trustBarIndustries = [
