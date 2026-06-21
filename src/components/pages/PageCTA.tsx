@@ -4,7 +4,7 @@ export function PageCTA({
   title = "Ready to deploy your AI employee?",
   description = "Tell us about your workflow and we'll configure your first AI employee within 24 hours.",
   primaryHref = "/#contact",
-  primaryLabel = "Book a Demo",
+  primaryLabel = "Get Started",
   secondaryHref = "/pricing",
   secondaryLabel = "View pricing",
 }: {

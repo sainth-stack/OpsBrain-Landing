@@ -34,21 +34,21 @@ export function MobileStickyCTA() {
     >
       <div className="flex gap-2">
         <ButtonLink
-          href={ctaLinks.login.href}
+          href={ctaLinks.contact.href}
           variant="secondary"
           size="md"
           className="flex-1"
         >
-          {ctaLinks.login.label}
+          {ctaLinks.contact.label}
         </ButtonLink>
         <ButtonLink
-          href={ctaLinks.bookDemo.href}
+          href={ctaLinks.getStarted.href}
           variant="primary"
           size="md"
           className="flex-1"
-          trackAsDemo="mobile_sticky_book_demo"
+          trackAsDemo="mobile_sticky_get_started"
         >
-          {ctaLinks.bookDemo.label}
+          {ctaLinks.getStarted.label}
         </ButtonLink>
       </div>
     </div>

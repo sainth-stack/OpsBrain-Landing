@@ -28,11 +28,9 @@ export const navLinks = [
   { label: "FAQ", href: "/#faq" },
 ] as const;
 
-export const appUrl = "https://app.opsbrainai.com" as const;
-
 export const ctaLinks = {
-  bookDemo: { label: "Book Demo", href: "#contact" },
-  login: { label: "Log in", href: appUrl },
+  contact: { label: "Contact", href: "#contact" },
+  getStarted: { label: "Get Started", href: "#contact" },
 } as const;
 
 export const hero = {
@@ -40,7 +38,7 @@ export const hero = {
   headline: "AI Employees That Find, Call, Qualify & Sell 24/7",
   subheadline:
     "AI agents that prospect, call in Telugu, Hindi, and English, qualify leads, book meetings, and sync to your CRM.",
-  primaryCta: { label: "Book a Demo", href: "#contact" },
+  primaryCta: { label: "Get Started", href: "#contact" },
   secondaryCta: { label: "Watch Voice Demo", href: "#voice-demos" },
   socialProof: "Trusted across real estate, healthcare, sales, and more.",
   stats: [
@@ -687,8 +685,8 @@ export const roiCalculatorSection = {
       "Estimates use a speed-to-lead decay model: longer first-response delay increases pre-contact drop-off and lowers effective conversion. OpsBrain assumes sub-60-second AI response. Recovery applies a conservative 72% factor.",
     sources: "Benchmarks informed by B2B speed-to-lead and inside-sales response studies.",
   },
-  cta: { label: "Book Demo", href: "#contact" },
-  secondaryCta: { label: "Log in", href: appUrl },
+  cta: { label: "Get Started", href: "#contact" },
+  secondaryCta: { label: "Contact", href: "#contact" },
   disclaimer:
     "Illustrative estimates only - not financial advice. Actual results vary by industry, sales cycle, and team size.",
 } as const;
@@ -833,16 +831,6 @@ export const finalCTASection = {
   subtitle:
     "Tell us about your business and we'll configure your first AI employee within 24 hours.",
   successMessage: "We'll contact you within 24 hours.",
-  tabs: {
-    contact: "Contact Us",
-    demo: "Book Demo",
-  },
-  bookDemo: {
-    placeholder:
-      "Calendly scheduling widget will appear here. Connect your Calendly URL to enable inline booking.",
-    calendlyUrl: "",
-    mailtoFallback: "mailto:hello@opsbrain.ai?subject=Book%20a%20Demo",
-  },
 } as const;
 
 export const leadFormOptions = {
@@ -882,7 +870,7 @@ export const footerLinks = {
     { label: "About", href: "/#about" },
     { label: "Blog", href: "/blog" },
     { label: "Contact", href: "/#contact" },
-    { label: "Book Demo", href: "/#contact" },
+    { label: "Get Started", href: "/#contact" },
   ],
   legal: [
     { label: "Privacy Policy", href: "/privacy" },

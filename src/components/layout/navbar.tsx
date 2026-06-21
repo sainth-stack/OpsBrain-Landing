@@ -7,6 +7,7 @@ import { useTheme } from "@/components/providers/ThemeProvider";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { ctaLinks, navLinks } from "@/content/site";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
@@ -57,13 +58,13 @@ export function Navbar() {
           className="flex h-14 items-center justify-between md:h-16"
           aria-label="Main navigation"
         >
-          <a
-            href={ctaLinks.login.href}
+          <Link
+            href="/"
             className="flex shrink-0 items-center rounded-lg transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary"
-            aria-label="Go to OpsBrain app"
+            aria-label="OpsBrain AI home"
           >
             <Logo priority variant={heroOverlay ? "dark" : undefined} />
-          </a>
+          </Link>
 
           <ul className="hidden items-center gap-1 md:flex" role="list">
             {navLinks.map((link) => (
@@ -86,26 +87,26 @@ export function Navbar() {
           <div className="hidden items-center gap-2 md:flex">
             <ThemeToggle inverted={heroOverlay} />
             <ButtonLink
-              href={ctaLinks.login.href}
+              href={ctaLinks.contact.href}
               variant="ghost"
               size="sm"
-              aria-label={ctaLinks.login.label}
+              aria-label={ctaLinks.contact.label}
               className={
                 heroOverlay
                   ? "text-on-dark hover:bg-white/10 hover:text-on-dark"
                   : undefined
               }
             >
-              {ctaLinks.login.label}
+              {ctaLinks.contact.label}
             </ButtonLink>
             <ButtonLink
-              href={ctaLinks.bookDemo.href}
+              href={ctaLinks.getStarted.href}
               variant="primary"
               size="sm"
-              aria-label={ctaLinks.bookDemo.label}
-              trackAsDemo="navbar_book_demo"
+              aria-label={ctaLinks.getStarted.label}
+              trackAsDemo="navbar_get_started"
             >
-              {ctaLinks.bookDemo.label}
+              {ctaLinks.getStarted.label}
             </ButtonLink>
           </div>
 
@@ -183,23 +184,23 @@ export function Navbar() {
                 <ThemeToggle />
               </div>
               <ButtonLink
-                href={ctaLinks.login.href}
+                href={ctaLinks.contact.href}
                 variant="secondary"
                 size="md"
                 className="w-full"
                 onClick={() => setMobileOpen(false)}
               >
-                {ctaLinks.login.label}
+                {ctaLinks.contact.label}
               </ButtonLink>
               <ButtonLink
-                href={ctaLinks.bookDemo.href}
+                href={ctaLinks.getStarted.href}
                 variant="primary"
                 size="md"
                 className="w-full"
-                trackAsDemo="mobile_nav_book_demo"
+                trackAsDemo="mobile_nav_get_started"
                 onClick={() => setMobileOpen(false)}
               >
-                {ctaLinks.bookDemo.label}
+                {ctaLinks.getStarted.label}
               </ButtonLink>
             </div>
           </nav>
