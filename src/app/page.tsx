@@ -3,11 +3,8 @@ import { ClientHeavySections } from "@/components/sections/ClientHeavySections";
 import { Hero } from "@/components/sections/Hero";
 import { TrustBar } from "@/components/sections/TrustBar";
 import { SectionSkeleton } from "@/components/ui/SectionSkeleton";
-import {
-  getFaqJsonLd,
-  getOrganizationJsonLd,
-  getSoftwareApplicationJsonLd,
-} from "@/lib/seo";
+import { siteConfig } from "@/content/site";
+import { buildPageMetadata, getHomeJsonLd } from "@/lib/seo";
 
 const Problem = dynamic(
   () => import("@/components/sections/Problem").then((m) => m.Problem),
@@ -30,14 +27,13 @@ const AIEmployees = dynamic(
   { loading: () => <SectionSkeleton /> },
 );
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@graph": [
-    getOrganizationJsonLd(),
-    getSoftwareApplicationJsonLd(),
-    getFaqJsonLd(),
-  ],
-};
+export const metadata = buildPageMetadata({
+  title: siteConfig.seo.title,
+  description: siteConfig.seo.description,
+  path: "/",
+});
+
+const jsonLd = getHomeJsonLd();
 
 export default function Home() {
   return (

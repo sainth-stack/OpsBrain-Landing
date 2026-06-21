@@ -21,9 +21,11 @@ export const siteConfig = {
 } as const;
 
 export const navLinks = [
-  { label: "Platform", href: "#capabilities" },
-  { label: "AI Employees", href: "#ai-employees" },
-  { label: "How It Works", href: "#how-it-works" },
+  { label: "Platform", href: "/platform" },
+  { label: "AI Employees", href: "/ai-employees" },
+  { label: "Solutions", href: "/solutions/lead-calling" },
+  { label: "Compare", href: "/compare" },
+  { label: "Pricing", href: "/pricing" },
   { label: "FAQ", href: "#faq" },
 ] as const;
 
@@ -249,9 +251,10 @@ export const capabilities = [
 
 export const aiEmployeesSection = {
   eyebrow: "AI Workforce",
-  title: "Meet Your AI Employees",
+  title: "Deploy AI Employees for Your Industry",
   subtitle:
-    "Pre-built personas for every industry - deploy in minutes, customize for your workflows.",
+    "Pre-built personas go live in under 10 minutes — voice, scripts, and CRM sync included. Pick an agent, connect your stack, start calling.",
+  trustLine: "Trusted by teams in Real Estate, Healthcare, and EdTech",
 } as const;
 
 export const aiEmployees = [
@@ -260,10 +263,17 @@ export const aiEmployees = [
     name: "AI Sales Employee",
     role: "Outbound Sales",
     industry: "Sales",
+    outcomeMetric: "Books demos in <60 seconds",
     description:
       "Calls leads within seconds of form submission, qualifies interest, and books demos on your calendar.",
     fullDescription:
       "Your always-on SDR that responds to inbound and outbound leads in under 60 seconds. Handles objection handling, qualification questions, and calendar booking - then syncs every call note and score to your CRM.",
+    capabilities: [
+      "Calls new leads within 60 seconds of form submission",
+      "Qualifies interest and handles common objections",
+      "Books demos and syncs notes to your CRM automatically",
+    ],
+    integrations: ["Salesforce", "HubSpot", "Calendly"],
     gradient: "from-indigo-500 to-violet-600",
     avatar: "sales",
   },
@@ -272,10 +282,17 @@ export const aiEmployees = [
     name: "AI HR Recruiter",
     role: "Talent Acquisition",
     industry: "HR",
+    outcomeMetric: "Screens 50+ candidates per day",
     description:
       "Screens candidates, schedules interviews, and sends personalized follow-ups across multiple languages.",
     fullDescription:
       "Automates first-round screening calls, availability checks, and interview scheduling. Supports multilingual candidate outreach and keeps your ATS updated with structured notes after every conversation.",
+    capabilities: [
+      "Runs first-round screening calls automatically",
+      "Checks availability and schedules interviews",
+      "Updates your ATS with structured conversation notes",
+    ],
+    integrations: ["Greenhouse", "Lever", "Google Calendar"],
     gradient: "from-violet-500 to-purple-600",
     avatar: "hr",
   },
@@ -284,10 +301,17 @@ export const aiEmployees = [
     name: "AI Hospital Assistant",
     role: "Healthcare Front Desk",
     industry: "Healthcare",
+    outcomeMetric: "24/7 appointment booking",
     description:
       "Handles appointment booking, insurance verification, and patient inquiries around the clock.",
     fullDescription:
       "Manages appointment scheduling, insurance pre-verification, and patient FAQs 24/7. Escalates urgent cases to staff with full context and maintains HIPAA-aware conversation logs.",
+    capabilities: [
+      "Books and reschedules appointments around the clock",
+      "Pre-verifies insurance before the visit",
+      "Escalates urgent cases with full patient context",
+    ],
+    integrations: ["Epic", "Cerner", "Insurance API"],
     gradient: "from-teal-500 to-emerald-600",
     avatar: "hospital",
   },
@@ -296,10 +320,17 @@ export const aiEmployees = [
     name: "AI Payment Reminder Agent",
     role: "Collections & Billing",
     industry: "Finance",
+    outcomeMetric: "Reduces delinquency by 18%",
     description:
       "Sends polite payment reminders, negotiates plans, and updates billing systems automatically.",
     fullDescription:
       "Runs courteous outbound payment reminder campaigns, offers structured payment plans, and logs outcomes to your billing system - reducing delinquency without adding headcount.",
+    capabilities: [
+      "Runs courteous outbound payment reminder campaigns",
+      "Offers structured payment plans on the call",
+      "Logs outcomes directly to your billing system",
+    ],
+    integrations: ["Stripe", "QuickBooks", "Salesforce"],
     gradient: "from-amber-500 to-orange-600",
     avatar: "payment",
   },
@@ -308,10 +339,17 @@ export const aiEmployees = [
     name: "AI Customer Support Agent",
     role: "24/7 Support",
     industry: "Support",
+    outcomeMetric: "Resolves 70% of calls without escalation",
     description:
       "Answers FAQs, resolves common issues, and escalates complex tickets to human agents instantly.",
     fullDescription:
       "Handles tier-1 support calls around the clock, resolves common issues from your knowledge base, and escalates to humans with full transcript and CRM context when needed.",
+    capabilities: [
+      "Answers tier-1 support calls 24/7 from your knowledge base",
+      "Resolves common issues without human intervention",
+      "Escalates with full transcript and CRM context attached",
+    ],
+    integrations: ["Zendesk", "Intercom", "Salesforce"],
     gradient: "from-cyan-500 to-blue-600",
     avatar: "support",
   },
@@ -320,10 +358,17 @@ export const aiEmployees = [
     name: "AI School Admission Counselor",
     role: "EdTech Admissions",
     industry: "EdTech",
+    outcomeMetric: "Schedules campus visits in minutes",
     description:
       "Guides prospective students, answers program questions, and schedules campus visits or interviews.",
     fullDescription:
       "Engages prospective students and parents, answers program and fee questions in their preferred language, and books campus visits or counselor interviews automatically.",
+    capabilities: [
+      "Engages students and parents in their preferred language",
+      "Answers program, fee, and eligibility questions",
+      "Books campus visits and counselor interviews automatically",
+    ],
+    integrations: ["HubSpot", "Google Calendar", "Canvas LMS"],
     gradient: "from-blue-500 to-indigo-600",
     avatar: "school",
   },
@@ -332,10 +377,17 @@ export const aiEmployees = [
     name: "AI Restaurant Receptionist",
     role: "Hospitality",
     industry: "Hospitality",
+    outcomeMetric: "Zero missed calls during peak hours",
     description:
       "Takes reservations, manages waitlists, and handles takeout orders with natural conversation.",
     fullDescription:
       "Answers every call during peak hours, manages reservations and waitlists, processes takeout orders, and sends confirmation texts - in English, Hindi, or Telugu.",
+    capabilities: [
+      "Answers every call during peak dining hours",
+      "Manages reservations, waitlists, and takeout orders",
+      "Sends confirmation texts in English, Hindi, or Telugu",
+    ],
+    integrations: ["Toast POS", "OpenTable", "SMS"],
     gradient: "from-rose-500 to-pink-600",
     avatar: "restaurant",
   },
@@ -344,10 +396,17 @@ export const aiEmployees = [
     name: "AI Real Estate Assistant",
     role: "Property Sales",
     industry: "Real Estate",
+    outcomeMetric: "Follows up on leads in <60 seconds",
     description:
       "Qualifies buyers, schedules property viewings, and follows up on listing inquiries automatically.",
     fullDescription:
       "Qualifies buyer intent and budget, schedules property viewings on agent calendars, and follows up on portal inquiries within seconds - keeping hot leads from going cold.",
+    capabilities: [
+      "Qualifies buyer intent and budget on the first call",
+      "Schedules property viewings on agent calendars",
+      "Follows up on portal inquiries within seconds",
+    ],
+    integrations: ["Salesforce", "Follow Up Boss", "Google Calendar"],
     gradient: "from-emerald-500 to-teal-600",
     avatar: "realestate",
   },
@@ -356,10 +415,17 @@ export const aiEmployees = [
     name: "AI Insurance Renewal Agent",
     role: "Insurance Ops",
     industry: "Insurance",
+    outcomeMetric: "Processes renewals 3× faster",
     description:
       "Proactively calls policyholders for renewals, explains coverage changes, and processes updates.",
     fullDescription:
       "Runs proactive renewal outreach campaigns, explains policy changes in plain language, and processes updates or routes complex cases to licensed agents.",
+    capabilities: [
+      "Runs proactive renewal outreach campaigns",
+      "Explains policy changes in plain language",
+      "Routes complex cases to licensed agents with context",
+    ],
+    integrations: ["Guidewire", "Salesforce", "Policy Admin"],
     gradient: "from-sky-500 to-cyan-600",
     avatar: "insurance",
   },
@@ -530,7 +596,7 @@ export const voiceDemos = [
     scriptBadge: "TE",
     persona: "Arjun",
     trait: "Energetic & Native",
-    audioSrc: "/audio/telugu-lead-demo.mp3",
+    audioSrc: "/audio/telugu-lead-demo.aiff",
     fallbackLang: "te-IN",
     fallbackDuration: 8,
     script:
@@ -548,7 +614,7 @@ export const voiceDemos = [
     scriptBadge: "HI",
     persona: "Priya",
     trait: "Warm & Conversational",
-    audioSrc: "/audio/hindi-support-demo.mp3",
+    audioSrc: "/audio/hindi-support-demo.aiff",
     fallbackLang: "hi-IN",
     fallbackDuration: 10,
     script:
@@ -566,7 +632,7 @@ export const voiceDemos = [
     scriptBadge: "EN",
     persona: "Alex",
     trait: "Professional & Clear",
-    audioSrc: "/audio/english-sales-demo.mp3",
+    audioSrc: "/audio/english-sales-demo.aiff",
     fallbackLang: "en-US",
     fallbackDuration: 11,
     script:
@@ -801,28 +867,30 @@ export const leadFormOptions = {
 
 export const footerLinks = {
   product: [
-    { label: "Platform", href: "#capabilities" },
-    { label: "AI Employees", href: "#ai-employees" },
-    { label: "How It Works", href: "#how-it-works" },
-    { label: "Integrations", href: "#trust-bar" },
+    { label: "Platform", href: "/platform" },
+    { label: "AI Employees", href: "/ai-employees" },
+    { label: "Compare", href: "/compare" },
+    { label: "Integrations", href: "/integrations" },
+    { label: "Pricing", href: "/pricing" },
   ],
   aiEmployees: [
-    { label: "AI Sales Employee", href: "#ai-employees" },
-    { label: "AI Customer Support", href: "#ai-employees" },
-    { label: "AI Hospital Assistant", href: "#ai-employees" },
-    { label: "AI Real Estate Assistant", href: "#ai-employees" },
-    { label: "AI HR Recruiter", href: "#ai-employees" },
+    { label: "AI Sales Employee", href: "/ai-employees/sales" },
+    { label: "AI Customer Support", href: "/ai-employees/support" },
+    { label: "AI Hospital Assistant", href: "/ai-employees/hospital" },
+    { label: "AI Real Estate Assistant", href: "/ai-employees/realestate" },
+    { label: "AI HR Recruiter", href: "/ai-employees/hr" },
+    { label: "View all personas", href: "/ai-employees" },
   ],
   company: [
-    { label: "About", href: "#about" },
-    { label: "Careers", href: "#contact" },
-    { label: "Blog", href: "#contact" },
-    { label: "Contact", href: "#contact" },
-    { label: "Book Demo", href: "#contact" },
+    { label: "About", href: "/#about" },
+    { label: "Blog", href: "/blog" },
+    { label: "Contact", href: "/#contact" },
+    { label: "Book Demo", href: "/#contact" },
   ],
   legal: [
     { label: "Privacy Policy", href: "/privacy" },
     { label: "Terms of Service", href: "/terms" },
+    { label: "Compliance Guide", href: "/guides/tcpa-gdpr-ai-calling" },
   ],
 } as const;
 

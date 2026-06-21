@@ -46,6 +46,7 @@ export function MobileStickyCTA() {
           variant="primary"
           size="md"
           className="flex-1"
+          trackAsDemo="mobile_sticky_book_demo"
         >
           {ctaLinks.bookDemo.label}
         </ButtonLink>

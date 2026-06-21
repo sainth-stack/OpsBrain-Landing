@@ -11,6 +11,7 @@ import { cn } from "@/lib/utils";
 import { fadeScaleVariants, staggerRowVariants, viewportOnce } from "@/lib/motion";
 import { Check, X } from "lucide-react";
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { useState } from "react";
 
 function AnimatedCheck() {
@@ -172,6 +173,15 @@ export function Comparison() {
             </tbody>
           </table>
         </div>
+
+        <p className="mt-10 text-center">
+          <Link
+            href="/compare"
+            className="text-small font-medium text-brand-primary hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary"
+          >
+            See how we compare to other platforms →
+          </Link>
+        </p>
       </Container>
     </Section>
   );

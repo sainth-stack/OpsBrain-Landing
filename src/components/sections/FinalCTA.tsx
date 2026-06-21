@@ -90,6 +90,7 @@ export function FinalCTA() {
                   variant="primary"
                   size="lg"
                   className="mt-8"
+                  trackAsDemo="final_cta_email_demo"
                 >
                   Email to Book Demo
                 </ButtonLink>

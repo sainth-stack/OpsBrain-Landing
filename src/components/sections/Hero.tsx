@@ -45,6 +45,7 @@ export function Hero() {
                 variant="primary"
                 size="lg"
                 className="w-full sm:w-auto"
+                trackAsDemo="hero_book_demo"
               >
                 {hero.primaryCta.label}
               </ButtonLink>

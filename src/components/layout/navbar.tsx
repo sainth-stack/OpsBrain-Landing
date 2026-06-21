@@ -103,6 +103,7 @@ export function Navbar() {
               variant="primary"
               size="sm"
               aria-label={ctaLinks.bookDemo.label}
+              trackAsDemo="navbar_book_demo"
             >
               {ctaLinks.bookDemo.label}
             </ButtonLink>
@@ -195,6 +196,7 @@ export function Navbar() {
                 variant="primary"
                 size="md"
                 className="w-full"
+                trackAsDemo="mobile_nav_book_demo"
                 onClick={() => setMobileOpen(false)}
               >
                 {ctaLinks.bookDemo.label}

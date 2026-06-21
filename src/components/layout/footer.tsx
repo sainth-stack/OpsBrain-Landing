@@ -10,6 +10,31 @@ const columns = [
   { title: "Legal", links: footerLinks.legal },
 ] as const;
 
+function FooterLink({
+  href,
+  label,
+}: {
+  href: string;
+  label: string;
+}) {
+  const className =
+    "inline-flex min-h-11 items-center text-small text-text-secondary transition-colors hover:text-brand-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary";
+
+  if (href.startsWith("/")) {
+    return (
+      <Link href={href} className={className}>
+        {label}
+      </Link>
+    );
+  }
+
+  return (
+    <a href={href} className={className}>
+      {label}
+    </a>
+  );
+}
+
 export function Footer() {
   return (
     <footer className="border-t border-border-default bg-surface-muted">
@@ -45,12 +70,7 @@ export function Footer() {
               <ul className="mt-4 space-y-1" role="list">
                 {column.links.map((link) => (
                   <li key={link.label}>
-                    <a
-                      href={link.href}
-                      className="inline-flex min-h-11 items-center text-small text-text-secondary transition-colors hover:text-brand-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary"
-                    >
-                      {link.label}
-                    </a>
+                    <FooterLink href={link.href} label={link.label} />
                   </li>
                 ))}
               </ul>

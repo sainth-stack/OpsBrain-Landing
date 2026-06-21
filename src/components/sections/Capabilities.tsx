@@ -7,6 +7,7 @@ import { capabilities, capabilitiesSection } from "@/content/site";
 import { cn } from "@/lib/utils";
 import { fadeScaleVariants, viewportOnce } from "@/lib/motion";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 type Capability = (typeof capabilities)[number] & { featured?: boolean };
 
@@ -99,6 +100,15 @@ export function Capabilities() {
             );
           })}
         </div>
+
+        <p className="mt-10 text-center">
+          <Link
+            href="/platform"
+            className="text-small font-medium text-brand-primary hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary"
+          >
+            Explore the full platform →
+          </Link>
+        </p>
       </Container>
     </Section>
   );

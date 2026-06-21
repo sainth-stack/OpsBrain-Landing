@@ -4,7 +4,6 @@ import mark from "./brand/mark.png";
 import favicon16 from "./favicon-16.png";
 import favicon32 from "./favicon-32.png";
 import favicon180 from "./favicon-180.png";
-import ogImage from "./og-image.png";
 
 /**
  * Brand assets for OpsBrain AI.
@@ -15,12 +14,13 @@ import ogImage from "./og-image.png";
  */
 export const brandAssets = {
   mark,
-  ogImage: ogImage.src,
+  /** Stable public URL for OG/social crawlers (not build-hashed). */
+  ogImage: "/og-image.jpg",
   favicon: {
     icon16: favicon16.src,
     icon32: favicon32.src,
     icon180: favicon180.src,
-    icon512: mark.src,
+    icon512: "/icon.png",
   },
 } as const;
 

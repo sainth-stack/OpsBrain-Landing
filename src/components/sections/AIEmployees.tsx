@@ -1,7 +1,7 @@
 "use client";
 
 import { EmployeeAvatar, type AvatarType } from "@/components/visuals/EmployeeAvatars";
-import { Button, ButtonLink } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import { Container, Section } from "@/components/ui/container";
 import { SectionHeader } from "@/components/ui/section-header";
 import {
@@ -11,32 +11,21 @@ import {
 } from "@/content/site";
 import { cn } from "@/lib/utils";
 import { fadeScaleVariants, viewportOnce } from "@/lib/motion";
-import { ArrowRight, X } from "lucide-react";
+import { ArrowRight, Check, X } from "lucide-react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { useCallback, useEffect, useState, type MouseEvent } from "react";
-
-function useCardTilt() {
-  const onMouseMove = (e: MouseEvent<HTMLElement>) => {
-    if (!window.matchMedia("(hover: hover)").matches) return;
-    const el = e.currentTarget;
-    const rect = el.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const rotateX = Math.max(-4, Math.min(4, ((y - rect.height / 2) / rect.height) * -8));
-    const rotateY = Math.max(-4, Math.min(4, ((x - rect.width / 2) / rect.width) * 8));
-    el.style.setProperty("--tilt-x", `${rotateX}deg`);
-    el.style.setProperty("--tilt-y", `${rotateY}deg`);
-  };
-
-  const onMouseLeave = (e: MouseEvent<HTMLElement>) => {
-    e.currentTarget.style.setProperty("--tilt-x", "0deg");
-    e.currentTarget.style.setProperty("--tilt-y", "0deg");
-  };
-
-  return { onMouseMove, onMouseLeave };
-}
+import { useCallback, useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 
 type Employee = (typeof aiEmployees)[number];
+
+function IntegrationChip({ label }: { label: string }) {
+  return (
+    <span className="inline-flex items-center rounded-md border border-border-default bg-surface-muted px-2 py-0.5 text-[11px] font-medium text-text-muted">
+      {label}
+    </span>
+  );
+}
 
 function EmployeeModal({
   employee,
@@ -57,9 +46,9 @@ function EmployeeModal({
     };
   }, [onClose]);
 
-  return (
+  return createPortal(
     <div
-      className="fixed inset-0 z-50 flex items-end justify-center p-4 sm:items-center"
+      className="fixed inset-0 z-[100] grid place-items-center p-4 sm:p-6"
       role="dialog"
       aria-modal="true"
       aria-labelledby="employee-modal-title"
@@ -72,42 +61,87 @@ function EmployeeModal({
       />
 
       <motion.div
-        initial={{ opacity: 0, y: 24 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: 24 }}
-        className="relative z-10 w-full max-w-lg rounded-2xl border border-border-default bg-surface-white p-6 md:p-8"
+        initial={{ opacity: 0, y: 16, scale: 0.98 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        exit={{ opacity: 0, y: 16, scale: 0.98 }}
+        className="relative z-10 flex w-full max-w-lg max-h-[min(640px,calc(100dvh-2rem))] flex-col overflow-hidden rounded-2xl border border-border-default bg-surface-white shadow-xl"
       >
-        <button
-          type="button"
-          onClick={onClose}
-          className="absolute right-4 top-4 flex size-10 items-center justify-center rounded-lg text-text-muted transition-colors hover:bg-surface-muted hover:text-text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary"
-          aria-label="Close"
-        >
-          <X className="size-5" aria-hidden="true" />
-        </button>
+        <div
+          className={cn("h-0.5 shrink-0 bg-gradient-to-r", employee.gradient)}
+          aria-hidden="true"
+        />
 
-        <EmployeeAvatar type={employee.avatar as AvatarType} size={72} />
+        <div className="min-h-0 flex-1 overflow-y-auto p-6 md:p-8">
+          <button
+            type="button"
+            onClick={onClose}
+            className="absolute right-3 top-3 z-10 flex size-10 items-center justify-center rounded-lg text-text-muted transition-colors hover:bg-surface-muted hover:text-text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary"
+            aria-label="Close"
+          >
+            <X className="size-5" aria-hidden="true" />
+          </button>
 
-        <p className="mt-4 text-[11px] font-medium uppercase tracking-wider text-text-muted">
-          {employee.role}
-        </p>
-        <h3 id="employee-modal-title" className="mt-1 text-h3 text-text-primary">
-          {employee.name}
-        </h3>
-        <p className="mt-4 text-body leading-relaxed text-text-secondary">
-          {employee.fullDescription}
-        </p>
+          <EmployeeAvatar type={employee.avatar as AvatarType} size="xl" />
 
-        <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-          <ButtonLink href="#contact" variant="primary" size="lg" className="flex-1" onClick={onClose}>
+          <p className="mt-5 text-[11px] font-medium uppercase tracking-wider text-text-muted">
+            {employee.role}
+          </p>
+          <h3 id="employee-modal-title" className="mt-1 font-display text-h3 text-text-primary">
+            {employee.name}
+          </h3>
+          <p className="mt-2 text-small font-medium text-brand-accent">
+            {employee.outcomeMetric}
+          </p>
+
+          <ul className="mt-6 space-y-3" role="list">
+            {employee.capabilities.map((capability) => (
+              <li key={capability} className="flex items-start gap-2.5">
+                <span className="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full bg-brand-accent-light">
+                  <Check className="size-3 text-brand-accent" aria-hidden="true" />
+                </span>
+                <span className="text-small leading-relaxed text-text-secondary">
+                  {capability}
+                </span>
+              </li>
+            ))}
+          </ul>
+
+          <div className="mt-6">
+            <p className="text-[11px] font-medium uppercase tracking-wider text-text-muted">
+              Integrates with
+            </p>
+            <div className="mt-2 flex flex-wrap gap-1.5">
+              {employee.integrations.map((integration) => (
+                <IntegrationChip key={integration} label={integration} />
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="flex shrink-0 flex-col gap-3 border-t border-border-muted bg-surface-white p-4 sm:flex-row sm:p-6">
+          <Button
+            variant="primary"
+            size="lg"
+            className="w-full sm:flex-1"
+            onClick={() => {
+              onClose();
+              document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+            }}
+          >
             Deploy This Employee
-          </ButtonLink>
-          <Button variant="secondary" size="lg" className="flex-1" onClick={onClose}>
+          </Button>
+          <Button
+            variant="secondary"
+            size="lg"
+            className="w-full sm:flex-1"
+            onClick={onClose}
+          >
             Close
           </Button>
         </div>
       </motion.div>
-    </div>
+    </div>,
+    document.body,
   );
 }
 
@@ -122,8 +156,6 @@ function EmployeeCard({
   onLearnMore: (employee: Employee) => void;
   className?: string;
 }) {
-  const { onMouseMove, onMouseLeave } = useCardTilt();
-
   return (
     <motion.article
       initial="hidden"
@@ -132,47 +164,57 @@ function EmployeeCard({
       custom={index * 0.07}
       variants={fadeScaleVariants}
       layout
-      onMouseMove={onMouseMove}
-      onMouseLeave={onMouseLeave}
       className={cn(
-        "card-tilt group relative flex shrink-0 snap-center flex-col overflow-hidden rounded-xl border border-border-default bg-surface-white",
-        "w-[280px] transition-all duration-300 hover:scale-[1.02] hover:border-brand-primary/40",
+        "gradient-border group relative flex shrink-0 snap-center flex-col overflow-hidden rounded-xl bg-surface-white",
+        "w-[300px] shadow-sm transition-all duration-300",
+        "hover:-translate-y-1 hover:shadow-md hover:border-brand-primary/40",
         "md:w-auto md:shrink md:snap-align-none",
         className,
       )}
     >
       <div
-        className={cn(
-          "h-1 w-full bg-gradient-to-r opacity-70 transition-opacity duration-300 group-hover:opacity-100",
-          employee.gradient,
-        )}
+        className={cn("h-0.5 w-full bg-gradient-to-r", employee.gradient)}
         aria-hidden="true"
       />
 
       <div className="flex flex-1 flex-col p-5 md:p-6">
-        <EmployeeAvatar type={employee.avatar as AvatarType} size={64} />
+        <EmployeeAvatar type={employee.avatar as AvatarType} />
 
-        <p className="mt-1 text-[11px] font-medium uppercase tracking-wider text-text-muted">
+        <p className="mt-3 text-[11px] font-medium uppercase tracking-wider text-text-muted">
           {employee.role}
         </p>
-        <h3 className="mt-2 text-body font-semibold text-text-primary">
-          {employee.name}
+        <h3 className="mt-1.5 text-body font-semibold text-text-primary md:text-lg">
+          <Link
+            href={`/ai-employees/${employee.id}`}
+            className="hover:text-brand-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary"
+          >
+            {employee.name}
+          </Link>
         </h3>
+        <p className="mt-2 text-small font-medium text-brand-accent">
+          {employee.outcomeMetric}
+        </p>
         <p className="mt-2 line-clamp-2 text-small leading-relaxed text-text-muted">
           {employee.description}
         </p>
 
-        <button
-          type="button"
-          onClick={() => onLearnMore(employee)}
-          className="mt-4 inline-flex min-h-11 items-center gap-1 text-small font-medium text-brand-primary transition-colors hover:text-brand-primary-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary"
-        >
-          Learn More
-          <ArrowRight
-            className="size-4 transition-transform group-hover:translate-x-0.5"
-            aria-hidden="true"
-          />
-        </button>
+        <div className="mt-auto flex items-end justify-between gap-3 border-t border-border-muted pt-4">
+          <div className="flex min-w-0 flex-wrap gap-1">
+            {employee.integrations.slice(0, 3).map((integration) => (
+              <IntegrationChip key={integration} label={integration} />
+            ))}
+          </div>
+          <Link
+            href={`/ai-employees/${employee.id}`}
+            className="inline-flex shrink-0 items-center gap-0.5 text-small font-medium text-brand-primary transition-colors hover:text-brand-primary-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary"
+          >
+            Learn more
+            <ArrowRight
+              className="size-3.5 transition-transform group-hover:translate-x-0.5"
+              aria-hidden="true"
+            />
+          </Link>
+        </div>
       </div>
     </motion.article>
   );
@@ -196,7 +238,7 @@ export function AIEmployees() {
   }, []);
 
   return (
-    <Section id="ai-employees" surface="white" aria-label={aiEmployeesSection.title}>
+    <Section id="ai-employees" surface="muted" aria-label={aiEmployeesSection.title}>
       <Container>
         <motion.div
           initial="hidden"
@@ -260,6 +302,13 @@ export function AIEmployees() {
             No AI employees match this filter.
           </p>
         )}
+
+        <p className="mt-10 text-center text-small text-text-muted">
+          {aiEmployeesSection.trustLine}{" "}
+          <Link href="/ai-employees" className="font-medium text-brand-primary hover:underline">
+            Browse all AI employees →
+          </Link>
+        </p>
       </Container>
 
       <AnimatePresence>

@@ -187,6 +187,7 @@ html[data-theme="dark"] {
   }
 
   .hero-fade-up {
+    opacity: 1;
     animation: hero-fade-up 0.55s ease both;
   }
 
@@ -233,6 +234,7 @@ html[data-theme="dark"] {
   .btn-gradient {
     background: linear-gradient(135deg, #4f46e5 0%, #6366f1 50%, #4f46e5 100%);
     background-size: 200% 200%;
+    color: #ffffff;
     transition: background-position 0.4s ease;
   }
 
@@ -311,6 +313,14 @@ html[data-theme="dark"] {
   }
   to {
     transform: translateX(-50%);
+  }
+}
+
+@media (scripting: none) {
+  .hero-fade-up {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
   }
 }
 

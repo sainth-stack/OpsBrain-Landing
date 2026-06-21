@@ -1,9 +1,12 @@
+"use client";
+
+import { trackDemoClick } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
 const variantStyles = {
   primary:
-    "btn-gradient text-white hover:bg-brand-primary-hover border-0",
+    "btn-gradient border-0 !text-white shadow-sm hover:!text-white",
   secondary:
     "bg-surface-white text-text-primary border border-border-default hover:bg-surface-muted",
   ghost:
@@ -60,6 +63,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 export interface ButtonLinkProps extends ComponentPropsWithoutRef<"a"> {
   variant?: ButtonVariant;
   size?: ButtonSize;
+  /** When set, fires a `demo_click` analytics event on click. */
+  trackAsDemo?: string;
 }
 
 export const ButtonLink = forwardRef<HTMLAnchorElement, ButtonLinkProps>(
@@ -69,6 +74,8 @@ export const ButtonLink = forwardRef<HTMLAnchorElement, ButtonLinkProps>(
       variant = "primary",
       size = "md",
       children,
+      trackAsDemo,
+      onClick,
       ...props
     },
     ref,
@@ -83,6 +90,12 @@ export const ButtonLink = forwardRef<HTMLAnchorElement, ButtonLinkProps>(
           sizeStyles[size],
           className,
         )}
+        onClick={(event) => {
+          if (trackAsDemo) {
+            trackDemoClick(trackAsDemo);
+          }
+          onClick?.(event);
+        }}
         {...props}
       >
         {children}

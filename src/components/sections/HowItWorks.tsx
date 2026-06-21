@@ -8,6 +8,7 @@ import { SectionHeader } from "@/components/ui/section-header";
 import { howItWorksSection, howItWorksTabs } from "@/content/site";
 import { cn } from "@/lib/utils";
 import { fadeScaleVariants, viewportOnce } from "@/lib/motion";
+import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { useCallback, useEffect, useId, useRef, useState } from "react";
 
@@ -146,6 +147,12 @@ export function HowItWorks() {
                 <p className="mt-3 text-body text-text-secondary">
                   {currentTab.description}
                 </p>
+                <Link
+                  href={`/solutions/${currentTab.id}`}
+                  className="mt-4 inline-flex text-small font-medium text-brand-primary hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary"
+                >
+                  Explore {currentTab.label.toLowerCase()} →
+                </Link>
 
                 <ol className="mt-8 space-y-4" aria-label="Steps">
                   {currentTab.steps.map((step, index) => (

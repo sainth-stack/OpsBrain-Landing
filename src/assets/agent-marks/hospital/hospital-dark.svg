@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="AI Hospital Assistant mark">
+  
+    <defs>
+      <linearGradient id="bg-hospital-dark" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stop-color="rgba(20,184,166,0.32)"/>
+        <stop offset="100%" stop-color="rgba(5,150,105,0.18)"/>
+      </linearGradient>
+    </defs>
+    <rect width="64" height="64" rx="12" fill="#0F172A"/>
+    <rect width="64" height="64" rx="12" fill="url(#bg-hospital-dark)"/>
+    <rect x="0.5" y="0.5" width="63" height="63" rx="11.5" stroke="rgba(20,184,166,0.22)" fill="none"/>
+    
+    <g opacity="0.2" aria-hidden="true">
+      <circle cx="50" cy="50" r="1.5" fill="#059669"/>
+      <circle cx="56" cy="46" r="1.5" fill="#059669"/>
+      <circle cx="54" cy="54" r="1" fill="#10B981"/>
+      <line x1="50" y1="50" x2="56" y2="46" stroke="#059669" stroke-width="0.75"/>
+      <line x1="56" y1="46" x2="54" y2="54" stroke="#059669" stroke-width="0.75"/>
+    </g>
+  
+    <g>
+      <path d="M32 18 L44 24 V34 C44 40 32 44 32 44 C32 44 20 40 20 34 V24 Z" fill="#059669"/>
+      <rect x="29" y="27" width="6" height="12" rx="1" fill="#FFFFFF"/>
+      <rect x="26" y="30" width="12" height="6" rx="1" fill="#FFFFFF"/>
+    </g>
+  
+</svg>

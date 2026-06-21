@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="AI HR Recruiter mark">
+  
+    <defs>
+      <linearGradient id="bg-hr-light" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stop-color="rgba(139,92,246,0.14)"/>
+        <stop offset="100%" stop-color="rgba(147,51,234,0.08)"/>
+      </linearGradient>
+    </defs>
+    <rect width="64" height="64" rx="12" fill="#FFFFFF"/>
+    <rect width="64" height="64" rx="12" fill="url(#bg-hr-light)"/>
+    <rect x="0.5" y="0.5" width="63" height="63" rx="11.5" stroke="rgba(139,92,246,0.12)" fill="none"/>
+    
+    <g opacity="0.14" aria-hidden="true">
+      <circle cx="50" cy="50" r="1.5" fill="#8B5CF6"/>
+      <circle cx="56" cy="46" r="1.5" fill="#8B5CF6"/>
+      <circle cx="54" cy="54" r="1" fill="#10B981"/>
+      <line x1="50" y1="50" x2="56" y2="46" stroke="#8B5CF6" stroke-width="0.75"/>
+      <line x1="56" y1="46" x2="54" y2="54" stroke="#8B5CF6" stroke-width="0.75"/>
+    </g>
+  
+    <g>
+      <circle cx="28" cy="26" r="5" fill="#8B5CF6"/>
+      <path d="M18 42 C18 36 22 33 28 33 C34 33 38 36 38 42" fill="#8B5CF6"/>
+      <circle cx="42" cy="40" r="7" fill="#8B5CF6"/>
+      <path d="M39 40 L41.5 42.5 L46 38" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    </g>
+  
+</svg>

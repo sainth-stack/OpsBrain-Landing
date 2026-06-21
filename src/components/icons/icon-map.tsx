@@ -1,17 +1,18 @@
 import { cn } from "@/lib/utils";
 import {
   ArrowRightLeft,
+  Banknote,
   BarChart3,
   Bot,
+  Building2,
   Calendar,
   CalendarCheck,
   Clock,
   Cloud,
   Database,
   GraduationCap,
-  HeartPulse,
-  Building2,
   Headphones,
+  HeartPulse,
   Kanban,
   Layers,
   Megaphone,
@@ -79,6 +80,18 @@ const problemIconMap: Record<string, LucideIcon> = {
   Database,
 };
 
+const agentIconMap: Record<string, LucideIcon> = {
+  sales: TrendingUp,
+  hr: Users,
+  hospital: HeartPulse,
+  payment: Banknote,
+  support: Headphones,
+  school: GraduationCap,
+  restaurant: UtensilsCrossed,
+  realestate: Building2,
+  insurance: ShieldCheck,
+};
+
 export function getWorkflowIcon(name: string): LucideIcon {
   return workflowIconMap[name] ?? Search;
 }
@@ -99,10 +112,14 @@ export function getProblemIcon(name: string): LucideIcon {
   return problemIconMap[name] ?? Clock;
 }
 
+export function getAgentIcon(name: string): LucideIcon {
+  return agentIconMap[name] ?? Bot;
+}
+
 export interface IconBoxProps {
   icon: LucideIcon;
   className?: string;
-  size?: "sm" | "md" | "lg";
+  size?: "sm" | "md" | "lg" | "xl";
   variant?: "primary" | "accent" | "dark";
 }
 
@@ -110,6 +127,7 @@ const sizeStyles = {
   sm: "size-10 [&>svg]:size-5",
   md: "size-12 [&>svg]:size-6",
   lg: "size-14 [&>svg]:size-7",
+  xl: "size-24 [&>svg]:size-12",
 } as const;
 
 const variantStyles = {

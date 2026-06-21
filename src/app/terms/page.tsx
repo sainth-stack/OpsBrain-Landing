@@ -1,12 +1,13 @@
 import { Container } from "@/components/ui/container";
-import { siteConfig } from "@/content/site";
-import type { Metadata } from "next";
+import { buildPageMetadata } from "@/lib/seo";
 import Link from "next/link";
 
-export const metadata: Metadata = {
-  title: `Terms of Service | ${siteConfig.name}`,
-  description: `Terms of Service for ${siteConfig.name} platform and website.`,
-};
+export const metadata = buildPageMetadata({
+  title: "Terms of Service",
+  description:
+    "Terms of Service for the OpsBrain AI platform and website, including acceptable use, billing, and liability.",
+  path: "/terms",
+});
 
 export default function TermsPage() {
   return (

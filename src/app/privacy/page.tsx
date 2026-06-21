@@ -1,12 +1,13 @@
 import { Container } from "@/components/ui/container";
-import { siteConfig } from "@/content/site";
-import type { Metadata } from "next";
+import { buildPageMetadata } from "@/lib/seo";
 import Link from "next/link";
 
-export const metadata: Metadata = {
-  title: `Privacy Policy | ${siteConfig.name}`,
-  description: `Privacy Policy for ${siteConfig.name} - how we collect, use, and protect your data.`,
-};
+export const metadata = buildPageMetadata({
+  title: "Privacy Policy",
+  description:
+    "How OpsBrain AI collects, uses, and protects your personal data when you use our website and AI employee platform.",
+  path: "/privacy",
+});
 
 export default function PrivacyPage() {
   return (

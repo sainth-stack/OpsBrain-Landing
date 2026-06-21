@@ -1,0 +1,204 @@
+{
+  "version": "1.0.0",
+  "brand": {
+    "primary": "#4F46E5",
+    "accent": "#10B981"
+  },
+  "template": {
+    "size": 64,
+    "radius": 12,
+    "safeZone": 40,
+    "padding": 12
+  },
+  "agents": [
+    {
+      "id": "sales",
+      "name": "AI Sales Employee",
+      "role": "Outbound Sales",
+      "gradient": {
+        "from": "#6366F1",
+        "to": "#7C3AED"
+      },
+      "files": {
+        "light": {
+          "svg": "agent-marks/sales/sales-light.svg",
+          "png": "agent-marks/sales/sales-light.png",
+          "png2x": "agent-marks/sales/sales-light@2x.png"
+        },
+        "dark": {
+          "svg": "agent-marks/sales/sales-dark.svg",
+          "png": "agent-marks/sales/sales-dark.png",
+          "png2x": "agent-marks/sales/sales-dark@2x.png"
+        }
+      }
+    },
+    {
+      "id": "hr",
+      "name": "AI HR Recruiter",
+      "role": "Talent Acquisition",
+      "gradient": {
+        "from": "#8B5CF6",
+        "to": "#9333EA"
+      },
+      "files": {
+        "light": {
+          "svg": "agent-marks/hr/hr-light.svg",
+          "png": "agent-marks/hr/hr-light.png",
+          "png2x": "agent-marks/hr/hr-light@2x.png"
+        },
+        "dark": {
+          "svg": "agent-marks/hr/hr-dark.svg",
+          "png": "agent-marks/hr/hr-dark.png",
+          "png2x": "agent-marks/hr/hr-dark@2x.png"
+        }
+      }
+    },
+    {
+      "id": "hospital",
+      "name": "AI Hospital Assistant",
+      "role": "Healthcare Front Desk",
+      "gradient": {
+        "from": "#14B8A6",
+        "to": "#059669"
+      },
+      "files": {
+        "light": {
+          "svg": "agent-marks/hospital/hospital-light.svg",
+          "png": "agent-marks/hospital/hospital-light.png",
+          "png2x": "agent-marks/hospital/hospital-light@2x.png"
+        },
+        "dark": {
+          "svg": "agent-marks/hospital/hospital-dark.svg",
+          "png": "agent-marks/hospital/hospital-dark.png",
+          "png2x": "agent-marks/hospital/hospital-dark@2x.png"
+        }
+      }
+    },
+    {
+      "id": "payment",
+      "name": "AI Payment Reminder Agent",
+      "role": "Collections & Billing",
+      "gradient": {
+        "from": "#F59E0B",
+        "to": "#EA580C"
+      },
+      "files": {
+        "light": {
+          "svg": "agent-marks/payment/payment-light.svg",
+          "png": "agent-marks/payment/payment-light.png",
+          "png2x": "agent-marks/payment/payment-light@2x.png"
+        },
+        "dark": {
+          "svg": "agent-marks/payment/payment-dark.svg",
+          "png": "agent-marks/payment/payment-dark.png",
+          "png2x": "agent-marks/payment/payment-dark@2x.png"
+        }
+      }
+    },
+    {
+      "id": "support",
+      "name": "AI Customer Support Agent",
+      "role": "24/7 Support",
+      "gradient": {
+        "from": "#06B6D4",
+        "to": "#2563EB"
+      },
+      "files": {
+        "light": {
+          "svg": "agent-marks/support/support-light.svg",
+          "png": "agent-marks/support/support-light.png",
+          "png2x": "agent-marks/support/support-light@2x.png"
+        },
+        "dark": {
+          "svg": "agent-marks/support/support-dark.svg",
+          "png": "agent-marks/support/support-dark.png",
+          "png2x": "agent-marks/support/support-dark@2x.png"
+        }
+      }
+    },
+    {
+      "id": "school",
+      "name": "AI School Admission Counselor",
+      "role": "EdTech Admissions",
+      "gradient": {
+        "from": "#3B82F6",
+        "to": "#4F46E5"
+      },
+      "files": {
+        "light": {
+          "svg": "agent-marks/school/school-light.svg",
+          "png": "agent-marks/school/school-light.png",
+          "png2x": "agent-marks/school/school-light@2x.png"
+        },
+        "dark": {
+          "svg": "agent-marks/school/school-dark.svg",
+          "png": "agent-marks/school/school-dark.png",
+          "png2x": "agent-marks/school/school-dark@2x.png"
+        }
+      }
+    },
+    {
+      "id": "restaurant",
+      "name": "AI Restaurant Receptionist",
+      "role": "Hospitality",
+      "gradient": {
+        "from": "#F43F5E",
+        "to": "#EC4899"
+      },
+      "files": {
+        "light": {
+          "svg": "agent-marks/restaurant/restaurant-light.svg",
+          "png": "agent-marks/restaurant/restaurant-light.png",
+          "png2x": "agent-marks/restaurant/restaurant-light@2x.png"
+        },
+        "dark": {
+          "svg": "agent-marks/restaurant/restaurant-dark.svg",
+          "png": "agent-marks/restaurant/restaurant-dark.png",
+          "png2x": "agent-marks/restaurant/restaurant-dark@2x.png"
+        }
+      }
+    },
+    {
+      "id": "realestate",
+      "name": "AI Real Estate Assistant",
+      "role": "Property Sales",
+      "gradient": {
+        "from": "#10B981",
+        "to": "#14B8A6"
+      },
+      "files": {
+        "light": {
+          "svg": "agent-marks/realestate/realestate-light.svg",
+          "png": "agent-marks/realestate/realestate-light.png",
+          "png2x": "agent-marks/realestate/realestate-light@2x.png"
+        },
+        "dark": {
+          "svg": "agent-marks/realestate/realestate-dark.svg",
+          "png": "agent-marks/realestate/realestate-dark.png",
+          "png2x": "agent-marks/realestate/realestate-dark@2x.png"
+        }
+      }
+    },
+    {
+      "id": "insurance",
+      "name": "AI Insurance Renewal Agent",
+      "role": "Insurance Ops",
+      "gradient": {
+        "from": "#0EA5E9",
+        "to": "#06B6D4"
+      },
+      "files": {
+        "light": {
+          "svg": "agent-marks/insurance/insurance-light.svg",
+          "png": "agent-marks/insurance/insurance-light.png",
+          "png2x": "agent-marks/insurance/insurance-light@2x.png"
+        },
+        "dark": {
+          "svg": "agent-marks/insurance/insurance-dark.svg",
+          "png": "agent-marks/insurance/insurance-dark.png",
+          "png2x": "agent-marks/insurance/insurance-dark@2x.png"
+        }
+      }
+    }
+  ]
+}

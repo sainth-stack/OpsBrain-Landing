@@ -1,3 +1,4 @@
+import { AnalyticsScripts } from "@/components/analytics/AnalyticsScripts";
 import { Footer } from "@/components/layout/footer";
 import { DeferredMobileCTA } from "@/components/layout/DeferredMobileCTA";
 import { Navbar } from "@/components/layout/navbar";
@@ -8,6 +9,11 @@ import { themeInitScript } from "@/lib/theme-script";
 import type { Metadata } from "next";
 import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
+
+// TODO(hreflang): Add hreflang alternates when dedicated Hindi/Telugu landing pages ship.
+// Until then, all pages serve English (`lang="en"`) with multilingual voice product capability.
+
+const gscVerification = process.env.NEXT_PUBLIC_GSC_VERIFICATION;
 
 const inter = Inter({
   subsets: ["latin"],
@@ -31,9 +37,6 @@ export const metadata: Metadata = {
   },
   description: siteConfig.seo.description,
   metadataBase: new URL(siteConfig.url),
-  alternates: {
-    canonical: siteConfig.url,
-  },
   keywords: [
     "AI employees",
     "AI voice agents",
@@ -93,6 +96,9 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  ...(gscVerification
+    ? { verification: { google: gscVerification } }
+    : {}),
 };
 
 export default function RootLayout({
@@ -111,6 +117,7 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
       <body className="flex min-h-full flex-col font-sans antialiased pb-20 md:pb-0">
+        <AnalyticsScripts />
         <ThemeProvider>
           <MotionProvider>
             <Navbar />

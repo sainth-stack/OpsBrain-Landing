@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { trackAudioPlay } from "@/lib/analytics";
+import { trackVoiceDemoPlay } from "@/lib/analytics";
 import { Pause, Play } from "lucide-react";
 import {
   createContext,
@@ -212,7 +212,7 @@ export function AudioPlayer({
 
     setActiveId(id);
 
-    trackAudioPlay(fallbackLang);
+    trackVoiceDemoPlay(fallbackLang);
 
     const speechAvailable =
       typeof window !== "undefined" && !!window.speechSynthesis;

@@ -5,32 +5,32 @@ import { SectionSkeleton } from "@/components/ui/SectionSkeleton";
 
 const Multilingual = dynamic(
   () => import("@/components/sections/Multilingual").then((m) => m.Multilingual),
-  { loading: () => <SectionSkeleton />, ssr: false },
+  { loading: () => <SectionSkeleton /> },
 );
 const OutcomesMetrics = dynamic(
   () =>
     import("@/components/sections/OutcomesMetrics").then((m) => m.OutcomesMetrics),
-  { loading: () => <SectionSkeleton />, ssr: false },
+  { loading: () => <SectionSkeleton /> },
 );
 const ROICalculator = dynamic(
   () => import("@/components/sections/ROICalculator").then((m) => m.ROICalculator),
-  { loading: () => <SectionSkeleton />, ssr: false },
+  { loading: () => <SectionSkeleton /> },
 );
 const Comparison = dynamic(
   () => import("@/components/sections/Comparison").then((m) => m.Comparison),
-  { loading: () => <SectionSkeleton />, ssr: false },
+  { loading: () => <SectionSkeleton /> },
 );
 const WhyOpsBrain = dynamic(
   () => import("@/components/sections/WhyOpsBrain").then((m) => m.WhyOpsBrain),
-  { loading: () => <SectionSkeleton />, ssr: false },
+  { loading: () => <SectionSkeleton /> },
 );
 const FAQ = dynamic(
   () => import("@/components/sections/FAQ").then((m) => m.FAQ),
-  { loading: () => <SectionSkeleton />, ssr: false },
+  { loading: () => <SectionSkeleton /> },
 );
 const FinalCTA = dynamic(
   () => import("@/components/sections/FinalCTA").then((m) => m.FinalCTA),
-  { loading: () => <SectionSkeleton />, ssr: false },
+  { loading: () => <SectionSkeleton /> },
 );
 
 export function ClientHeavySections() {

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="AI School Admission Counselor mark">
+  
+    <defs>
+      <linearGradient id="bg-school-light" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stop-color="rgba(59,130,246,0.14)"/>
+        <stop offset="100%" stop-color="rgba(79,70,229,0.08)"/>
+      </linearGradient>
+    </defs>
+    <rect width="64" height="64" rx="12" fill="#FFFFFF"/>
+    <rect width="64" height="64" rx="12" fill="url(#bg-school-light)"/>
+    <rect x="0.5" y="0.5" width="63" height="63" rx="11.5" stroke="rgba(59,130,246,0.12)" fill="none"/>
+    
+    <g opacity="0.14" aria-hidden="true">
+      <circle cx="50" cy="50" r="1.5" fill="#3B82F6"/>
+      <circle cx="56" cy="46" r="1.5" fill="#3B82F6"/>
+      <circle cx="54" cy="54" r="1" fill="#10B981"/>
+      <line x1="50" y1="50" x2="56" y2="46" stroke="#3B82F6" stroke-width="0.75"/>
+      <line x1="56" y1="46" x2="54" y2="54" stroke="#3B82F6" stroke-width="0.75"/>
+    </g>
+  
+    <g>
+      <polygon points="32,18 46,26 32,34 18,26" fill="#3B82F6"/>
+      <rect x="28" y="34" width="8" height="3" fill="#3B82F6"/>
+      <rect x="22" y="40" width="3" height="8" rx="1" fill="#3B82F6"/>
+      <rect x="27" y="36" width="3" height="12" rx="1" fill="#3B82F6"/>
+      <rect x="32" y="38" width="3" height="10" rx="1" fill="#3B82F6"/>
+      <rect x="37" y="34" width="3" height="14" rx="1" fill="#3B82F6"/>
+    </g>
+  
+</svg>

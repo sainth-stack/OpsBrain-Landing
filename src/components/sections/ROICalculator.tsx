@@ -9,7 +9,7 @@ import {
   roiIndustryPresets,
   type RoiIndustryPreset,
 } from "@/content/site";
-import { trackCalculatorUse } from "@/lib/analytics";
+import { trackRoiCalculate } from "@/lib/analytics";
 import { calculateROI } from "@/lib/roi-model";
 import { cn } from "@/lib/utils";
 import { fadeUpVariants, viewportOnce } from "@/lib/motion";
@@ -168,7 +168,7 @@ export function ROICalculator() {
       );
       setConversionRate(preset.conversionRate);
       setResponseDelay(preset.responseDelay);
-      trackCalculatorUse({
+      trackRoiCalculate({
         event: "preset",
         preset: preset.id,
         leads: preset.leads,
@@ -186,7 +186,7 @@ export function ROICalculator() {
     setActivePreset("custom");
     setter(v);
     if (track) {
-      trackCalculatorUse({
+      trackRoiCalculate({
         leads: setter === setLeads ? v : leads,
         dealValue: setter === setDealValue ? v : dealValue,
         conversionRate: setter === setConversionRate ? v : conversionRate,
@@ -328,6 +328,7 @@ export function ROICalculator() {
                 variant="primary"
                 size="lg"
                 className="flex-1"
+                trackAsDemo="roi_calculator_book_demo"
               >
                 {roiCalculatorSection.cta.label}
               </ButtonLink>

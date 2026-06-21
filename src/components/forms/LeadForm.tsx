@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { leadFormOptions } from "@/content/site";
-import { trackFormSubmit } from "@/lib/analytics";
+import { trackLeadSubmit } from "@/lib/analytics";
 import { leadFormSchema, type LeadFormValues } from "@/lib/schemas/lead";
 import { cn } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -62,7 +62,7 @@ export function LeadForm({ theme = "light" }: { theme?: "light" | "dark" }) {
 
       if (!res.ok) throw new Error("Submit failed");
 
-      trackFormSubmit("lead");
+      trackLeadSubmit("lead");
       setSubmitState("success");
       reset();
     } catch {
