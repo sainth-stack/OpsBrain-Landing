@@ -211,13 +211,9 @@ export function AudioPlayer({
     }
 
     setActiveId(id);
-
     trackVoiceDemoPlay(fallbackLang);
 
-    const speechAvailable =
-      typeof window !== "undefined" && !!window.speechSynthesis;
-
-    if (preferSpeech && speechAvailable) {
+    if (preferSpeech && typeof window !== "undefined" && window.speechSynthesis) {
       setIsPlaying(true);
       startSpeechFallback();
       return;
@@ -225,18 +221,25 @@ export function AudioPlayer({
 
     const audio = audioRef.current;
 
-    if (audio && audioReady && !useSpeechFallback) {
+    if (audio) {
       try {
+        if (audio.error) {
+          audio.load();
+        }
         await audio.play();
         setIsPlaying(true);
         setPlaybackMode("file");
+        if (Number.isFinite(audio.duration) && audio.duration > 0) {
+          setDuration(audio.duration);
+          setAudioReady(true);
+        }
         return;
       } catch {
-        setUseSpeechFallback(true);
+        // File playback blocked or unavailable — try speech only as last resort
       }
     }
 
-    if (speechAvailable) {
+    if (typeof window !== "undefined" && window.speechSynthesis) {
       setIsPlaying(true);
       startSpeechFallback();
     }
@@ -246,8 +249,6 @@ export function AudioPlayer({
     setActiveId,
     id,
     preferSpeech,
-    audioReady,
-    useSpeechFallback,
     startSpeechFallback,
     fallbackLang,
   ]);
@@ -275,15 +276,15 @@ export function AudioPlayer({
       <audio
         ref={audioRef}
         src={src}
-        preload="none"
+        preload="metadata"
         onLoadedMetadata={() => {
           const audio = audioRef.current;
-          if (audio && Number.isFinite(audio.duration)) {
+          if (audio && Number.isFinite(audio.duration) && audio.duration > 0) {
             setDuration(audio.duration);
             setAudioReady(true);
           }
         }}
-        onError={() => setUseSpeechFallback(true)}
+        onCanPlay={() => setAudioReady(true)}
         onTimeUpdate={() => {
           const audio = audioRef.current;
           if (audio) setCurrentTime(audio.currentTime);
