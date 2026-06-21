@@ -6,25 +6,86 @@ import { Logo } from "@/components/ui/logo";
 import { useTheme } from "@/components/providers/ThemeProvider";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { ctaLinks, navLinks } from "@/content/site";
+import { isNavLinkActive } from "@/lib/navigation";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
+function NavLink({
+  href,
+  label,
+  heroOverlay,
+  active,
+  mobile = false,
+  onNavigate,
+}: {
+  href: string;
+  label: string;
+  heroOverlay: boolean;
+  active: boolean;
+  mobile?: boolean;
+  onNavigate?: () => void;
+}) {
+  const className = cn(
+    "inline-flex min-h-11 items-center rounded-lg px-4 font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary",
+    mobile ? "w-full text-body text-text-primary" : "text-small",
+    active
+      ? mobile
+        ? "bg-brand-primary-light text-brand-primary"
+        : heroOverlay
+          ? "bg-white/15 text-on-dark"
+          : "bg-brand-primary-light text-brand-primary"
+      : mobile
+        ? "hover:bg-surface-muted"
+        : heroOverlay
+          ? "text-on-dark-muted hover:bg-white/10 hover:text-on-dark"
+          : "text-text-secondary hover:bg-surface-muted hover:text-text-primary",
+  );
+
+  return (
+    <Link href={href} className={className} onClick={onNavigate}>
+      {label}
+    </Link>
+  );
+}
+
 export function Navbar() {
+  const pathname = usePathname();
   const { theme } = useTheme();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
+  const isHome = pathname === "/";
   const isLight = theme === "light";
-  const overHero = !scrolled;
+  const overHero = isHome && !scrolled;
   const heroOverlay = overHero && !isLight;
+
+  const closeMobile = () => setMobileOpen(false);
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
     };
+  }, [mobileOpen]);
+
+  useEffect(() => {
+    closeMobile();
+  }, [pathname]);
+
+  useEffect(() => {
+    if (!mobileOpen) return;
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        closeMobile();
+      }
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
   }, [mobileOpen]);
 
   useEffect(() => {
@@ -69,17 +130,12 @@ export function Navbar() {
           <ul className="hidden items-center gap-1 md:flex" role="list">
             {navLinks.map((link) => (
               <li key={link.href}>
-                <a
+                <NavLink
                   href={link.href}
-                  className={cn(
-                    "inline-flex min-h-11 items-center rounded-lg px-4 text-small font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary",
-                    heroOverlay
-                      ? "text-on-dark-muted hover:bg-white/10 hover:text-on-dark"
-                      : "text-text-secondary hover:bg-surface-muted hover:text-text-primary",
-                  )}
-                >
-                  {link.label}
-                </a>
+                  label={link.label}
+                  heroOverlay={heroOverlay}
+                  active={isNavLinkActive(pathname, link.href)}
+                />
               </li>
             ))}
           </ul>
@@ -148,7 +204,7 @@ export function Navbar() {
             "absolute inset-0 bg-text-primary/20 transition-opacity duration-300",
             mobileOpen ? "opacity-100" : "opacity-0",
           )}
-          onClick={() => setMobileOpen(false)}
+          onClick={closeMobile}
           aria-hidden="true"
         />
 
@@ -165,13 +221,14 @@ export function Navbar() {
             <ul className="flex flex-col gap-1" role="list">
               {navLinks.map((link) => (
                 <li key={link.href}>
-                  <a
+                  <NavLink
                     href={link.href}
-                    className="flex min-h-11 items-center rounded-lg px-4 text-body font-medium text-text-primary transition-colors hover:bg-surface-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary"
-                    onClick={() => setMobileOpen(false)}
-                  >
-                    {link.label}
-                  </a>
+                    label={link.label}
+                    heroOverlay={false}
+                    active={isNavLinkActive(pathname, link.href)}
+                    mobile
+                    onNavigate={closeMobile}
+                  />
                 </li>
               ))}
             </ul>
@@ -188,7 +245,7 @@ export function Navbar() {
                 variant="secondary"
                 size="md"
                 className="w-full"
-                onClick={() => setMobileOpen(false)}
+                onClick={closeMobile}
               >
                 {ctaLinks.contact.label}
               </ButtonLink>
@@ -198,7 +255,7 @@ export function Navbar() {
                 size="md"
                 className="w-full"
                 trackAsDemo="mobile_nav_get_started"
-                onClick={() => setMobileOpen(false)}
+                onClick={closeMobile}
               >
                 {ctaLinks.getStarted.label}
               </ButtonLink>

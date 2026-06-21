@@ -205,6 +205,14 @@ export const hubPages = {
     description:
       "The OpsBrain platform unifies lead prospecting, AI voice calling, CRM sync, scheduling, and analytics — one operating system for autonomous revenue teams.",
   },
+  solutions: {
+    path: "/solutions",
+    title: "AI Voice Solutions",
+    description:
+      "Instant lead calling, 24/7 inbound support, and bulk outbound campaigns — three OpsBrain workflows that deploy AI voice agents with CRM sync in under 30 minutes.",
+    intro:
+      "Pick the workflow that matches your revenue motion. Each solution includes multilingual voice, script configuration, and real-time CRM integration.",
+  },
 } as const;
 
 const industrySolutionMap: Record<string, SolutionSlug> = {
@@ -517,7 +525,7 @@ export function getSolutionPageContent(slug: string) {
     page,
     breadcrumbs: [
       { name: "Home", path: "/" },
-      { name: "Solutions", path: "/solutions/lead-calling" },
+      { name: "Solutions", path: hubPages.solutions.path },
       { name: page.label, path: page.path },
     ] satisfies BreadcrumbItem[],
   };

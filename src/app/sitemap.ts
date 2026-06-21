@@ -36,6 +36,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: `${base}${hubPages.solutions.path}`,
+      lastModified: LAST_CONTENT_UPDATE,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
       url: `${base}${hubPages.integrations.path}`,
       lastModified: LAST_CONTENT_UPDATE,
       changeFrequency: "monthly",

@@ -23,14 +23,22 @@ export const siteConfig = {
 export const navLinks = [
   { label: "Platform", href: "/platform" },
   { label: "AI Employees", href: "/ai-employees" },
-  { label: "Solutions", href: "/solutions/lead-calling" },
+  { label: "Solutions", href: "/solutions" },
   { label: "Listen Voice", href: "/#voice-demos" },
   { label: "FAQ", href: "/#faq" },
 ] as const;
 
+/** Homepage-only anchors (sections exist only on `/`). */
+export const homepageAnchors = {
+  contact: "#contact",
+  voiceDemos: "#voice-demos",
+  faq: "#faq",
+} as const;
+
+/** Global CTAs — use `/#contact` so navbar and sticky bar work from every page. */
 export const ctaLinks = {
-  contact: { label: "Contact", href: "#contact" },
-  getStarted: { label: "Get Started", href: "#contact" },
+  contact: { label: "Contact", href: "/#contact" },
+  getStarted: { label: "Get Started", href: "/#contact" },
 } as const;
 
 export const hero = {
@@ -38,8 +46,8 @@ export const hero = {
   headline: "AI Employees That Find, Call, Qualify & Sell 24/7",
   subheadline:
     "AI agents that prospect, call in Telugu, Hindi, and English, qualify leads, book meetings, and sync to your CRM.",
-  primaryCta: { label: "Get Started", href: "#contact" },
-  secondaryCta: { label: "Watch Voice Demo", href: "#voice-demos" },
+  primaryCta: { label: "Get Started", href: homepageAnchors.contact },
+  secondaryCta: { label: "Watch Voice Demo", href: homepageAnchors.voiceDemos },
   socialProof: "Trusted across real estate, healthcare, sales, and more.",
   stats: [
     { value: "10×", label: "More outreach capacity" },
@@ -685,8 +693,8 @@ export const roiCalculatorSection = {
       "Estimates use a speed-to-lead decay model: longer first-response delay increases pre-contact drop-off and lowers effective conversion. OpsBrain assumes sub-60-second AI response. Recovery applies a conservative 72% factor.",
     sources: "Benchmarks informed by B2B speed-to-lead and inside-sales response studies.",
   },
-  cta: { label: "Get Started", href: "#contact" },
-  secondaryCta: { label: "Contact", href: "#contact" },
+  cta: { label: "Get Started", href: homepageAnchors.contact },
+  secondaryCta: { label: "Contact", href: homepageAnchors.contact },
   disclaimer:
     "Illustrative estimates only - not financial advice. Actual results vary by industry, sales cycle, and team size.",
 } as const;
@@ -856,7 +864,10 @@ export const footerLinks = {
   product: [
     { label: "Platform", href: "/platform" },
     { label: "AI Employees", href: "/ai-employees" },
+    { label: "Solutions", href: "/solutions" },
     { label: "Integrations", href: "/integrations" },
+    { label: "Pricing", href: "/pricing" },
+    { label: "Compare", href: "/compare" },
   ],
   aiEmployees: [
     { label: "AI Sales Employee", href: "/ai-employees/sales" },

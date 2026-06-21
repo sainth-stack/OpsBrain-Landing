@@ -104,6 +104,13 @@ html[data-theme="dark"] {
 @layer base {
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 3.5rem;
+  }
+
+  @media (min-width: 768px) {
+    html {
+      scroll-padding-top: 4rem;
+    }
   }
 
   html[data-theme="light"] {

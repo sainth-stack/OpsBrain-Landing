@@ -66,7 +66,7 @@ export default async function SolutionPage({ params }: PageProps) {
       <JsonLdScript data={jsonLd} />
       <MarketingPageShell
         breadcrumbs={breadcrumbs}
-        backHref="/solutions/lead-calling"
+        backHref="/solutions"
         backLabel="All solutions"
       >
         <PageHero
