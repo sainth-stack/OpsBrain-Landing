@@ -16,10 +16,10 @@ const inputClassLight =
   "w-full rounded-lg border border-border-default bg-surface-white px-4 py-2.5 text-body text-text-primary transition-colors placeholder:text-text-muted focus:border-brand-primary focus:outline-none focus:ring-2 focus:ring-brand-primary/20";
 
 const inputClassDark =
-  "w-full rounded-lg border border-white/20 bg-white/5 px-4 py-2.5 text-body text-text-inverse transition-colors placeholder:text-text-inverse-muted focus:border-brand-accent focus:outline-none focus:ring-2 focus:ring-brand-accent/20";
+  "w-full rounded-lg border border-white/20 bg-white/5 px-4 py-2.5 text-body text-on-dark transition-colors placeholder:text-on-dark-muted focus:border-brand-accent focus:outline-none focus:ring-2 focus:ring-brand-accent/20";
 
 const labelClassLight = "mb-1.5 block text-small font-medium text-text-primary";
-const labelClassDark = "mb-1.5 block text-small font-medium text-text-inverse";
+const labelClassDark = "mb-1.5 block text-small font-medium text-on-dark";
 
 function FieldError({ message }: { message?: string }) {
   if (!message) return null;
@@ -87,10 +87,10 @@ export function LeadForm({ theme = "light" }: { theme?: "light" | "dark" }) {
             aria-hidden="true"
           />
         </motion.div>
-        <h3 className={cn("mt-4 text-h3 font-semibold", isDark ? "text-text-inverse" : "text-text-primary")}>
+        <h3 className={cn("mt-4 text-h3 font-semibold", isDark ? "text-on-dark" : "text-text-primary")}>
           Request received!
         </h3>
-        <p className={cn("mt-2 text-body", isDark ? "text-text-inverse-muted" : "text-text-secondary")}>
+        <p className={cn("mt-2 text-body", isDark ? "text-on-dark-muted" : "text-text-secondary")}>
           We&apos;ll contact you within 24 hours.
         </p>
         <Button
@@ -258,7 +258,7 @@ export function LeadForm({ theme = "light" }: { theme?: "light" | "dark" }) {
             aria-invalid={!!errors.consent}
             {...register("consent")}
           />
-          <span className={cn("text-small", isDark ? "text-text-inverse-muted" : "text-text-secondary")}>
+          <span className={cn("text-small", isDark ? "text-on-dark-muted" : "text-text-secondary")}>
             I agree to the{" "}
             <Link
               href="/privacy"

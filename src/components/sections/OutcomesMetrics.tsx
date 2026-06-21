@@ -30,13 +30,13 @@ function MetricItem({
     >
       <span
         ref={ref}
-        className="block font-display text-3xl font-bold tabular-nums text-text-inverse md:text-4xl"
+        className="block font-display text-3xl font-bold tabular-nums text-on-dark md:text-4xl"
       >
         {metric.prefix}
         {display}
         {metric.suffix}
       </span>
-      <p className="mt-2 text-small text-text-inverse-muted">{metric.label}</p>
+      <p className="mt-2 text-small text-on-dark-muted">{metric.label}</p>
     </motion.div>
   );
 }

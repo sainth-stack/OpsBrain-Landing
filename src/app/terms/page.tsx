@@ -1,6 +1,6 @@
 import { Container } from "@/components/ui/container";
 import { buildPageMetadata } from "@/lib/seo";
-import Link from "next/link";
+import { PageHeaderNav } from "@/components/pages/PageHeaderNav";
 
 export const metadata = buildPageMetadata({
   title: "Terms of Service",
@@ -12,14 +12,16 @@ export const metadata = buildPageMetadata({
 export default function TermsPage() {
   return (
     <main className="flex-1 py-16">
-      <Container className="prose prose-slate max-w-3xl">
-        <Link
-          href="/"
-          className="mb-8 inline-flex text-small font-medium text-brand-primary hover:underline"
-        >
-          ← Back to home
-        </Link>
-        <h1 className="text-h1 font-bold text-text-primary">Terms of Service</h1>
+      <Container className="max-w-3xl">
+        <PageHeaderNav
+          breadcrumbs={[
+            { name: "Home", path: "/" },
+            { name: "Terms of Service", path: "/terms" },
+          ]}
+          backHref="/"
+          backLabel="Back to home"
+        />
+        <h1 className="mt-8 text-h1 font-bold text-text-primary md:mt-10">Terms of Service</h1>
         <p className="mt-2 text-small text-text-muted">
           Last updated: {new Date().toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}
         </p>

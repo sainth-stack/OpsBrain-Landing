@@ -44,7 +44,7 @@ export function SectionHeader({
       <h2
         className={cn(
           "font-display text-h2",
-          isDark ? "text-text-inverse" : "text-text-primary",
+          isDark ? "text-on-dark" : "text-text-primary",
         )}
       >
         {title}
@@ -53,7 +53,7 @@ export function SectionHeader({
         <p
           className={cn(
             "mt-4 text-body",
-            isDark ? "text-text-inverse-muted" : "text-text-secondary",
+            isDark ? "text-on-dark-muted" : "text-text-secondary",
             isCenter && "mx-auto",
           )}
         >

@@ -21,7 +21,7 @@ export function ThemeToggle({ className, inverted = false }: ThemeToggleProps) {
       className={cn(
         "inline-flex min-h-11 min-w-11 items-center justify-center rounded-lg transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary",
         inverted
-          ? "text-text-inverse-muted hover:bg-white/10 hover:text-text-inverse"
+          ? "text-on-dark-muted hover:bg-white/10 hover:text-on-dark"
           : "text-text-secondary hover:bg-surface-muted hover:text-text-primary",
         className,
       )}

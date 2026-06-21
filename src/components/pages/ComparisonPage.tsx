@@ -1,4 +1,4 @@
-import { Breadcrumbs } from "@/components/pages/Breadcrumbs";
+import { PageHeaderNav } from "@/components/pages/PageHeaderNav";
 import { JsonLdScript } from "@/components/pages/JsonLdScript";
 import { PageCTA } from "@/components/pages/PageCTA";
 import { PageFaq } from "@/components/pages/PageFaq";
@@ -14,7 +14,6 @@ import {
   getFaqJsonLdFromItems,
   getPageJsonLd,
 } from "@/lib/seo";
-import Link from "next/link";
 
 export function ComparisonPage({ content }: { content: ComparePageContent }) {
   const path = `/compare/${content.slug}`;
@@ -42,15 +41,13 @@ export function ComparisonPage({ content }: { content: ComparePageContent }) {
       <JsonLdScript data={jsonLd} />
       <main className="flex-1 py-12 md:py-16">
         <Container>
-          <Breadcrumbs items={breadcrumbs} />
-          <Link
-            href="/compare"
-            className="mt-6 inline-flex text-small font-medium text-brand-primary hover:underline"
-          >
-            ← All comparisons
-          </Link>
+          <PageHeaderNav
+            breadcrumbs={breadcrumbs}
+            backHref="/compare"
+            backLabel="All comparisons"
+          />
 
-          <header className="mt-8 max-w-3xl">
+          <header className="mt-8 max-w-3xl md:mt-10">
             <p className="text-small font-semibold uppercase tracking-wider text-brand-primary">
               {isRoundup ? "Category comparison" : "Alternative guide"}
             </p>

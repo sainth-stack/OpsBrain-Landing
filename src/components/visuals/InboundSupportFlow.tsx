@@ -19,8 +19,8 @@ const steps = [
           >
             <PhoneIncoming className="size-7" aria-hidden="true" />
           </motion.div>
-          <p className="text-small font-medium text-text-inverse">Incoming call · 11:47 PM</p>
-          <p className="text-[11px] text-text-inverse-muted">+91 98765 43210 · Queue: 0 wait</p>
+          <p className="text-small font-medium text-on-dark">Incoming call · 11:47 PM</p>
+          <p className="text-[11px] text-on-dark-muted">+91 98765 43210 · Queue: 0 wait</p>
         </div>
       </div>
     ),
@@ -30,19 +30,19 @@ const steps = [
     label: "FAQ Answered",
     content: (
       <div className="space-y-2 rounded-xl border border-white/10 bg-white/5 p-3">
-        <div className="flex items-center gap-2 text-[10px] text-text-inverse-muted">
+        <div className="flex items-center gap-2 text-[10px] text-on-dark-muted">
           <Shield className="size-3 text-cyan-400" aria-hidden="true" />
           Knowledge base match · 98% confidence
         </div>
         <div className="rounded-xl bg-white/5 px-3 py-2">
-          <p className="text-[11px] text-text-inverse-muted">Customer asks</p>
-          <p className="mt-1 text-small text-text-inverse">
+          <p className="text-[11px] text-on-dark-muted">Customer asks</p>
+          <p className="mt-1 text-small text-on-dark">
             What are your business hours and return policy?
           </p>
         </div>
         <div className="rounded-xl bg-brand-accent/10 px-3 py-2">
           <p className="text-[11px] text-brand-accent">AI resolved instantly</p>
-          <p className="mt-1 text-small text-text-inverse">
+          <p className="mt-1 text-small text-on-dark">
             We&apos;re open 24/7. Returns accepted within 30 days.
           </p>
         </div>
@@ -59,8 +59,8 @@ const steps = [
         </div>
         <div className="flex-1">
           <p className="text-small font-semibold text-amber-400">Escalated to Agent</p>
-          <p className="text-[11px] text-text-inverse-muted">Complex billing issue detected</p>
-          <p className="text-[11px] text-text-inverse-muted">Full transcript + sentiment attached</p>
+          <p className="text-[11px] text-on-dark-muted">Complex billing issue detected</p>
+          <p className="text-[11px] text-on-dark-muted">Full transcript + sentiment attached</p>
         </div>
       </div>
     ),
@@ -75,7 +75,7 @@ const steps = [
         </div>
         <div className="flex-1">
           <p className="text-small font-semibold text-brand-accent">Logged to CRM</p>
-          <p className="text-[11px] text-text-inverse-muted">Ticket #4821 · Salesforce</p>
+          <p className="text-[11px] text-on-dark-muted">Ticket #4821 · Salesforce</p>
         </div>
         <HelpCircle className="size-5 text-brand-accent/60" aria-hidden="true" />
       </div>

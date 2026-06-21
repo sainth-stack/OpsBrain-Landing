@@ -16,7 +16,7 @@ export function FlowChrome({
         <span className="size-2.5 rounded-full bg-amber-400/80" />
         <span className="size-2.5 rounded-full bg-brand-accent/80" />
       </div>
-      <p className="font-display text-[11px] font-medium text-text-inverse">{title}</p>
+      <p className="font-display text-[11px] font-medium text-on-dark">{title}</p>
       <span className="rounded-full bg-brand-accent/15 px-2 py-0.5 text-[9px] font-semibold text-brand-accent">
         {status}
       </span>
@@ -68,7 +68,7 @@ export function FlowShell({
           ))}
         </div>
         {children}
-        <p className="relative mt-4 text-center text-[11px] text-text-inverse-muted">
+        <p className="relative mt-4 text-center text-[11px] text-on-dark-muted">
           Step {step + 1}/{steps.length} · {steps[step]?.label}
         </p>
       </div>

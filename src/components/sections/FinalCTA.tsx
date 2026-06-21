@@ -52,7 +52,7 @@ export function FinalCTA() {
                   "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-accent",
                   activeTab === tab
                     ? "bg-brand-primary text-white"
-                    : "text-text-inverse-muted hover:text-text-inverse",
+                    : "text-on-dark-muted hover:text-on-dark",
                 )}
               >
                 {tab === "contact" ? (
@@ -82,7 +82,7 @@ export function FinalCTA() {
                   className="size-12 text-brand-accent"
                   aria-hidden="true"
                 />
-                <p className="mt-4 max-w-md text-body leading-relaxed text-text-inverse-muted">
+                <p className="mt-4 max-w-md text-body leading-relaxed text-on-dark-muted">
                   {bookDemo.placeholder}
                 </p>
                 <ButtonLink

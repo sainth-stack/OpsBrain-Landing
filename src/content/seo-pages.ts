@@ -517,6 +517,7 @@ export function getSolutionPageContent(slug: string) {
     page,
     breadcrumbs: [
       { name: "Home", path: "/" },
+      { name: "Solutions", path: "/solutions/lead-calling" },
       { name: page.label, path: page.path },
     ] satisfies BreadcrumbItem[],
   };

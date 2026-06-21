@@ -10,7 +10,7 @@ export const siteConfig = {
   name: "OpsBrain AI",
   tagline:
     "AI Employees That Find Leads, Call, Qualify, Schedule, Support, and Sell - 24/7",
-  url: "https://opsbrain.ai",
+  url: "https://opsbrainai.com",
   seo: {
     title:
       "OpsBrain AI | AI Employees That Find, Call, Qualify & Sell 24/7",
@@ -24,9 +24,8 @@ export const navLinks = [
   { label: "Platform", href: "/platform" },
   { label: "AI Employees", href: "/ai-employees" },
   { label: "Solutions", href: "/solutions/lead-calling" },
-  { label: "Compare", href: "/compare" },
-  { label: "Pricing", href: "/pricing" },
-  { label: "FAQ", href: "#faq" },
+  { label: "Listen Voice", href: "/#voice-demos" },
+  { label: "FAQ", href: "/#faq" },
 ] as const;
 
 export const appUrl = "https://app.opsbrainai.com" as const;
@@ -869,9 +868,7 @@ export const footerLinks = {
   product: [
     { label: "Platform", href: "/platform" },
     { label: "AI Employees", href: "/ai-employees" },
-    { label: "Compare", href: "/compare" },
     { label: "Integrations", href: "/integrations" },
-    { label: "Pricing", href: "/pricing" },
   ],
   aiEmployees: [
     { label: "AI Sales Employee", href: "/ai-employees/sales" },

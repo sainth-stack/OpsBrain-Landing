@@ -31,11 +31,11 @@ export function Hero() {
               </Badge>
             </div>
 
-            <h1 className="hero-fade-up hero-delay-1 font-display text-[2rem] font-bold leading-[1.12] tracking-tight text-text-inverse sm:text-h1 lg:text-display">
+            <h1 className="hero-fade-up hero-delay-1 font-display text-[2rem] font-bold leading-[1.12] tracking-tight text-on-dark sm:text-h1 lg:text-display">
               {hero.headline}
             </h1>
 
-            <p className="hero-fade-up hero-delay-2 mt-6 max-w-lg text-body leading-relaxed text-text-inverse-muted md:mt-8 md:text-lg">
+            <p className="hero-fade-up hero-delay-2 mt-6 max-w-lg text-body leading-relaxed text-on-dark-muted md:mt-8 md:text-lg">
               {hero.subheadline}
             </p>
 
@@ -53,13 +53,13 @@ export function Hero() {
                 href={hero.secondaryCta.href}
                 variant="secondary"
                 size="lg"
-                className="w-full border-white/20 bg-white/10 text-text-inverse hover:bg-white/20 sm:w-auto"
+                className="w-full border-white/20 bg-white/10 text-on-dark hover:bg-white/20 sm:w-auto"
               >
                 {hero.secondaryCta.label}
               </ButtonLink>
             </div>
 
-            <p className="hero-fade-up hero-delay-4 mt-4 text-small text-text-inverse-muted">
+            <p className="hero-fade-up hero-delay-4 mt-4 text-small text-on-dark-muted">
               {hero.socialProof}
             </p>
 

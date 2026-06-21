@@ -1,26 +1,28 @@
+import { PageHeaderNav } from "@/components/pages/PageHeaderNav";
+import type { BreadcrumbItem } from "@/components/pages/Breadcrumbs";
 import { Container } from "@/components/ui/container";
-import { Breadcrumbs, type BreadcrumbItem } from "@/components/pages/Breadcrumbs";
-import Link from "next/link";
 import type { ReactNode } from "react";
 
 export function MarketingPageShell({
   breadcrumbs,
+  backHref = "/",
+  backLabel = "Back to home",
   children,
 }: {
   breadcrumbs: BreadcrumbItem[];
+  backHref?: string;
+  backLabel?: string;
   children: ReactNode;
 }) {
   return (
     <main className="flex-1 py-12 md:py-16">
       <Container>
-        <Breadcrumbs items={breadcrumbs} />
-        <Link
-          href="/"
-          className="mt-6 inline-flex text-small font-medium text-brand-primary hover:underline"
-        >
-          ← Back to home
-        </Link>
-        <div className="mt-8 space-y-12 md:space-y-16">{children}</div>
+        <PageHeaderNav
+          breadcrumbs={breadcrumbs}
+          backHref={backHref}
+          backLabel={backLabel}
+        />
+        <div className="mt-8 space-y-12 md:mt-10 md:space-y-16">{children}</div>
       </Container>
     </main>
   );

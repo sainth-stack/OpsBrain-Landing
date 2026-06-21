@@ -1,4 +1,4 @@
-import { Breadcrumbs } from "@/components/pages/Breadcrumbs";
+import { PageHeaderNav } from "@/components/pages/PageHeaderNav";
 import { JsonLdScript } from "@/components/pages/JsonLdScript";
 import { PageCTA } from "@/components/pages/PageCTA";
 import { Container } from "@/components/ui/container";
@@ -34,15 +34,13 @@ export function BlogArticle({ post }: { post: BlogPost }) {
       <JsonLdScript data={jsonLd} />
       <main className="flex-1 py-12 md:py-16">
         <Container className="max-w-3xl">
-          <Breadcrumbs items={breadcrumbs} />
-          <Link
-            href="/blog"
-            className="mt-6 inline-flex text-small font-medium text-brand-primary hover:underline"
-          >
-            ← All posts
-          </Link>
+          <PageHeaderNav
+            breadcrumbs={breadcrumbs}
+            backHref="/blog"
+            backLabel="All posts"
+          />
 
-          <article className="mt-8">
+          <article className="mt-8 md:mt-10">
             <header>
               <p className="text-small text-text-muted">
                 {new Date(post.publishedAt).toLocaleDateString("en-US", {

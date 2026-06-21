@@ -59,7 +59,11 @@ export default async function AIEmployeePage({ params }: PageProps) {
   return (
     <>
       <JsonLdScript data={jsonLd} />
-      <MarketingPageShell breadcrumbs={breadcrumbs}>
+      <MarketingPageShell
+        breadcrumbs={breadcrumbs}
+        backHref="/ai-employees"
+        backLabel="All AI employees"
+      >
         <PageHero
           eyebrow={`${employee.industry} · ${employee.role}`}
           title={employee.name}

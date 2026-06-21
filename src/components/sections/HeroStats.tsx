@@ -8,10 +8,10 @@ export function HeroStats() {
     >
       {hero.stats.map((stat) => (
         <div key={stat.label} className="text-left">
-          <span className="text-2xl font-bold tabular-nums text-text-inverse md:text-3xl">
+          <span className="text-2xl font-bold tabular-nums text-on-dark md:text-3xl">
             {stat.value}
           </span>
-          <p className="mt-1 text-small leading-snug text-text-inverse-muted">
+          <p className="mt-1 text-small leading-snug text-on-dark-muted">
             {stat.label}
           </p>
         </div>

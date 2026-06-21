@@ -15,8 +15,8 @@ const steps = [
           <Megaphone className="size-5" aria-hidden="true" />
         </div>
         <div className="flex-1">
-          <p className="text-small font-medium text-text-inverse">New Facebook Lead</p>
-          <p className="text-[11px] text-text-inverse-muted">Ravi K. · Hyderabad</p>
+          <p className="text-small font-medium text-on-dark">New Facebook Lead</p>
+          <p className="text-[11px] text-on-dark-muted">Ravi K. · Hyderabad</p>
         </div>
         <div className="text-right">
           <span className="rounded-full bg-brand-accent/20 px-2 py-0.5 text-[10px] font-semibold text-brand-accent">
@@ -42,8 +42,8 @@ const steps = [
           >
             <Phone className="size-7" aria-hidden="true" />
           </motion.div>
-          <p className="text-small font-medium text-text-inverse">Calling Ravi…</p>
-          <div className="flex items-center gap-3 text-[11px] text-text-inverse-muted">
+          <p className="text-small font-medium text-on-dark">Calling Ravi…</p>
+          <div className="flex items-center gap-3 text-[11px] text-on-dark-muted">
             <span className="flex items-center gap-1">
               <Clock className="size-3" aria-hidden="true" /> 0:03 elapsed
             </span>
@@ -58,19 +58,19 @@ const steps = [
     label: "AI Conversation",
     content: (
       <div className="space-y-2 rounded-xl border border-white/10 bg-white/5 p-3">
-        <div className="flex items-center justify-between text-[10px] text-text-inverse-muted">
+        <div className="flex items-center justify-between text-[10px] text-on-dark-muted">
           <span>Live transcript</span>
           <span className="rounded bg-brand-accent/20 px-1.5 py-0.5 text-brand-accent">TE · Telugu</span>
         </div>
         <div className="rounded-xl rounded-bl-sm bg-brand-primary/20 px-3 py-2">
-          <p className="text-[11px] text-text-inverse-muted">AI Employee · Arjun</p>
-          <p className="text-small text-text-inverse">
+          <p className="text-[11px] text-on-dark-muted">AI Employee · Arjun</p>
+          <p className="text-small text-on-dark">
             నమస్కారం! మీరు మా SaaS ప్రోడక్ట్ గురించి ఆసక్తి చూపించారు.
           </p>
         </div>
         <div className="ml-4 rounded-xl rounded-br-sm bg-white/10 px-3 py-2">
-          <p className="text-[11px] text-text-inverse-muted">Lead · Ravi</p>
-          <p className="text-small text-text-inverse">
+          <p className="text-[11px] text-on-dark-muted">Lead · Ravi</p>
+          <p className="text-small text-on-dark">
             Yes, I&apos;d like to see a demo this week.
           </p>
         </div>
@@ -87,10 +87,10 @@ const steps = [
         </div>
         <div className="flex-1">
           <p className="text-small font-semibold text-brand-accent">Demo Booked!</p>
-          <p className="text-[11px] text-text-inverse-muted">Thu 3:00 PM · Google Meet</p>
+          <p className="text-[11px] text-on-dark-muted">Thu 3:00 PM · Google Meet</p>
         </div>
         <div className="rounded-lg bg-white/10 px-2 py-1 text-center">
-          <p className="text-[9px] text-text-inverse-muted">CRM</p>
+          <p className="text-[9px] text-on-dark-muted">CRM</p>
           <p className="text-[10px] font-semibold text-brand-accent">Synced ✓</p>
         </div>
       </div>

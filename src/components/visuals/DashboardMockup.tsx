@@ -45,7 +45,7 @@ function Sparkline() {
 function ActivityFeed() {
   return (
     <div className="rounded-xl border border-white/10 bg-white/5 p-4">
-      <p className="mb-3 text-xs font-medium uppercase tracking-wider text-text-inverse-muted">
+      <p className="mb-3 text-xs font-medium uppercase tracking-wider text-on-dark-muted">
         Recent activity
       </p>
       <ul className="space-y-2.5">
@@ -54,10 +54,10 @@ function ActivityFeed() {
             key={event.label}
             className="flex items-center justify-between gap-3"
           >
-            <span className="text-sm font-medium text-text-inverse">
+            <span className="text-sm font-medium text-on-dark">
               {event.label}
             </span>
-            <span className="shrink-0 text-xs tabular-nums text-text-inverse-muted">
+            <span className="shrink-0 text-xs tabular-nums text-on-dark-muted">
               {event.time}
             </span>
           </li>
@@ -77,10 +77,10 @@ export function DashboardMockup({ className }: { className?: string }) {
         <div className="border-b border-white/10 px-5 py-4">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-semibold text-text-inverse">
+              <p className="text-sm font-semibold text-on-dark">
                 OpsBrain Command Center
               </p>
-              <p className="text-xs text-text-inverse-muted">
+              <p className="text-xs text-on-dark-muted">
                 Live revenue operations
               </p>
             </div>
@@ -93,8 +93,8 @@ export function DashboardMockup({ className }: { className?: string }) {
 
         <div className="space-y-4 p-5">
           <div className="rounded-xl border border-white/10 bg-white/5 p-4">
-            <p className="text-xs text-text-inverse-muted">Live Calls</p>
-            <p className="mt-1 font-display text-3xl font-bold tabular-nums text-text-inverse">
+            <p className="text-xs text-on-dark-muted">Live Calls</p>
+            <p className="mt-1 font-display text-3xl font-bold tabular-nums text-on-dark">
               47
             </p>
             <div className="mt-3 flex items-end justify-between">

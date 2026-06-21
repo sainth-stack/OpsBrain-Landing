@@ -109,7 +109,7 @@ Deploy to [Vercel](https://vercel.com):
 1. Connect this repository
 2. Set env vars (`LEAD_WEBHOOK_URL`, analytics, `NEXT_PUBLIC_GSC_VERIFICATION`)
 3. Deploy — Next.js App Router with zero config
-4. Submit `https://opsbrain.ai/sitemap.xml` in Google Search Console
+4. Submit `https://opsbrainai.com/sitemap.xml` in Google Search Console
 
 ## Lead Form
 

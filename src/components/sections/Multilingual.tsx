@@ -59,7 +59,7 @@ export function Multilingual() {
                 "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-accent",
                 activeLang === demo.id
                   ? "border-brand-accent bg-brand-accent/10 text-brand-accent"
-                  : "border-white/10 bg-white/5 text-text-inverse-muted hover:border-white/20 hover:text-text-inverse",
+                  : "border-white/10 bg-white/5 text-on-dark-muted hover:border-white/20 hover:text-on-dark",
               )}
             >
               <span className="rounded-md bg-white/10 px-1.5 py-0.5 text-[10px] font-bold">
@@ -86,10 +86,10 @@ export function Multilingual() {
                 >
                   <div className="flex items-start justify-between gap-3">
                     <div>
-                      <h3 className="text-body font-semibold text-text-inverse">
+                      <h3 className="text-body font-semibold text-on-dark">
                         {demo.persona}
                       </h3>
-                      <p className="text-small text-text-inverse-muted">
+                      <p className="text-small text-on-dark-muted">
                         {demo.trait}
                       </p>
                     </div>
@@ -108,8 +108,8 @@ export function Multilingual() {
                         className={cn(
                           "text-small leading-relaxed",
                           i === 0
-                            ? "font-medium text-text-inverse"
-                            : "text-text-inverse-muted",
+                            ? "font-medium text-on-dark"
+                            : "text-on-dark-muted",
                         )}
                       >
                         {line}

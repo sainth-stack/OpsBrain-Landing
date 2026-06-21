@@ -54,8 +54,8 @@ export function Problem() {
                 className="group rounded-xl border border-white/10 bg-surface-dark-elevated/60 p-6 transition-colors hover:border-brand-primary/30 hover:bg-surface-dark-elevated"
               >
                 <IconBox icon={Icon} variant="dark" size="md" />
-                <h3 className="mt-4 text-h3 text-text-inverse">{point.title}</h3>
-                <p className="mt-2 text-small leading-relaxed text-text-inverse-muted">
+                <h3 className="mt-4 text-h3 text-on-dark">{point.title}</h3>
+                <p className="mt-2 text-small leading-relaxed text-on-dark-muted">
                   {point.description}
                 </p>
               </motion.div>
@@ -69,7 +69,7 @@ export function Problem() {
           viewport={viewportOnce}
           custom={0.5}
           variants={fadeUpVariants}
-          className="mt-12 text-center text-h3 font-semibold text-text-inverse md:mt-16"
+          className="mt-12 text-center text-h3 font-semibold text-on-dark md:mt-16"
         >
           {problemSection.closingLine}
         </motion.p>

@@ -40,8 +40,8 @@ const steps = [
           <FileSpreadsheet className="size-5" aria-hidden="true" />
         </div>
         <div className="flex-1">
-          <p className="text-small font-medium text-text-inverse">leads_q1_2026.csv</p>
-          <p className="text-[11px] text-text-inverse-muted">2,840 contacts · Validated ✓</p>
+          <p className="text-small font-medium text-on-dark">leads_q1_2026.csv</p>
+          <p className="text-[11px] text-on-dark-muted">2,840 contacts · Validated ✓</p>
         </div>
         <span className="text-[11px] font-semibold text-brand-accent">Ready</span>
       </div>
@@ -55,7 +55,7 @@ const steps = [
         <div className="mb-2 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Waves className="size-4 text-brand-primary" aria-hidden="true" />
-            <p className="text-small font-medium text-text-inverse">847 parallel calls</p>
+            <p className="text-small font-medium text-on-dark">847 parallel calls</p>
           </div>
           <span className="flex items-center gap-1 rounded-full bg-brand-accent/15 px-2 py-0.5 text-[10px] text-brand-accent">
             <Radio className="size-3" aria-hidden="true" /> Live
@@ -77,8 +77,8 @@ const steps = [
         ].map((w) => (
           <div key={w.wave} className="rounded-lg bg-white/5 px-3 py-2">
             <div className="flex justify-between text-[11px]">
-              <span className="text-text-inverse-muted">{w.wave}</span>
-              <span className="text-text-inverse">{w.done}/{w.total}</span>
+              <span className="text-on-dark-muted">{w.wave}</span>
+              <span className="text-on-dark">{w.done}/{w.total}</span>
             </div>
             <div className="mt-1 h-1.5 overflow-hidden rounded-full bg-white/10">
               <motion.div
@@ -107,9 +107,9 @@ const steps = [
             key={stat.label}
             className="rounded-xl border border-white/10 bg-white/5 p-3 text-center"
           >
-            <BarChart3 className="mx-auto mb-1 size-4 text-text-inverse-muted" aria-hidden="true" />
+            <BarChart3 className="mx-auto mb-1 size-4 text-on-dark-muted" aria-hidden="true" />
             <p className={cn("text-lg font-bold tabular-nums", stat.color)}>{stat.value}</p>
-            <p className="text-[10px] text-text-inverse-muted">{stat.label}</p>
+            <p className="text-[10px] text-on-dark-muted">{stat.label}</p>
           </div>
         ))}
       </div>

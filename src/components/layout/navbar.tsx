@@ -46,7 +46,7 @@ export function Navbar() {
       className={cn(
         "sticky top-0 z-50 border-b transition-all duration-300",
         isLight
-          ? "border-border-default bg-white"
+          ? "border-border-default bg-surface-white"
           : heroOverlay
             ? "border-border-default/40 bg-surface-dark/70 backdrop-blur-md"
             : "border-border-default bg-surface-white",
@@ -73,7 +73,7 @@ export function Navbar() {
                   className={cn(
                     "inline-flex min-h-11 items-center rounded-lg px-4 text-small font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary",
                     heroOverlay
-                      ? "text-text-inverse-muted hover:bg-white/10 hover:text-text-inverse"
+                      ? "text-on-dark-muted hover:bg-white/10 hover:text-on-dark"
                       : "text-text-secondary hover:bg-surface-muted hover:text-text-primary",
                   )}
                 >
@@ -92,7 +92,7 @@ export function Navbar() {
               aria-label={ctaLinks.login.label}
               className={
                 heroOverlay
-                  ? "text-text-inverse hover:bg-white/10 hover:text-text-inverse"
+                  ? "text-on-dark hover:bg-white/10 hover:text-on-dark"
                   : undefined
               }
             >
@@ -116,7 +116,7 @@ export function Navbar() {
               className={cn(
                 "inline-flex min-h-11 min-w-11 items-center justify-center rounded-lg transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary",
                 heroOverlay
-                  ? "text-text-inverse hover:bg-white/10"
+                  ? "text-on-dark hover:bg-white/10"
                   : "text-text-primary hover:bg-surface-muted",
               )}
               aria-expanded={mobileOpen}

@@ -1,11 +1,15 @@
 "use client";
 
-import { THEME_STORAGE_KEY } from "@/lib/theme-script";
+import {
+  THEME_CHANGE_EVENT,
+  THEME_STORAGE_KEY,
+} from "@/lib/theme-script";
 import {
   createContext,
   useCallback,
   useContext,
-  useState,
+  useEffect,
+  useSyncExternalStore,
   type ReactNode,
 } from "react";
 
@@ -22,30 +26,50 @@ const ThemeContext = createContext<ThemeContextValue | null>(null);
 function applyTheme(theme: Theme) {
   document.documentElement.setAttribute("data-theme", theme);
   localStorage.setItem(THEME_STORAGE_KEY, theme);
+  window.dispatchEvent(new Event(THEME_CHANGE_EVENT));
 }
 
 function readTheme(): Theme {
-  if (typeof window === "undefined") return "light";
   const stored = localStorage.getItem(THEME_STORAGE_KEY);
   if (stored === "dark" || stored === "light") return stored;
   const attr = document.documentElement.getAttribute("data-theme");
   return attr === "dark" ? "dark" : "light";
 }
 
+function subscribe(onStoreChange: () => void) {
+  const onStorage = (event: StorageEvent) => {
+    if (event.key === THEME_STORAGE_KEY) onStoreChange();
+  };
+
+  window.addEventListener(THEME_CHANGE_EVENT, onStoreChange);
+  window.addEventListener("storage", onStorage);
+
+  return () => {
+    window.removeEventListener(THEME_CHANGE_EVENT, onStoreChange);
+    window.removeEventListener("storage", onStorage);
+  };
+}
+
+function getServerSnapshot(): Theme {
+  return "light";
+}
+
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setThemeState] = useState<Theme>(readTheme);
+  const theme = useSyncExternalStore(subscribe, readTheme, getServerSnapshot);
+
+  useEffect(() => {
+    const current = document.documentElement.getAttribute("data-theme");
+    if (current !== theme) {
+      document.documentElement.setAttribute("data-theme", theme);
+    }
+  }, [theme]);
 
   const setTheme = useCallback((next: Theme) => {
-    setThemeState(next);
     applyTheme(next);
   }, []);
 
   const toggleTheme = useCallback(() => {
-    setThemeState((prev) => {
-      const next: Theme = prev === "light" ? "dark" : "light";
-      applyTheme(next);
-      return next;
-    });
+    applyTheme(readTheme() === "light" ? "dark" : "light");
   }, []);
 
   return (
