@@ -34,7 +34,7 @@ export function Comparison() {
   );
 
   return (
-    <Section id="comparison" surface="white" aria-label={comparisonSection.title}>
+    <Section id="comparison" surface="tint" aria-label={comparisonSection.title}>
       <Container>
         <motion.div
           initial="hidden"

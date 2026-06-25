@@ -15,7 +15,11 @@ Open [http://localhost:3000](http://localhost:3000).
 
 | Variable | Description |
 |----------|-------------|
-| `LEAD_WEBHOOK_URL` | Optional webhook URL for lead form submissions (Slack, Zapier, etc.) |
+| `NEXT_PUBLIC_USE_DUMMY_API` | Set to `false` when OpsBrain landing API is live (default: dummy mode on) |
+| `NEXT_PUBLIC_API_BASE_URL` | OpsBrain API base URL (default: `https://api.opsbrainai.com`) |
+| `NEXT_PUBLIC_LANDING_API_BASE` | Landing endpoints base (default: `{API_BASE_URL}/landing`) |
+| `NEXT_PUBLIC_LOGIN_PAGE` | App login URL for navbar (default: `https://app.opsbrainai.com`) |
+| `LEAD_WEBHOOK_URL` | Optional webhook URL when using `/api/leads` BFF route |
 | `NEXT_PUBLIC_ANALYTICS_ENABLED` | Set to `true` in production to enable analytics |
 | `NEXT_PUBLIC_GA_ID` | Google Analytics 4 measurement ID (e.g. `G-XXXXXXXXXX`) |
 | `NEXT_PUBLIC_POSTHOG_KEY` | Optional PostHog project API key |

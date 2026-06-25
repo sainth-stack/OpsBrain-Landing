@@ -6,11 +6,15 @@ import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
 const variantStyles = {
   primary:
-    "btn-gradient border-0 !text-white shadow-sm hover:!text-white",
+    "bg-brand-primary !text-white hover:bg-brand-primary-hover hover:!text-white shadow-sm",
   secondary:
-    "bg-surface-white text-text-primary border border-border-default hover:bg-surface-muted",
+    "border border-brand-primary/30 bg-surface-white !text-brand-primary hover:bg-brand-primary-light hover:!text-brand-primary",
+  outline:
+    "border border-brand-primary/35 bg-surface-white !text-brand-primary hover:bg-brand-primary-light hover:border-brand-primary/50 hover:!text-brand-primary",
+  "outline-dark":
+    "border border-white/25 bg-transparent !text-white hover:bg-white/10 hover:!text-white",
   ghost:
-    "bg-transparent text-text-primary hover:bg-surface-muted",
+    "bg-transparent !text-text-secondary hover:bg-surface-muted hover:!text-text-primary",
 } as const;
 
 const sizeStyles = {
@@ -45,7 +49,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         type={type}
         className={cn(
-          "inline-flex min-h-11 min-w-11 items-center justify-center font-medium transition-colors",
+          "inline-flex min-h-11 min-w-11 items-center justify-center font-semibold transition-colors",
           "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary",
           "disabled:pointer-events-none disabled:opacity-50",
           variantStyles[variant],
@@ -84,7 +88,7 @@ export const ButtonLink = forwardRef<HTMLAnchorElement, ButtonLinkProps>(
       <a
         ref={ref}
         className={cn(
-          "inline-flex min-h-11 min-w-11 items-center justify-center font-medium transition-colors",
+          "inline-flex min-h-11 min-w-11 items-center justify-center font-semibold transition-colors",
           "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary",
           variantStyles[variant],
           sizeStyles[size],

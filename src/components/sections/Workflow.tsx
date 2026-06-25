@@ -250,7 +250,7 @@ export function Workflow() {
   const lineProgress = isInView ? 100 : 0;
 
   return (
-    <Section id="workflow" surface="white" aria-label={workflowSection.title}>
+    <Section id="workflow" surface="tint" aria-label={workflowSection.title}>
       <Container>
         <motion.div
           initial="hidden"

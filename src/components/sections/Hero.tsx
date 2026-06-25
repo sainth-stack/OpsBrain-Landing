@@ -1,78 +1,95 @@
-import { DarkSectionBackdrop } from "@/components/ui/DarkSectionBackdrop";
-import { ButtonLink } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
+import { CtaLink } from "@/components/ui/cta-link";
 import { Container } from "@/components/ui/container";
-import { HeroVisual } from "@/components/sections/HeroVisual";
+import { HeroOrbVisual } from "@/components/sections/HeroOrbVisual";
 import { HeroStats } from "@/components/sections/HeroStats";
 import { hero } from "@/content/site";
+import { CheckCircle2, Sparkles } from "lucide-react";
 
 export function Hero() {
+  const headlineParts = hero.headline.split(" 24/7");
+  const headlineLead = headlineParts[0] ?? hero.headline;
+  const headlineTail = headlineParts.length > 1 ? "24/7" : null;
+
   return (
     <section
       id="hero"
-      className="relative overflow-hidden bg-surface-dark pb-16 pt-12 md:pb-24 md:pt-16 lg:pb-28 lg:pt-20"
+      className="relative overflow-hidden hero-surface-gradient text-text-primary"
       aria-label="Hero"
     >
-      <DarkSectionBackdrop variant="dark" />
-      <div
-        className="hero-gradient-mesh pointer-events-none absolute inset-0"
-        aria-hidden="true"
-      />
+      <div className="absolute inset-0" aria-hidden="true">
+        <div className="absolute -left-48 -top-48 h-[36rem] w-[36rem] rounded-full bg-brand-primary/10 blur-[130px]" />
+        <div className="absolute -bottom-56 right-[-10rem] h-[34rem] w-[34rem] rounded-full bg-brand-accent/15 blur-[130px]" />
+        <div className="hero-grid absolute inset-0" />
+      </div>
 
-      <Container className="relative">
-        <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
-          <div className="max-w-xl lg:max-w-none">
-            <div className="hero-fade-up hero-delay-0">
-              <Badge
-                variant="accent"
-                className="mb-6 border border-brand-accent/20 bg-brand-accent/10 text-brand-accent"
+      <Container className="relative grid items-center gap-16 py-20 md:py-28 lg:grid-cols-[1.05fr_1fr]">
+        <div>
+          <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-brand-primary/20 bg-brand-primary/5 px-4 py-1.5 text-sm font-medium text-brand-primary motion-safe:animate-fade-up">
+            <Sparkles className="h-3.5 w-3.5" aria-hidden="true" />
+            {hero.eyebrow}
+          </p>
+
+          <h1
+            className="font-display text-4xl font-bold leading-[1.08] tracking-tight text-text-primary sm:text-5xl xl:text-[3.6rem] motion-safe:animate-fade-up"
+            style={{ animationDelay: "90ms" }}
+          >
+            {headlineLead}
+            {headlineTail ? (
+              <>
+                {" "}
+                <span className="gradient-text-light">{headlineTail}</span>
+              </>
+            ) : null}
+          </h1>
+
+          <p
+            className="mt-6 max-w-xl text-lg leading-relaxed text-text-secondary motion-safe:animate-fade-up"
+            style={{ animationDelay: "180ms" }}
+          >
+            {hero.subheadline}
+          </p>
+
+          <ul
+            className="mt-6 flex flex-wrap gap-x-6 gap-y-2.5 motion-safe:animate-fade-up"
+            style={{ animationDelay: "270ms" }}
+          >
+            {hero.stats.map((stat) => (
+              <li
+                key={stat.label}
+                className="flex items-center gap-2 text-sm font-medium text-text-primary"
               >
-                {hero.eyebrow}
-              </Badge>
-            </div>
+                <CheckCircle2 className="h-4 w-4 text-brand-primary" aria-hidden="true" />
+                {stat.value} {stat.label.toLowerCase()}
+              </li>
+            ))}
+          </ul>
 
-            <h1 className="hero-fade-up hero-delay-1 font-display text-[2rem] font-bold leading-[1.12] tracking-tight text-on-dark sm:text-h1 lg:text-display">
-              {hero.headline}
-            </h1>
-
-            <p className="hero-fade-up hero-delay-2 mt-6 max-w-lg text-body leading-relaxed text-on-dark-muted md:mt-8 md:text-lg">
-              {hero.subheadline}
-            </p>
-
-            <div className="hero-fade-up hero-delay-3 mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
-              <ButtonLink
-                href={hero.primaryCta.href}
-                variant="primary"
-                size="lg"
-                className="w-full sm:w-auto"
-                trackAsDemo="hero_book_demo"
-              >
-                {hero.primaryCta.label}
-              </ButtonLink>
-              <ButtonLink
-                href={hero.secondaryCta.href}
-                variant="secondary"
-                size="lg"
-                className="w-full border-white/20 bg-white/10 text-on-dark hover:bg-white/20 sm:w-auto"
-              >
-                {hero.secondaryCta.label}
-              </ButtonLink>
-            </div>
-
-            <p className="hero-fade-up hero-delay-4 mt-4 text-small text-on-dark-muted">
-              {hero.socialProof}
-            </p>
-
-            <div className="hidden lg:block">
-              <HeroStats />
-            </div>
+          <div
+            className="mt-9 flex flex-wrap items-center gap-4 motion-safe:animate-fade-up"
+            style={{ animationDelay: "360ms" }}
+          >
+            <CtaLink
+              href={hero.primaryCta.href}
+              variant="primary"
+              size="lg"
+              trackAsDemo="hero_get_started"
+            >
+              {hero.primaryCta.label}
+            </CtaLink>
+            <CtaLink href={hero.secondaryCta.href} variant="outline" size="lg">
+              {hero.secondaryCta.label}
+            </CtaLink>
           </div>
 
-          <HeroVisual />
-
-          <div className="lg:hidden">
+          <div className="hidden lg:block">
             <HeroStats />
           </div>
+        </div>
+
+        <HeroOrbVisual />
+
+        <div className="lg:hidden">
+          <HeroStats />
         </div>
       </Container>
     </section>

@@ -48,7 +48,10 @@ export function AudioPlayerProvider({
   const setActiveId = useCallback((id: string | null) => {
     setActiveIdState((prev) => {
       if (prev && prev !== id) {
-        stopsRef.current.get(prev)?.();
+        const stopPrevious = stopsRef.current.get(prev);
+        if (stopPrevious) {
+          queueMicrotask(stopPrevious);
+        }
       }
       return id;
     });
@@ -127,6 +130,7 @@ export function AudioPlayer({
   const speechRef = useRef<SpeechSynthesisUtterance | null>(null);
   const progressRef = useRef<number>(0);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const mountedRef = useRef(true);
   const { activeId, setActiveId, registerStop, unregisterStop } =
     useAudioPlayerContext();
 
@@ -154,19 +158,38 @@ export function AudioPlayer({
       clearInterval(timerRef.current);
       timerRef.current = null;
     }
-    setIsPlaying(false);
-    setCurrentTime(0);
+    if (mountedRef.current) {
+      setIsPlaying(false);
+      setCurrentTime(0);
+      setPlaybackMode("idle");
+    }
     progressRef.current = 0;
-    setPlaybackMode("idle");
   }, []);
 
   useEffect(() => {
+    mountedRef.current = true;
     registerStop(id, stopPlayback);
     return () => {
+      mountedRef.current = false;
       unregisterStop(id);
       stopPlayback();
     };
   }, [id, stopPlayback, registerStop, unregisterStop]);
+
+  useEffect(() => {
+    if (activeId !== id && isPlaying) {
+      const audio = audioRef.current;
+      if (audio) {
+        audio.pause();
+        audio.currentTime = 0;
+      }
+      if (mountedRef.current) {
+        setIsPlaying(false);
+        setCurrentTime(0);
+        setPlaybackMode("idle");
+      }
+    }
+  }, [activeId, id, isPlaying]);
 
   const startSpeechFallback = useCallback(() => {
     if (typeof window === "undefined" || !window.speechSynthesis) return;
@@ -275,6 +298,7 @@ export function AudioPlayer({
       )}
       <audio
         ref={audioRef}
+        key={src}
         src={src}
         preload="metadata"
         onLoadedMetadata={() => {

@@ -165,7 +165,7 @@ function EmployeeCard({
       variants={fadeScaleVariants}
       layout
       className={cn(
-        "gradient-border group relative flex shrink-0 snap-center flex-col overflow-hidden rounded-xl bg-surface-white",
+        "gradient-border group relative flex shrink-0 snap-center flex-col overflow-hidden rounded-2xl border border-border-default bg-surface-white",
         "w-[300px] shadow-sm transition-all duration-300",
         "hover:-translate-y-1 hover:shadow-md hover:border-brand-primary/40",
         "md:w-auto md:shrink md:snap-align-none",
@@ -238,7 +238,7 @@ export function AIEmployees() {
   }, []);
 
   return (
-    <Section id="ai-employees" surface="muted" aria-label={aiEmployeesSection.title}>
+    <Section id="ai-employees" surface="white" aria-label={aiEmployeesSection.title}>
       <Container>
         <motion.div
           initial="hidden"

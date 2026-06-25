@@ -83,7 +83,7 @@ export function FAQ() {
   }, []);
 
   return (
-    <Section id="faq" surface="muted" aria-label={faqSection.title}>
+    <Section id="faq" surface="white" aria-label={faqSection.title}>
       <Container>
         <motion.div
           initial={false}

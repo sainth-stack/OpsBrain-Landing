@@ -13,7 +13,7 @@ export function Container({
 }: ContainerProps) {
   return (
     <Component
-      className={cn("mx-auto w-full max-w-7xl px-6", className)}
+      className={cn("mx-auto w-full max-w-7xl px-5 sm:px-8", className)}
       {...props}
     >
       {children}
@@ -22,7 +22,7 @@ export function Container({
 }
 
 export interface SectionProps extends ComponentPropsWithoutRef<"section"> {
-  surface?: "white" | "muted" | "dark";
+  surface?: "white" | "muted" | "tint" | "dark" | "ink";
   id?: string;
 }
 
@@ -35,7 +35,9 @@ export function Section({
   const surfaceClass = {
     white: "section-surface-white",
     muted: "section-surface-muted",
+    tint: "section-surface-tint",
     dark: "section-surface-dark",
+    ink: "section-surface-ink",
   }[surface];
 
   return (

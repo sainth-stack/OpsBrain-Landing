@@ -1,7 +1,6 @@
 "use client";
 
 import { brandAssets } from "@/assets/brand";
-import { useTheme } from "@/components/providers/ThemeProvider";
 import { siteConfig } from "@/content/site";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
@@ -56,8 +55,7 @@ export function Logo({
   className,
   priority = false,
 }: LogoProps) {
-  const { theme } = useTheme();
-  const resolvedVariant = variant ?? (theme === "dark" ? "dark" : "light");
+  const resolvedVariant = variant ?? "light";
 
   return (
     <span

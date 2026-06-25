@@ -1,97 +1,89 @@
-"use client";
-
-import { getIntegrationIcon, getTrustBarIcon } from "@/components/icons/icon-map";
-import { trustBarIndustries, trustBarIntegrations } from "@/content/site";
+import { getTrustBarIcon } from "@/components/icons/icon-map";
+import { Container } from "@/components/ui/container";
+import { IntegrationLogo } from "@/components/ui/integration-logo";
+import {
+  trustBarIndustries,
+  trustBarIntegrations,
+  trustBarSection,
+} from "@/content/site";
 import { cn } from "@/lib/utils";
-import type { LucideIcon } from "lucide-react";
-
-function MarqueeRow({
-  items,
-  getIcon,
-  ariaLabel,
-}: {
-  items: readonly { label: string; icon: string }[];
-  getIcon: (name: string) => LucideIcon;
-  ariaLabel: string;
-}) {
-  const doubled = [...items, ...items];
-
-  return (
-    <div className="marquee-group relative overflow-hidden">
-      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-gradient-to-r from-surface-white to-transparent md:w-20" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l from-surface-white to-transparent md:w-20" />
-
-      <div
-        className="marquee-track flex w-max gap-8 px-4 md:gap-12 md:px-6"
-        role="list"
-        aria-label={ariaLabel}
-      >
-        {doubled.map((item, index) => {
-          const Icon = getIcon(item.icon);
-          return (
-            <div
-              key={`${item.label}-${index}`}
-              role="listitem"
-              className={cn(
-                "flex shrink-0 items-center gap-2 text-text-muted",
-                "transition-colors duration-200 hover:text-text-primary",
-              )}
-            >
-              <Icon className="size-4 shrink-0 opacity-60" aria-hidden="true" />
-              <span className="whitespace-nowrap text-sm font-medium">
-                {item.label}
-              </span>
-            </div>
-          );
-        })}
-      </div>
-    </div>
-  );
-}
-
-function TrustRow({
-  label,
-  items,
-  getIcon,
-  ariaLabel,
-}: {
-  label: string;
-  items: readonly { label: string; icon: string }[];
-  getIcon: (name: string) => LucideIcon;
-  ariaLabel: string;
-}) {
-  return (
-    <div>
-      <p className="mb-4 text-center text-xs font-medium uppercase tracking-widest text-text-muted">
-        {label}
-      </p>
-      <MarqueeRow items={items} getIcon={getIcon} ariaLabel={ariaLabel} />
-    </div>
-  );
-}
+import Link from "next/link";
 
 export function TrustBar() {
   return (
     <section
       id="trust-bar"
-      className="border-y border-border-default bg-surface-white py-8 md:py-10"
-      aria-label="Trust and integrations"
+      aria-labelledby="trust-bar-heading"
+      className="border-b border-border-default/60 bg-surface-white"
     >
-      <TrustRow
-        label="Trusted across industries"
-        items={trustBarIndustries}
-        getIcon={getTrustBarIcon}
-        ariaLabel="Industries served"
-      />
+      <Container className="py-12 md:py-16">
+        <div className="mx-auto max-w-4xl text-center">
+          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-text-muted">
+            {trustBarSection.eyebrow}
+          </p>
+          <h2
+            id="trust-bar-heading"
+            className="mt-3 text-base font-medium leading-relaxed text-text-secondary md:text-lg"
+          >
+            {trustBarSection.headline}
+          </h2>
 
-      <div className="my-8 border-t border-border-default md:my-10" />
+          <ul
+            className="mt-6 flex flex-wrap items-center justify-center gap-2 sm:mt-7 sm:gap-2.5"
+            role="list"
+          >
+            {trustBarIndustries.map(({ label, icon }) => {
+              const Icon = getTrustBarIcon(icon);
+              return (
+                <li key={label}>
+                  <span
+                    className={cn(
+                      "inline-flex items-center gap-2 rounded-full border border-border-default",
+                      "bg-surface-muted/60 px-3 py-1.5 text-sm font-medium text-text-primary",
+                      "max-sm:px-2.5 max-sm:text-xs",
+                    )}
+                  >
+                    <Icon
+                      className="hidden h-3.5 w-3.5 shrink-0 text-brand-primary sm:block"
+                      aria-hidden="true"
+                    />
+                    {label}
+                  </span>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
 
-      <TrustRow
-        label="Integrates with"
-        items={trustBarIntegrations}
-        getIcon={getIntegrationIcon}
-        ariaLabel="Integration partners"
-      />
+        <div className="mx-auto mt-8 max-w-4xl border-t border-border-default/60 pt-8 md:mt-10 md:pt-10">
+          <p className="text-center text-xs font-semibold uppercase tracking-[0.14em] text-text-muted">
+            {trustBarSection.integrationsLabel}
+          </p>
+          <ul
+            className="mt-5 flex flex-wrap items-center justify-center gap-x-10 gap-y-5 sm:gap-x-12 md:gap-x-14"
+            role="list"
+          >
+            {trustBarIntegrations.map(({ label, logo }) => (
+              <li key={label}>
+                <Link
+                  href={trustBarSection.integrationsHref}
+                  className={cn(
+                    "inline-flex items-center gap-2 transition-opacity",
+                    "opacity-60 hover:opacity-100 focus-visible:opacity-100",
+                    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/40 focus-visible:ring-offset-2",
+                  )}
+                  aria-label={`OpsBrain ${label} integration`}
+                >
+                  <IntegrationLogo slug={logo} label={label} />
+                  <span className="text-sm font-medium text-text-secondary">
+                    {label}
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </Container>
     </section>
   );
 }

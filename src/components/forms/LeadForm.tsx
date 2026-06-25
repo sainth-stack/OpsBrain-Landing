@@ -1,16 +1,24 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { leadFormOptions } from "@/content/site";
+import { finalCTASection, leadFormOptions } from "@/content/site";
 import { trackLeadSubmit } from "@/lib/analytics";
+import { submitLead } from "@/lib/landing-api";
 import { leadFormSchema, type LeadFormValues } from "@/lib/schemas/lead";
 import { cn } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { motion } from "framer-motion";
 import { CheckCircle2, Loader2 } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
+
+const honeypotStyle: React.CSSProperties = {
+  position: "absolute",
+  left: "-9999px",
+  width: "1px",
+  height: "1px",
+  overflow: "hidden",
+};
 
 const inputClassLight =
   "w-full rounded-lg border border-border-default bg-surface-white px-4 py-2.5 text-body text-text-primary transition-colors placeholder:text-text-muted focus:border-brand-primary focus:outline-none focus:ring-2 focus:ring-brand-primary/20";
@@ -34,9 +42,14 @@ export function LeadForm({ theme = "light" }: { theme?: "light" | "dark" }) {
   const isDark = theme === "dark";
   const inputClass = isDark ? inputClassDark : inputClassLight;
   const labelClass = isDark ? labelClassDark : labelClassLight;
+  const renderedAt = useRef(Date.now());
+  const honeypotRef = useRef<HTMLInputElement>(null);
   const [submitState, setSubmitState] = useState<
     "idle" | "loading" | "success" | "error"
   >("idle");
+  const [errorMsg, setErrorMsg] = useState(
+    "Something went wrong. Please try again or email us directly.",
+  );
 
   const {
     register,
@@ -54,65 +67,93 @@ export function LeadForm({ theme = "light" }: { theme?: "light" | "dark" }) {
   const onSubmit = async (data: LeadFormValues) => {
     setSubmitState("loading");
     try {
-      const res = await fetch("/api/leads", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
+      if (Date.now() - renderedAt.current < 2000) {
+        throw new Error("Please try again.");
+      }
 
-      if (!res.ok) throw new Error("Submit failed");
+      const honeypot = honeypotRef.current?.value ?? "";
+      if (honeypot.trim() !== "") {
+        setSubmitState("success");
+        reset();
+        return;
+      }
+
+      const result = await submitLead(data);
+      if (!result.success) {
+        throw new Error(result.message ?? "Submit failed");
+      }
 
       trackLeadSubmit("lead");
       setSubmitState("success");
       reset();
-    } catch {
+    } catch (error) {
+      setErrorMsg(error instanceof Error ? error.message : "Submit failed");
       setSubmitState("error");
     }
   };
 
   if (submitState === "success") {
     return (
-      <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        className="flex flex-col items-center rounded-xl border border-brand-accent/30 bg-brand-accent-light/30 px-6 py-12 text-center"
+      <div
+        className={cn(
+          "flex min-h-[320px] flex-col items-center justify-center rounded-xl px-6 py-12 text-center",
+          isDark
+            ? "border border-white/10 bg-white/5"
+            : "border border-brand-accent/30 bg-brand-accent-light/30",
+        )}
+        role="status"
       >
-        <motion.div
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ type: "spring", stiffness: 300, damping: 20, delay: 0.1 }}
+        <CheckCircle2
+          className={cn("size-12", isDark ? "text-brand-accent" : "text-brand-accent")}
+          aria-hidden="true"
+        />
+        <h3
+          className={cn(
+            "mt-4 text-xl font-semibold",
+            isDark ? "text-on-dark" : "text-text-primary",
+          )}
         >
-          <CheckCircle2
-            className="size-16 text-brand-accent"
-            aria-hidden="true"
-          />
-        </motion.div>
-        <h3 className={cn("mt-4 text-h3 font-semibold", isDark ? "text-on-dark" : "text-text-primary")}>
           Request received!
         </h3>
         <p className={cn("mt-2 text-body", isDark ? "text-on-dark-muted" : "text-text-secondary")}>
-          We&apos;ll contact you within 24 hours.
+          {finalCTASection.successMessage}
         </p>
         <Button
           type="button"
-          variant="secondary"
+          variant={isDark ? "outline-dark" : "secondary"}
           size="md"
           className="mt-6"
           onClick={() => setSubmitState("idle")}
         >
           Submit another request
         </Button>
-      </motion.div>
+      </div>
     );
   }
 
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="space-y-5"
+      className="relative space-y-5"
       noValidate
       aria-label="Lead capture form"
     >
+      <div style={honeypotStyle} aria-hidden="true">
+        <label htmlFor="company_website">Company website</label>
+        <input
+          id="company_website"
+          ref={honeypotRef}
+          name="company_website"
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+          defaultValue=""
+        />
+      </div>
+
+      {isDark ? (
+        <h3 className="text-xl font-semibold text-on-dark">Get started</h3>
+      ) : null}
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
           <label htmlFor="fullName" className={labelClass}>
@@ -280,8 +321,8 @@ export function LeadForm({ theme = "light" }: { theme?: "light" | "dark" }) {
       </div>
 
       {submitState === "error" && (
-        <p className="text-small text-red-600" role="alert">
-          Something went wrong. Please try again or email us directly.
+        <p className="text-small text-red-400" role="alert">
+          {errorMsg}
         </p>
       )}
 

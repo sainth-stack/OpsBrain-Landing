@@ -1,7 +1,7 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import { ButtonLink } from "@/components/ui/button";
+import { ROIVisualization } from "@/components/visuals/ROIVisualization";
 import { Container, Section } from "@/components/ui/container";
 import { SectionHeader } from "@/components/ui/section-header";
 import {
@@ -12,71 +12,9 @@ import {
 import { trackRoiCalculate } from "@/lib/analytics";
 import { calculateROI } from "@/lib/roi-model";
 import { cn } from "@/lib/utils";
-import { fadeUpVariants, viewportOnce } from "@/lib/motion";
-import {
-  motion,
-  useMotionValueEvent,
-  useSpring,
-  useReducedMotion,
-} from "framer-motion";
-import { useCallback, useEffect, useMemo, useState } from "react";
-
-const ROIVisualization = dynamic(
-  () =>
-    import("@/components/visuals/ROIVisualization").then(
-      (m) => m.ROIVisualization,
-    ),
-  {
-    ssr: false,
-    loading: () => (
-      <div
-        className="min-h-[480px] animate-pulse rounded-xl border border-border-default bg-surface-muted"
-        aria-hidden="true"
-      />
-    ),
-  },
-);
+import { useCallback, useMemo, useState } from "react";
 
 type Currency = "INR" | "USD";
-
-function AnimatedNumber({
-  value,
-  currency,
-  format = "currency",
-}: {
-  value: number;
-  currency: Currency;
-  format?: "currency" | "number";
-}) {
-  const prefersReducedMotion = useReducedMotion();
-  const spring = useSpring(value, {
-    stiffness: 100,
-    damping: 20,
-    mass: 0.8,
-  });
-  const [display, setDisplay] = useState(value);
-
-  useMotionValueEvent(spring, "change", (v) => {
-    setDisplay(Math.round(v));
-  });
-
-  useEffect(() => {
-    spring.set(value);
-  }, [spring, value]);
-
-  const activeValue = prefersReducedMotion ? value : display;
-  const formatted = activeValue.toLocaleString();
-
-  if (format === "currency") {
-    return (
-      <span>
-        {currency === "INR" ? "₹" : "$"}
-        {formatted}
-      </span>
-    );
-  }
-  return <span>{formatted}</span>;
-}
 
 function SliderInput({
   label,
@@ -95,6 +33,7 @@ function SliderInput({
   unit?: string;
   onChange: (v: number) => void;
 }) {
+  const id = `roi-${label.replace(/\s+/g, "-").toLowerCase()}`;
   const displayValue =
     unit === "₹" || unit === "$"
       ? `${unit}${value.toLocaleString()}`
@@ -105,30 +44,24 @@ function SliderInput({
           : value.toLocaleString();
 
   return (
-    <div>
-      <div className="flex items-center justify-between gap-3">
-        <label
-          htmlFor={`roi-${label.replace(/\s+/g, "-").toLowerCase()}`}
-          className="text-small font-medium text-text-primary"
-        >
+    <div className="space-y-3">
+      <div className="flex items-center justify-between gap-4">
+        <label htmlFor={id} className="text-sm font-medium text-text-primary">
           {label}
         </label>
-        <span className="text-small font-semibold tabular-nums text-brand-primary">
+        <span className="shrink-0 text-sm font-semibold tabular-nums text-brand-primary">
           {displayValue}
         </span>
       </div>
       <input
-        id={`roi-${label.replace(/\s+/g, "-").toLowerCase()}`}
+        id={id}
         type="range"
         min={min}
         max={max}
         step={step}
         value={value}
         onChange={(e) => onChange(Number(e.target.value))}
-        aria-valuemin={min}
-        aria-valuemax={max}
-        aria-valuenow={value}
-        className="roi-slider mt-3 w-full"
+        className="roi-slider w-full"
       />
     </div>
   );
@@ -137,7 +70,7 @@ function SliderInput({
 const DEFAULT_PRESET = roiIndustryPresets.find((p) => p.id === "b2b-saas")!;
 
 export function ROICalculator() {
-  const [activePreset, setActivePreset] = useState<string>(DEFAULT_PRESET.id);
+  const [activePreset, setActivePreset] = useState(DEFAULT_PRESET.id);
   const [leads, setLeads] = useState(DEFAULT_PRESET.leads);
   const [dealValue, setDealValue] = useState(DEFAULT_PRESET.dealValueInr);
   const [conversionRate, setConversionRate] = useState(
@@ -168,34 +101,17 @@ export function ROICalculator() {
       );
       setConversionRate(preset.conversionRate);
       setResponseDelay(preset.responseDelay);
-      trackRoiCalculate({
-        event: "preset",
-        preset: preset.id,
-        leads: preset.leads,
-        currency,
-      });
+      trackRoiCalculate({ event: "preset", preset: preset.id, leads: preset.leads, currency });
     },
     [currency],
   );
 
-  const handleInputChange = (
-    setter: (v: number) => void,
-    v: number,
-    track = false,
-  ) => {
-    setActivePreset("custom");
-    setter(v);
-    if (track) {
-      trackRoiCalculate({
-        leads: setter === setLeads ? v : leads,
-        dealValue: setter === setDealValue ? v : dealValue,
-        conversionRate: setter === setConversionRate ? v : conversionRate,
-        responseDelay: setter === setResponseDelay ? v : responseDelay,
-        currency,
-        revenueRecoverable: results.revenueRecoverable,
-      });
-    }
-  };
+  const update =
+    (setter: (v: number) => void) =>
+    (v: number) => {
+      setActivePreset("custom");
+      setter(v);
+    };
 
   const toggleCurrency = () => {
     const preset = roiIndustryPresets.find((p) => p.id === activePreset);
@@ -206,41 +122,34 @@ export function ROICalculator() {
       setCurrency("INR");
       setDealValue(preset?.dealValueInr ?? 25000);
     }
-    setActivePreset(activePreset === "custom" ? "custom" : activePreset);
   };
+
+  const currencyUnit = currency === "INR" ? "₹" : "$";
 
   return (
     <Section
       id="roi-calculator"
-      surface="muted"
+      surface="tint"
       aria-label={roiCalculatorSection.title}
     >
       <Container>
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={viewportOnce}
-          custom={0}
-          variants={fadeUpVariants}
-        >
-          <SectionHeader
-            eyebrow={roiCalculatorSection.eyebrow}
-            title={roiCalculatorSection.title}
-            subtitle={roiCalculatorSection.subtitle}
-            align="center"
-          />
-        </motion.div>
+        <SectionHeader
+          eyebrow={roiCalculatorSection.eyebrow}
+          title={roiCalculatorSection.title}
+          subtitle={roiCalculatorSection.subtitle}
+          align="center"
+        />
 
-        <div className="mt-10 grid gap-8 lg:grid-cols-2 lg:items-start lg:gap-12">
-          <div className="rounded-xl border border-border-default bg-surface-white p-6 md:p-8">
+        <div className="mt-10 grid gap-6 lg:grid-cols-2 lg:items-stretch lg:gap-8">
+          <div className="flex flex-col rounded-2xl border border-border-default bg-surface-white p-6 md:p-8">
             <div className="flex items-center justify-between gap-4">
-              <p className="text-small font-semibold text-text-primary">
+              <p className="text-sm font-semibold text-text-primary">
                 {roiCalculatorSection.inputsPanelTitle}
               </p>
               <button
                 type="button"
                 onClick={toggleCurrency}
-                className="rounded-lg border border-border-default px-3 py-1.5 text-small font-medium text-text-primary transition-colors hover:bg-surface-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary"
+                className="rounded-lg border border-brand-primary/30 px-3 py-1.5 text-sm font-medium text-brand-primary transition-colors hover:bg-brand-primary-light"
                 aria-label={`Switch to ${currency === "INR" ? "USD" : "INR"}`}
               >
                 {currency === "INR" ? "₹ INR" : "$ USD"}
@@ -248,7 +157,7 @@ export function ROICalculator() {
             </div>
 
             <div
-              className="mt-5 flex flex-wrap gap-2"
+              className="mt-5 grid grid-cols-2 gap-2 sm:flex sm:flex-wrap"
               role="group"
               aria-label="Industry presets"
             >
@@ -258,7 +167,7 @@ export function ROICalculator() {
                   type="button"
                   onClick={() => applyPreset(preset)}
                   className={cn(
-                    "rounded-full border px-3 py-1.5 text-small font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary",
+                    "rounded-full border px-3 py-2 text-sm font-medium transition-colors",
                     activePreset === preset.id
                       ? "border-brand-primary bg-brand-primary-light text-brand-primary"
                       : "border-border-default bg-surface-white text-text-muted hover:border-brand-primary/40 hover:text-text-primary",
@@ -269,14 +178,14 @@ export function ROICalculator() {
               ))}
             </div>
 
-            <div className="mt-8 space-y-6">
+            <div className="mt-8 flex flex-1 flex-col justify-center space-y-7">
               <SliderInput
                 label="Monthly incoming leads"
                 value={leads}
                 min={50}
                 max={5000}
                 step={50}
-                onChange={(v) => handleInputChange(setLeads, v, true)}
+                onChange={update(setLeads)}
               />
               <SliderInput
                 label="Average deal value"
@@ -284,8 +193,8 @@ export function ROICalculator() {
                 min={currency === "INR" ? 5000 : 100}
                 max={currency === "INR" ? 500000 : 10000}
                 step={currency === "INR" ? 5000 : 100}
-                unit={currency === "INR" ? "₹" : "$"}
-                onChange={(v) => handleInputChange(setDealValue, v)}
+                unit={currencyUnit}
+                onChange={update(setDealValue)}
               />
               <SliderInput
                 label="Lead conversion rate"
@@ -294,7 +203,7 @@ export function ROICalculator() {
                 max={20}
                 step={1}
                 unit="%"
-                onChange={(v) => handleInputChange(setConversionRate, v)}
+                onChange={update(setConversionRate)}
               />
               <SliderInput
                 label="Average response delay"
@@ -303,50 +212,42 @@ export function ROICalculator() {
                 max={24}
                 step={0.5}
                 unit="hrs"
-                onChange={(v) => handleInputChange(setResponseDelay, v)}
+                onChange={update(setResponseDelay)}
               />
             </div>
           </div>
 
-          <div className="space-y-6">
-            <ROIVisualization
-              leads={leads}
-              responseDelay={responseDelay}
-              results={results}
-              currency={currency}
-              heroMetric={
-                <AnimatedNumber
-                  value={results.revenueRecoverable}
-                  currency={currency}
-                />
-              }
-            />
-
-            <div className="flex flex-col gap-3 sm:flex-row">
-              <ButtonLink
-                href={roiCalculatorSection.cta.href}
-                variant="primary"
-                size="lg"
-                className="flex-1"
-                trackAsDemo="roi_calculator_book_demo"
-              >
-                {roiCalculatorSection.cta.label}
-              </ButtonLink>
-              <ButtonLink
-                href={roiCalculatorSection.secondaryCta.href}
-                variant="secondary"
-                size="lg"
-                className="flex-1"
-              >
-                {roiCalculatorSection.secondaryCta.label}
-              </ButtonLink>
-            </div>
-
-            <p className="text-small leading-relaxed text-text-muted">
-              {roiCalculatorSection.disclaimer}
-            </p>
-          </div>
+          <ROIVisualization
+            leads={leads}
+            responseDelay={responseDelay}
+            results={results}
+            currency={currency}
+          />
         </div>
+
+        <div className="mt-8 flex flex-col items-stretch gap-3 sm:flex-row sm:justify-center">
+          <ButtonLink
+            href={roiCalculatorSection.cta.href}
+            variant="primary"
+            size="lg"
+            className="sm:min-w-[200px]"
+            trackAsDemo="roi_calculator_get_started"
+          >
+            {roiCalculatorSection.cta.label}
+          </ButtonLink>
+          <ButtonLink
+            href={roiCalculatorSection.secondaryCta.href}
+            variant="outline"
+            size="lg"
+            className="sm:min-w-[200px]"
+          >
+            {roiCalculatorSection.secondaryCta.label}
+          </ButtonLink>
+        </div>
+
+        <p className="mx-auto mt-4 max-w-2xl text-center text-sm leading-relaxed text-text-muted">
+          {roiCalculatorSection.disclaimer}
+        </p>
       </Container>
     </Section>
   );

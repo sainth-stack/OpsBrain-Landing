@@ -14,7 +14,7 @@ export function WhyOpsBrain() {
   return (
     <Section
       id="why-opsbrain"
-      surface="white"
+      surface="tint"
       className="relative overflow-hidden"
       aria-label={whyOpsBrainSection.title}
     >

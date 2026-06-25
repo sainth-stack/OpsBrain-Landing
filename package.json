@@ -8,7 +8,9 @@
     "start": "next start",
     "lint": "eslint",
     "sync:assets": "python3 scripts/generate-favicons.py",
-    "sync:agent-marks": "node scripts/generate-agent-marks.mjs"
+    "sync:agent-marks": "node scripts/generate-agent-marks.mjs",
+    "generate:voice-demos": "node scripts/generate-voice-demos.mjs",
+    "generate:voice-demos:free": "node scripts/generate-voice-demos-free.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.4.0",

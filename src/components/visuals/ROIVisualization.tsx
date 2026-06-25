@@ -3,54 +3,61 @@
 import { roiCalculatorSection } from "@/content/site";
 import {
   formatResponseDelay,
-  OPSBRAIN_RESPONSE_HOURS,
   type ROIResults,
 } from "@/lib/roi-model";
 import { cn } from "@/lib/utils";
-import { viewportOnce } from "@/lib/motion";
-import { motion, useInView, useReducedMotion } from "framer-motion";
-import { useRef, useState } from "react";
-import { ChevronDown } from "lucide-react";
 
 type Currency = "INR" | "USD";
 
-interface ROIDashboardProps {
-  leads: number;
-  responseDelay: number;
-  results: ROIResults;
-  currency: Currency;
-  heroMetric: React.ReactNode;
-}
-
-function currencySymbol(currency: Currency) {
-  return currency === "INR" ? "₹" : "$";
-}
-
-function FunnelBar({
+function MetricCard({
   label,
-  valueLabel,
-  pct,
-  tone,
-  index,
-  animate,
+  value,
+  tone = "default",
 }: {
   label: string;
-  valueLabel: string;
-  pct: number;
-  tone: "primary" | "muted" | "danger";
-  index: number;
-  animate: boolean;
+  value: string;
+  tone?: "default" | "danger" | "accent";
 }) {
-  const prefersReducedMotion = useReducedMotion();
-  const toneClass = {
+  return (
+    <div className="flex min-h-[96px] flex-col justify-between rounded-xl border border-border-default bg-surface-muted/40 p-4">
+      <p className="text-[10px] font-semibold uppercase leading-snug tracking-wide text-text-muted">
+        {label}
+      </p>
+      <p
+        className={cn(
+          "mt-3 text-2xl font-bold tabular-nums leading-none",
+          tone === "danger" && "text-red-600",
+          tone === "accent" && "text-brand-accent",
+          tone === "default" && "text-text-primary",
+        )}
+      >
+        {value}
+      </p>
+    </div>
+  );
+}
+
+function ProgressRow({
+  label,
+  value,
+  pct,
+  tone,
+}: {
+  label: string;
+  value: string;
+  pct: number;
+  tone: "primary" | "muted" | "danger" | "accent";
+}) {
+  const barClass = {
     primary: "bg-brand-primary",
-    muted: "bg-brand-primary/70",
-    danger: "bg-red-500/90",
+    muted: "bg-brand-primary/65",
+    danger: "bg-red-500",
+    accent: "bg-brand-accent",
   }[tone];
 
   return (
     <div>
-      <div className="mb-1.5 flex items-center justify-between gap-3 text-small">
+      <div className="mb-2 flex items-center justify-between gap-3 text-sm">
         <span
           className={cn(
             "font-medium",
@@ -59,19 +66,12 @@ function FunnelBar({
         >
           {label}
         </span>
-        <span className="shrink-0 tabular-nums text-text-muted">{valueLabel}</span>
+        <span className="shrink-0 tabular-nums text-text-muted">{value}</span>
       </div>
       <div className="h-2.5 overflow-hidden rounded-full bg-surface-muted">
-        <motion.div
-          className={cn("h-full rounded-full", toneClass)}
-          initial={{ width: 0 }}
-          animate={{ width: animate ? `${pct}%` : 0 }}
-          transition={{
-            duration: prefersReducedMotion ? 0 : 0.45,
-            delay: prefersReducedMotion ? 0 : index * 0.08,
-            ease: [0.25, 0.46, 0.45, 0.94],
-          }}
-          role="presentation"
+        <div
+          className={cn("h-full rounded-full transition-all duration-500 ease-out", barClass)}
+          style={{ width: `${Math.max(4, Math.min(100, pct))}%` }}
         />
       </div>
     </div>
@@ -83,189 +83,132 @@ export function ROIVisualization({
   responseDelay,
   results,
   currency,
-  heroMetric,
-}: ROIDashboardProps) {
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, viewportOnce);
-  const [methodologyOpen, setMethodologyOpen] = useState(false);
-  const symbol = currencySymbol(currency);
-  const { funnel, comparison, methodology } = roiCalculatorSection;
+}: {
+  leads: number;
+  responseDelay: number;
+  results: ROIResults;
+  currency: Currency;
+}) {
+  const symbol = currency === "INR" ? "₹" : "$";
+  const { funnel, comparison } = roiCalculatorSection;
 
   const followUpPct = Math.round((results.followUpsCompleted / leads) * 100);
-  const revenuePct = Math.max(8, Math.min(92, results.leakPct + 8));
-
-  const todayBarPct = Math.max(
-    12,
-    Math.min(100, Math.round(results.currentConversionPct * 4)),
-  );
+  const riskBarPct = Math.max(10, Math.min(100, results.leakPct + 12));
+  const todayBarPct = Math.max(15, Math.min(100, results.currentConversionPct * 5));
   const opsBrainBarPct = Math.max(
-    12,
-    Math.min(100, Math.round(results.opsBrainConversionPct * 4)),
+    15,
+    Math.min(100, results.opsBrainConversionPct * 5),
   );
 
   return (
     <div
-      ref={ref}
-      className="rounded-xl border border-border-default bg-surface-white p-6 md:p-8"
+      className="flex h-full flex-col rounded-2xl border border-border-default bg-surface-white p-6 md:p-8"
       aria-labelledby="roi-dashboard-title"
     >
       <p
         id="roi-dashboard-title"
-        className="text-small font-medium uppercase tracking-wider text-text-muted"
+        className="text-xs font-semibold uppercase tracking-widest text-text-muted"
       >
         {roiCalculatorSection.dashboardTitle}
       </p>
 
-      <div
-        className="mt-6 rounded-xl border border-brand-accent/30 bg-brand-accent/5 p-5 md:p-6"
-        aria-live="polite"
-        aria-atomic="true"
-      >
-        <p className="text-small font-medium text-text-secondary">
+      <div className="mt-5 rounded-xl border border-brand-accent/25 bg-brand-accent/5 px-5 py-5">
+        <p className="text-sm font-medium text-text-secondary">
           {roiCalculatorSection.heroMetricLabel}
         </p>
-        <p className="mt-2 font-display text-[2rem] font-bold leading-none tabular-nums text-brand-accent md:text-h1">
-          {heroMetric}
+        <p className="mt-2 font-display text-4xl font-bold tabular-nums leading-none text-brand-accent md:text-5xl">
+          {symbol}
+          {results.revenueRecoverable.toLocaleString()}
         </p>
       </div>
 
-      <div className="mt-8 grid gap-6 sm:grid-cols-3">
-        <div className="rounded-lg border border-border-default bg-surface-muted/50 p-4">
-          <p className="text-[11px] font-medium uppercase tracking-wider text-text-muted">
-            {roiCalculatorSection.secondaryMetrics.missedFollowUps}
-          </p>
-          <p className="mt-2 font-display text-h3 font-bold tabular-nums text-text-primary">
-            {results.missedFollowUps.toLocaleString()}
-          </p>
-        </div>
-        <div className="rounded-lg border border-border-default bg-surface-muted/50 p-4">
-          <p className="text-[11px] font-medium uppercase tracking-wider text-text-muted">
-            {roiCalculatorSection.secondaryMetrics.revenueAtRisk}
-          </p>
-          <p className="mt-2 font-display text-h3 font-bold tabular-nums text-red-600">
-            {symbol}
-            {results.revenueAtRisk.toLocaleString()}
-          </p>
-        </div>
-        <div className="rounded-lg border border-border-default bg-surface-muted/50 p-4">
-          <p className="text-[11px] font-medium uppercase tracking-wider text-text-muted">
-            {roiCalculatorSection.secondaryMetrics.dealsRecovered}
-          </p>
-          <p className="mt-2 font-display text-h3 font-bold tabular-nums text-text-primary">
-            +{Math.round(results.dealsRecovered).toLocaleString()}
-          </p>
-        </div>
+      <div className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-3">
+        <MetricCard
+          label={roiCalculatorSection.secondaryMetrics.missedFollowUps}
+          value={results.missedFollowUps.toLocaleString()}
+        />
+        <MetricCard
+          label={roiCalculatorSection.secondaryMetrics.revenueAtRisk}
+          value={`${symbol}${results.revenueAtRisk.toLocaleString()}`}
+          tone="danger"
+        />
+        <MetricCard
+          label={roiCalculatorSection.secondaryMetrics.dealsRecovered}
+          value={`+${results.dealsRecovered.toLocaleString()}`}
+          tone="accent"
+        />
       </div>
 
-      <div className="mt-8">
-        <p className="text-small font-medium uppercase tracking-wider text-text-muted">
+      <div className="mt-6 border-t border-border-muted pt-6">
+        <p className="text-xs font-semibold uppercase tracking-widest text-text-muted">
           {funnel.title}
         </p>
         <div className="mt-4 space-y-4">
-          <FunnelBar
+          <ProgressRow
             label={funnel.leads}
-            valueLabel={leads.toLocaleString()}
+            value={leads.toLocaleString()}
             pct={100}
             tone="primary"
-            index={0}
-            animate={isInView}
           />
-          <FunnelBar
+          <ProgressRow
             label={funnel.followUps}
-            valueLabel={results.followUpsCompleted.toLocaleString()}
+            value={results.followUpsCompleted.toLocaleString()}
             pct={followUpPct}
             tone="muted"
-            index={1}
-            animate={isInView}
           />
-          <FunnelBar
+          <ProgressRow
             label={funnel.revenue}
-            valueLabel={`${symbol}${results.revenueAtRisk.toLocaleString()}`}
-            pct={revenuePct}
+            value={`${symbol}${results.revenueAtRisk.toLocaleString()}`}
+            pct={riskBarPct}
             tone="danger"
-            index={2}
-            animate={isInView}
           />
         </div>
-        <p className="mt-3 text-small text-red-600/90">
+        <p className="mt-3 text-sm text-red-600">
           {results.leakPct}% pipeline leakage from {formatResponseDelay(responseDelay)}{" "}
           average response delay
         </p>
       </div>
 
-      <div className="mt-8">
-        <p className="text-small font-medium uppercase tracking-wider text-text-muted">
+      <div className="mt-6 border-t border-border-muted pt-6">
+        <p className="text-xs font-semibold uppercase tracking-widest text-text-muted">
           {comparison.title}
         </p>
-        <div className="mt-4 space-y-5">
+        <div className="mt-4 space-y-4">
           <div>
-            <div className="mb-2 flex items-center justify-between gap-3 text-small">
-              <span className="font-medium text-text-secondary">
+            <div className="mb-2 flex flex-col gap-0.5 sm:flex-row sm:items-center sm:justify-between">
+              <span className="text-sm font-medium text-text-secondary">
                 {comparison.today}
               </span>
-              <span className="tabular-nums text-text-muted">
+              <span className="text-xs tabular-nums text-text-muted">
                 {formatResponseDelay(responseDelay)} · {results.currentConversionPct}%
                 effective conversion
               </span>
             </div>
-            <div className="h-3 overflow-hidden rounded-full bg-surface-muted">
-              <motion.div
-                className="h-full rounded-full bg-red-500/80"
-                initial={{ width: 0 }}
-                animate={{ width: isInView ? `${todayBarPct}%` : 0 }}
-                transition={{ duration: 0.45 }}
+            <div className="h-2.5 overflow-hidden rounded-full bg-surface-muted">
+              <div
+                className="h-full rounded-full bg-red-500 transition-all duration-500"
+                style={{ width: `${todayBarPct}%` }}
               />
             </div>
           </div>
           <div>
-            <div className="mb-2 flex items-center justify-between gap-3 text-small">
-              <span className="font-medium text-brand-primary">
+            <div className="mb-2 flex flex-col gap-0.5 sm:flex-row sm:items-center sm:justify-between">
+              <span className="text-sm font-medium text-brand-primary">
                 {comparison.withOpsBrain}
               </span>
-              <span className="tabular-nums text-text-muted">
+              <span className="text-xs tabular-nums text-text-muted">
                 {comparison.opsBrainResponse} · {results.opsBrainConversionPct}%
                 effective conversion
               </span>
             </div>
-            <div className="h-3 overflow-hidden rounded-full bg-surface-muted">
-              <motion.div
-                className="h-full rounded-full bg-brand-accent"
-                initial={{ width: 0 }}
-                animate={{ width: isInView ? `${opsBrainBarPct}%` : 0 }}
-                transition={{ duration: 0.45, delay: 0.1 }}
+            <div className="h-2.5 overflow-hidden rounded-full bg-surface-muted">
+              <div
+                className="h-full rounded-full bg-brand-accent transition-all duration-500"
+                style={{ width: `${opsBrainBarPct}%` }}
               />
             </div>
           </div>
         </div>
-        <p className="sr-only">
-          Current response delay {formatResponseDelay(responseDelay)} versus OpsBrain
-          at {formatResponseDelay(OPSBRAIN_RESPONSE_HOURS)}.
-        </p>
-      </div>
-
-      <div className="mt-8 border-t border-border-default pt-6">
-        <button
-          type="button"
-          onClick={() => setMethodologyOpen((open) => !open)}
-          className="flex w-full items-center justify-between gap-3 text-left text-small font-medium text-text-secondary transition-colors hover:text-text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary"
-          aria-expanded={methodologyOpen}
-        >
-          How we calculate this
-          <ChevronDown
-            className={cn(
-              "size-4 shrink-0 transition-transform",
-              methodologyOpen && "rotate-180",
-            )}
-            aria-hidden="true"
-          />
-        </button>
-        {methodologyOpen && (
-          <div className="mt-3 space-y-2 text-small leading-relaxed text-text-muted">
-            <p>{methodology.summary}</p>
-            <p>{methodology.sources}</p>
-            <p>{roiCalculatorSection.disclaimer}</p>
-          </div>
-        )}
       </div>
     </div>
   );

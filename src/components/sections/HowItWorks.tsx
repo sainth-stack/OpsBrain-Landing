@@ -73,7 +73,7 @@ export function HowItWorks() {
   );
 
   return (
-    <Section id="how-it-works" surface="muted" aria-label={howItWorksSection.title}>
+    <Section id="how-it-works" surface="tint" aria-label={howItWorksSection.title}>
       <Container>
         <motion.div
           initial="hidden"

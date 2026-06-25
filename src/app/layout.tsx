@@ -115,8 +115,9 @@ export default function RootLayout({
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+        <meta name="theme-color" content="#4f46e5" />
       </head>
-      <body className="flex min-h-full flex-col font-sans antialiased pb-20 md:pb-0">
+      <body className="flex min-h-full flex-col bg-surface-white font-sans antialiased pb-24 lg:pb-0">
         <AnalyticsScripts />
         <ThemeProvider>
           <MotionProvider>

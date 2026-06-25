@@ -18,7 +18,7 @@ export function Capabilities() {
   return (
     <Section
       id="capabilities"
-      surface="muted"
+      surface="white"
       aria-label={capabilitiesSection.title}
     >
       <Container>
@@ -49,8 +49,8 @@ export function Capabilities() {
                 custom={index * 0.08}
                 variants={fadeScaleVariants}
                 className={cn(
-                  "gradient-border group rounded-xl bg-surface-white p-6 lg:col-span-2",
-                  "transition-all duration-300 hover:-translate-y-1 hover:border-brand-primary/40",
+                  "card-marketing lg:col-span-2",
+                  "transition-all duration-300 hover:-translate-y-1",
                 )}
               >
                 <IconBox
@@ -80,8 +80,8 @@ export function Capabilities() {
                 custom={(index + 2) * 0.06}
                 variants={fadeScaleVariants}
                 className={cn(
-                  "card-flat group p-5",
-                  "transition-all duration-300 hover:-translate-y-1 hover:border-brand-accent/40",
+                  "card-marketing p-5",
+                  "transition-all duration-300 hover:-translate-y-1",
                 )}
               >
                 <IconBox
