@@ -21,7 +21,9 @@ async function postJson<T>(url: string, body: unknown): Promise<T> {
     const msg =
       data && typeof data === "object" && "message" in data
         ? String((data as { message: unknown }).message)
-        : "Request failed";
+        : data && typeof data === "object" && "detail" in data
+          ? String((data as { detail: unknown }).detail)
+          : "Request failed";
     throw new Error(msg);
   }
   return data as T;
