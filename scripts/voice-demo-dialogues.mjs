@@ -71,13 +71,13 @@ export const DEMOS = [
   {
     file: "sales-hi.mp3",
     lang: "hi",
-    persona: "Priya",
+    persona: "Raju",
     trait: "Warm & Professional",
     fallbackDuration: 32,
     dialogue: [
       {
         speaker: "agent",
-        text: "नमस्ते जी, Priya बोल रही हूँ OpsBrain से। आपने कल form भरा था — अभी दो minute मिलेंगे? हम lead आते ही एक minute में call करके demo book करवा देते हैं।",
+        text: "नमस्ते जी, Raju बोल रही हूँ OpsBrain से। आपने कल form भरा था — अभी दो minute मिलेंगे? हम lead आते ही एक minute में call करके demo book करवा देते हैं।",
       },
       {
         speaker: "customer",
@@ -99,30 +99,38 @@ export const DEMOS = [
   },
   {
     file: "sales-te.mp3",
-    lang: "te",
-    persona: "Ananya",
-    trait: "Energetic & Native",
-    fallbackDuration: 32,
+    lang: "en",
+    persona: "Alex",
+    trait: "Sharp & Persuasive",
+    fallbackDuration: 38,
     dialogue: [
       {
         speaker: "agent",
-        text: "నమస్కారం అండి, OpsBrain నుండి అనన్య. నిన్న మా site లో form పూరించారు — ఇప్పుడు రెండు నిమిషాలు మాట్లాడవచ్చా? lead వచ్చిన వెంటనే call చేసి demo book చేస్తాము.",
+        text: "Hey, this is Alex from OpsBrain! You just filled out our form — got sixty seconds? I'm calling because most sales teams lose deals just from slow follow-up. We fix that with AI.",
       },
       {
         speaker: "customer",
-        text: "అవును అండి. మా team లో సుమారు పదిహేనుగురు.",
+        text: "Yeah I've been looking at a few tools. What makes you different?",
       },
       {
         speaker: "agent",
-        text: "బాగుంది! ఈ గురువారం మధ్యాహ్నం రెండు గంటలకు demo fix చేద్దామా?",
+        text: "Great question. OpsBrain calls every lead in under sixty seconds — day or night — qualifies them, and books the demo automatically. No SDR needed. Your team only talks to people who are ready to buy.",
       },
       {
         speaker: "customer",
-        text: "అవును, సరే అండి.",
+        text: "Okay that sounds interesting. How quick can we get started?",
       },
       {
         speaker: "agent",
-        text: "చాలా బాగుంది — calendar invite మరియు confirmation message ఇప్పుడే పంపిస్తాను. ధన్యవాదాలు!",
+        text: "Honestly, same week. Can I grab Thursday at two PM to show you a live demo? Takes thirty minutes and you'll see exactly how it works for your pipeline.",
+      },
+      {
+        speaker: "customer",
+        text: "Yeah, Thursday works for me.",
+      },
+      {
+        speaker: "agent",
+        text: "Perfect — sending the calendar invite right now. Talk soon!",
       },
     ],
   },

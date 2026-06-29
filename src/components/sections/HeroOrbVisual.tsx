@@ -1,9 +1,10 @@
 "use client";
 
+import { cn } from "@/lib/utils";
 import { VoiceWaveform } from "@/components/ui/VoiceWaveform";
 import { hero } from "@/content/site";
-import { CalendarCheck, Database, Phone, TrendingUp } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { CalendarCheck, Database, Pause, Phone, Play, TrendingUp } from "lucide-react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 const leadStep = hero.visual.storySteps[0];
 const callStep = hero.visual.storySteps[1];
@@ -17,6 +18,20 @@ const parallax = (factor: number): React.CSSProperties => ({
 
 function EmployeeOrb() {
   const [liveLabel, setLiveLabel] = useState<string>(callStep.languageChip);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = useRef<HTMLAudioElement>(null);
+
+  const togglePlay = useCallback(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    if (isPlaying) {
+      audio.pause();
+      audio.currentTime = 0;
+      setIsPlaying(false);
+    } else {
+      audio.play().then(() => setIsPlaying(true)).catch(() => {});
+    }
+  }, [isPlaying]);
 
   useEffect(() => {
     const chips = hero.visual.storySteps
@@ -69,6 +84,15 @@ function EmployeeOrb() {
         <span className="absolute right-0 top-1/2 h-2 w-2 rounded-full bg-brand-accent shadow-[0_0_12px_rgba(16,185,129,0.8)]" />
       </div>
 
+      <audio
+        ref={audioRef}
+        src="/audio/hero-demo.mp3"
+        preload="none"
+        onEnded={() => { setIsPlaying(false); }}
+        className="sr-only"
+        aria-hidden="true"
+      />
+
       <div
         className="relative flex h-full w-full flex-col items-center justify-center rounded-full animate-breathe"
         style={{
@@ -95,6 +119,41 @@ function EmployeeOrb() {
           </span>
           Live call · {liveLabel}
         </p>
+
+        {/* Play button — bottom-left of orb sphere */}
+        <div className="absolute bottom-[10%] left-[10%] flex flex-col items-center gap-1.5">
+          {/* Attention pulse ring — only shown when idle */}
+          {!isPlaying && (
+            <span
+              className="pointer-events-none absolute inset-0 rounded-full animate-ping opacity-40"
+              style={{ background: "rgba(255,255,255,0.35)" }}
+              aria-hidden="true"
+            />
+          )}
+          <button
+            type="button"
+            onClick={togglePlay}
+            aria-label={isPlaying ? "Pause OpsBrain demo" : "Play OpsBrain demo"}
+            aria-pressed={isPlaying}
+            className={cn(
+              "relative flex size-16 items-center justify-center rounded-full transition-all duration-300",
+              "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white",
+              "active:scale-95",
+              isPlaying
+                ? "bg-brand-primary text-white shadow-[0_0_32px_rgba(79,70,229,0.8),0_0_12px_rgba(79,70,229,0.5)] ring-2 ring-white/30"
+                : "border-2 border-white/50 bg-white/20 text-white backdrop-blur-md shadow-[0_4px_24px_rgba(0,0,0,0.2)] hover:bg-white/35 hover:border-white/70 hover:scale-105",
+            )}
+          >
+            {isPlaying ? (
+              <Pause className="size-6" aria-hidden="true" />
+            ) : (
+              <Play className="size-6 translate-x-0.5" aria-hidden="true" />
+            )}
+          </button>
+          <span className="text-[10px] font-semibold tracking-widest text-white/80 uppercase select-none">
+            {isPlaying ? "Playing" : "Hear Demo"}
+          </span>
+        </div>
       </div>
     </div>
   );
