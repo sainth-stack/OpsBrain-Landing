@@ -22,6 +22,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     description: post.description,
     path: `/blog/${slug}`,
     keywords: post.keywords,
+    type: "article",
+    publishedTime: post.publishedAt,
   });
 }
 

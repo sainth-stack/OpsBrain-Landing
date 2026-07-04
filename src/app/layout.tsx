@@ -4,7 +4,7 @@ import { DeferredMobileCTA } from "@/components/layout/DeferredMobileCTA";
 import { Navbar } from "@/components/layout/navbar";
 import { MotionProvider } from "@/components/providers/MotionProvider";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
-import { brandLogos, siteConfig } from "@/content/site";
+import { brandLogos, founder, siteConfig } from "@/content/site";
 import { themeInitScript } from "@/lib/theme-script";
 import type { Metadata } from "next";
 import { Inter, Plus_Jakarta_Sans } from "next/font/google";
@@ -38,17 +38,25 @@ export const metadata: Metadata = {
   description: siteConfig.seo.description,
   metadataBase: new URL(siteConfig.url),
   keywords: [
+    "OpsBrain",
+    "OpsBrain AI",
+    founder.name,
     "AI employees",
+    "leads finder",
+    "AI leads finder",
     "AI voice agents",
     "lead calling automation",
     "Telugu AI voice",
     "Hindi AI calling",
     "CRM automation",
     "SDR automation",
-    "OpsBrain AI",
   ],
-  authors: [{ name: siteConfig.name, url: siteConfig.url }],
-  creator: siteConfig.name,
+  authors: [
+    { name: siteConfig.name, url: siteConfig.url },
+    { name: founder.name, url: `${siteConfig.url}/about` },
+  ],
+  creator: founder.name,
+  publisher: siteConfig.name,
   openGraph: {
     title: siteConfig.seo.title,
     description: siteConfig.seo.description,

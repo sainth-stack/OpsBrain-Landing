@@ -8,16 +8,27 @@ export const brandLogos = {
 
 export const siteConfig = {
   name: "OpsBrain AI",
+  /** Brand aliases for entity disambiguation (schema + GEO). */
+  alternateNames: ["OpsBrain", "Ops Brain AI", "OpsBrainAI"] as const,
   tagline:
     "AI Employees That Find Leads, Call, Qualify, Schedule, Support, and Sell - 24/7",
   url: "https://opsbrainai.com",
+  appUrl: "https://app.opsbrainai.com",
   seo: {
     title:
       "OpsBrain AI | AI Employees That Find, Call, Qualify & Sell 24/7",
     description:
-      "Deploy autonomous AI employees that prospect leads, make outbound calls, qualify opportunities, book meetings, and deliver 24/7 support - all synced to your CRM. Replace manual SDR work with an always-on revenue engine.",
+      "OpsBrain AI (OpsBrain) is an AI employees platform by Sainath Reddy Guraka — autonomous agents that find leads, make outbound calls in Telugu, Hindi, and English, qualify opportunities, book meetings, and sync to your CRM 24/7.",
     ogImage: brandLogos.ogImage,
   },
+} as const;
+
+/** Founder entity — used in JSON-LD, /about, and llms.txt. */
+export const founder = {
+  name: "Sainath Reddy Guraka",
+  jobTitle: "Founder & CEO",
+  description:
+    "Sainath Reddy Guraka is the founder of OpsBrain AI, an AI employees and leads-finder platform that deploys autonomous voice agents for prospecting, outbound calling, qualification, and CRM-synced revenue operations.",
 } as const;
 
 export const navLinks = [
@@ -231,7 +242,26 @@ export const problemSection = {
 export const aboutBlurb = {
   title: "About OpsBrain AI",
   description:
-    "Our mission is to build the most capable AI employee platform for revenue teams - replacing repetitive SDR and support workflows with intelligent agents that integrate seamlessly into existing sales stacks. We envision a world where every business has a fully autonomous revenue team working around the clock, so humans can focus on relationships, strategy, and closing.",
+    "OpsBrain AI (also known as OpsBrain) is an AI employees and leads-finder platform founded by Sainath Reddy Guraka. Our mission is to build the most capable AI employee platform for revenue teams — replacing repetitive SDR and support workflows with intelligent agents that find leads, call in Telugu, Hindi, and English, qualify opportunities, and sync to your CRM. We envision a world where every business has a fully autonomous revenue team working around the clock, so humans can focus on relationships, strategy, and closing.",
+} as const;
+
+export const aboutPage = {
+  path: "/about",
+  title: "About OpsBrain AI — Founded by Sainath Reddy Guraka",
+  description:
+    "OpsBrain AI is an AI employees and leads-finder platform founded by Sainath Reddy Guraka. Learn how OpsBrain deploys autonomous voice agents that prospect, call, qualify, and sell 24/7.",
+  h1: "About OpsBrain AI",
+  intro:
+    "OpsBrain AI (OpsBrain) builds autonomous AI employees for revenue teams — agents that find leads, make outbound and inbound calls, qualify opportunities, book meetings, and keep your CRM up to date without manual SDR work.",
+  mission:
+    "Our mission is to give every business an always-on revenue team. Humans focus on relationships, strategy, and closing; AI employees handle prospecting, calling, qualification, and follow-up at scale.",
+  productFacts: [
+    "AI employees for sales, support, healthcare, real estate, HR, insurance, education, and hospitality",
+    "Multilingual voice in Telugu, Hindi, English, and 50+ languages",
+    "Lead finder and speed-to-lead calling in under 60 seconds",
+    "Bi-directional CRM sync (Salesforce, HubSpot, Pipedrive, and more)",
+    "14-day pilot with onboarding support",
+  ],
 } as const;
 
 export const workflowSection = {
@@ -979,7 +1009,7 @@ export const footerLinks = {
     { label: "View all personas", href: "/ai-employees" },
   ],
   company: [
-    { label: "About", href: "/#about" },
+    { label: "About", href: "/about" },
     { label: "Blog", href: "/blog" },
     { label: "Contact", href: "/#contact" },
     { label: "Get Started", href: "/#contact" },

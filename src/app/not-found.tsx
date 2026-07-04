@@ -21,6 +21,9 @@ export default function NotFound() {
           <Link href="/" className="text-brand-primary hover:underline">
             Home
           </Link>
+          <Link href="/about" className="text-brand-primary hover:underline">
+            About
+          </Link>
           <Link href="/privacy" className="text-brand-primary hover:underline">
             Privacy Policy
           </Link>

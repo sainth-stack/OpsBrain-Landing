@@ -1,9 +1,11 @@
-import { brandLogos, faqCategories, siteConfig } from "@/content/site";
 import type { FaqItem } from "@/content/seo-pages";
+import { brandLogos, faqCategories, founder, siteConfig } from "@/content/site";
 import type { Metadata } from "next";
 
 const organizationId = `${siteConfig.url}/#organization`;
 const websiteId = `${siteConfig.url}/#website`;
+const softwareId = `${siteConfig.url}/#software`;
+const founderId = `${siteConfig.url}/#sainath`;
 
 export function buildPageMetadata({
   title,
@@ -11,12 +13,16 @@ export function buildPageMetadata({
   path,
   ogImage,
   keywords,
+  type = "website",
+  publishedTime,
 }: {
   title: string;
   description: string;
   path: string;
   ogImage?: string;
   keywords?: string[];
+  type?: "website" | "article";
+  publishedTime?: string;
 }): Metadata {
   const canonicalPath = path === "/" ? "" : path.startsWith("/") ? path : `/${path}`;
   const url = `${siteConfig.url}${canonicalPath}`;
@@ -34,7 +40,7 @@ export function buildPageMetadata({
       description,
       url,
       siteName: siteConfig.name,
-      type: "website",
+      type,
       locale: "en_US",
       images: [
         {
@@ -44,13 +50,36 @@ export function buildPageMetadata({
           alt: title,
         },
       ],
+      ...(type === "article" && publishedTime
+        ? { publishedTime }
+        : {}),
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
+      creator: "@opsbrainai",
       images: [image],
     },
+  };
+}
+
+export function getFounderJsonLd() {
+  return {
+    "@type": "Person",
+    "@id": founderId,
+    name: founder.name,
+    jobTitle: founder.jobTitle,
+    description: founder.description,
+    url: `${siteConfig.url}/about`,
+    worksFor: { "@id": organizationId },
+    knowsAbout: [
+      "AI employees",
+      "AI voice agents",
+      "Lead generation",
+      "SDR automation",
+      "Revenue operations",
+    ],
   };
 }
 
@@ -59,11 +88,25 @@ export function getOrganizationJsonLd() {
     "@type": "Organization",
     "@id": organizationId,
     name: siteConfig.name,
+    alternateName: [...siteConfig.alternateNames],
     url: siteConfig.url,
     description: siteConfig.seo.description,
     logo: {
       "@type": "ImageObject",
       url: `${siteConfig.url}/icon.png`,
+    },
+    image: `${siteConfig.url}${brandLogos.ogImage}`,
+    founder: { "@id": founderId },
+    foundingLocation: {
+      "@type": "Place",
+      name: "India",
+    },
+    areaServed: "Worldwide",
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "sales",
+      url: `${siteConfig.url}/#contact`,
+      availableLanguage: ["English", "Hindi", "Telugu"],
     },
   };
 }
@@ -74,23 +117,39 @@ export function getWebSiteJsonLd() {
     "@id": websiteId,
     url: siteConfig.url,
     name: siteConfig.name,
+    alternateName: [...siteConfig.alternateNames],
     description: siteConfig.seo.description,
     publisher: { "@id": organizationId },
+    inLanguage: "en",
   };
 }
 
 export function getSoftwareApplicationJsonLd() {
   return {
     "@type": "SoftwareApplication",
+    "@id": softwareId,
     name: siteConfig.name,
+    alternateName: [...siteConfig.alternateNames],
     applicationCategory: "BusinessApplication",
     operatingSystem: "Web",
     description: siteConfig.seo.description,
+    url: siteConfig.url,
+    featureList: [
+      "AI employees for sales, support, healthcare, real estate, HR, and more",
+      "Lead finder and instant outbound calling",
+      "Multilingual AI voice (Telugu, Hindi, English, 50+ languages)",
+      "Lead qualification and meeting booking",
+      "Bi-directional CRM sync",
+      "Bulk outbound campaigns",
+      "24/7 inbound support agents",
+    ],
     offers: {
       "@type": "Offer",
       availability: "https://schema.org/InStock",
       description: "Contact for pricing. 14-day pilot available.",
     },
+    publisher: { "@id": organizationId },
+    author: { "@id": founderId },
   };
 }
 
@@ -198,15 +257,28 @@ export function getArticleJsonLd({
     description,
     datePublished,
     dateModified: datePublished,
-    author: { "@id": organizationId },
+    image: `${siteConfig.url}${brandLogos.ogImage}`,
+    author: { "@id": founderId },
     publisher: { "@id": organizationId },
     mainEntityOfPage: url,
     url,
   };
 }
 
+export function getAboutJsonLd() {
+  return getPageJsonLd([
+    getFounderJsonLd(),
+    getOrganizationJsonLd(),
+    getBreadcrumbJsonLd([
+      { name: "Home", path: "/" },
+      { name: "About", path: "/about" },
+    ]),
+  ]);
+}
+
 export function getHomeJsonLd() {
   return getPageJsonLd([
+    getFounderJsonLd(),
     getOrganizationJsonLd(),
     getWebSiteJsonLd(),
     getSoftwareApplicationJsonLd(),

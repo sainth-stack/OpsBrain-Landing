@@ -9,7 +9,7 @@ import {
 } from "@/content/seo-pages";
 import { siteConfig } from "@/content/site";
 
-const LAST_CONTENT_UPDATE = new Date("2026-06-01T00:00:00.000Z");
+const LAST_CONTENT_UPDATE = new Date("2026-07-04T00:00:00.000Z");
 const LEGAL_LAST_UPDATED = new Date("2026-06-01T00:00:00.000Z");
 const BLOG_LAST_UPDATED = new Date("2026-06-01T00:00:00.000Z");
 
@@ -22,6 +22,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: LAST_CONTENT_UPDATE,
       changeFrequency: "weekly",
       priority: 1,
+    },
+    {
+      url: `${base}/about`,
+      lastModified: LAST_CONTENT_UPDATE,
+      changeFrequency: "monthly",
+      priority: 0.9,
     },
     {
       url: `${base}${hubPages.aiEmployees.path}`,

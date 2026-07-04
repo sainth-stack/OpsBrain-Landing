@@ -1,0 +1,64 @@
+# OpsBrain AI
+
+> OpsBrain AI (also known as OpsBrain) is an AI employees and leads-finder platform. Autonomous AI agents prospect leads, make outbound and inbound calls in Telugu, Hindi, and English, qualify opportunities, book meetings, and sync every outcome to your CRM — 24/7.
+
+OpsBrain AI was founded by **Sainath Reddy Guraka** (Founder & CEO).
+
+## Core pages
+
+- [Homepage](https://opsbrainai.com/): What OpsBrain AI is — AI employees that find, call, qualify, and sell 24/7.
+- [About](https://opsbrainai.com/about): Founding story, founder Sainath Reddy Guraka, and product mission.
+- [Platform](https://opsbrainai.com/platform): Unified lead prospecting, AI voice calling, CRM sync, scheduling, and analytics.
+- [AI Employees](https://opsbrainai.com/ai-employees): Pre-built AI employee personas by industry.
+- [Solutions](https://opsbrainai.com/solutions): Instant lead calling, 24/7 inbound support, and bulk outbound campaigns.
+- [Pricing](https://opsbrainai.com/pricing): Pilot, Growth, and Enterprise plans — 14-day pilot available.
+- [Integrations](https://opsbrainai.com/integrations): Salesforce, HubSpot, Pipedrive, Twilio, Google Calendar, Zendesk, and more.
+- [FAQ](https://opsbrainai.com/#faq): Capabilities, setup, multilingual voice, CRM, and compliance.
+- [Contact](https://opsbrainai.com/#contact): Deploy your first AI employee — contact sales.
+
+## AI Employees (personas)
+
+- [AI Sales Employee](https://opsbrainai.com/ai-employees/sales): Outbound SDR — calls leads in under 60 seconds, qualifies, books demos.
+- [AI HR Recruiter](https://opsbrainai.com/ai-employees/hr): Screens candidates and schedules interviews.
+- [AI Hospital Assistant](https://opsbrainai.com/ai-employees/hospital): Patient front desk, appointments, insurance checks.
+- [AI Payment Reminder](https://opsbrainai.com/ai-employees/payment): Collections and payment reminders.
+- [AI Customer Support](https://opsbrainai.com/ai-employees/support): 24/7 Tier-1 support agent.
+- [AI School Admission Counselor](https://opsbrainai.com/ai-employees/school): EdTech admissions outreach.
+- [AI Restaurant Receptionist](https://opsbrainai.com/ai-employees/restaurant): Peak-hour reservations and inquiries.
+- [AI Real Estate Assistant](https://opsbrainai.com/ai-employees/realestate): Listing leads and property viewings.
+- [AI Insurance Renewal Agent](https://opsbrainai.com/ai-employees/insurance): Policyholder renewal outreach.
+
+## Solutions
+
+- [Instant AI Lead Calling](https://opsbrainai.com/solutions/lead-calling): Speed-to-lead voice outreach under 60 seconds.
+- [24/7 AI Inbound Support](https://opsbrainai.com/solutions/inbound-support): Always-on inbound voice support with CRM context.
+- [Bulk AI Outbound Campaigns](https://opsbrainai.com/solutions/bulk-campaigns): High-volume outbound calling at scale.
+
+## Compare
+
+- [Compare hub](https://opsbrainai.com/compare): OpsBrain vs Bland AI, Vapi, Retell, Synthflow, Air AI, 11x, Artisan, Regie, Apollo, Intercom Fin, and category leaders.
+- [Bland AI alternative](https://opsbrainai.com/compare/bland-ai-alternative)
+- [Vapi alternative](https://opsbrainai.com/compare/vapi-alternative)
+- [Retell alternative](https://opsbrainai.com/compare/retell-alternative)
+- [Best AI voice agent](https://opsbrainai.com/compare/best-ai-voice-agent)
+- [AI SDR tools comparison](https://opsbrainai.com/compare/ai-sdr-tools-comparison)
+
+## Resources
+
+- [Blog](https://opsbrainai.com/blog): Guides on AI voice calling, multilingual deployment, and SDR automation.
+- [TCPA, GDPR & AI Calling Compliance](https://opsbrainai.com/guides/tcpa-gdpr-ai-calling): Compliance checklist for AI outbound and inbound calling.
+
+## Product facts
+
+- Product names: OpsBrain AI, OpsBrain, Ops Brain AI
+- Category: AI employees, AI voice agents, leads finder, SDR automation, revenue operations
+- Languages: Telugu, Hindi, English, and 50+ languages
+- Key outcomes: 10× outreach capacity, 24/7 coverage, lower cost per meeting
+- Pilot: 14-day pilot with onboarding and CRM connection
+- App (authenticated product, not for indexing): https://app.opsbrainai.com
+
+## About the founder
+
+**Sainath Reddy Guraka** is the Founder & CEO of OpsBrain AI. He built OpsBrain as an AI employees and leads-finder platform so revenue teams can deploy autonomous agents that prospect, call, qualify, and sell without hiring large SDR teams.
+
+- [About page](https://opsbrainai.com/about)
