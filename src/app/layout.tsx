@@ -1,4 +1,5 @@
 import { AnalyticsScripts } from "@/components/analytics/AnalyticsScripts";
+import { PageViewTracker } from "@/components/analytics/PageViewTracker";
 import { Footer } from "@/components/layout/footer";
 import { DeferredMobileCTA } from "@/components/layout/DeferredMobileCTA";
 import { Navbar } from "@/components/layout/navbar";
@@ -127,6 +128,7 @@ export default function RootLayout({
       </head>
       <body className="flex min-h-full flex-col bg-surface-white font-sans antialiased pb-24 lg:pb-0">
         <AnalyticsScripts />
+        <PageViewTracker />
         <ThemeProvider>
           <MotionProvider>
             <Navbar />

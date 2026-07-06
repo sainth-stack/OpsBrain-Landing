@@ -71,13 +71,13 @@ export const DEMOS = [
   {
     file: "sales-hi.mp3",
     lang: "hi",
-    persona: "Raju",
+    persona: "Priya",
     trait: "Warm & Professional",
     fallbackDuration: 32,
     dialogue: [
       {
         speaker: "agent",
-        text: "नमस्ते जी, Raju बोल रही हूँ OpsBrain से। आपने कल form भरा था — अभी दो minute मिलेंगे? हम lead आते ही एक minute में call करके demo book करवा देते हैं।",
+        text: "नमस्ते जी, Priya बोल रही हूँ OpsBrain से। आपने कल form भरा था — अभी दो minute मिलेंगे? हम lead आते ही एक minute में call करके demo book करवा देते हैं।",
       },
       {
         speaker: "customer",
