@@ -169,7 +169,7 @@ export function ComparisonPage({ content }: { content: ComparePageContent }) {
                 {
                   href: "/pricing",
                   label: "Pricing & plans",
-                  description: "Plans from $299/mo — Starter, Growth, and Enterprise.",
+                  description: "Plans from $399/mo — Starter, Growth, and Enterprise.",
                 },
                 {
                   href: "/solutions/lead-calling",

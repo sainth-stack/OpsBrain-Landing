@@ -561,7 +561,7 @@ export const comparePages: ComparePageContent[] = [
       {
         question: "How does pricing compare to Apollo AI add-ons?",
         answer:
-          "OpsBrain publishes per-tier pricing from $299/mo. Start on a monthly plan and scale as ROI is proven.",
+          "OpsBrain publishes per-tier pricing from $399/mo. Start on a monthly plan and scale as ROI is proven.",
       },
     ],
     relatedIndustrySlugs: ["sales", "insurance"],
@@ -711,7 +711,7 @@ export const comparePages: ComparePageContent[] = [
       {
         question: "How do AI SDR tools compare on price?",
         answer:
-          "Pricing varies from per-seat SaaS to opaque enterprise contracts. OpsBrain publishes per-tier pricing from $299/mo so you can prove conversion lift on a monthly plan.",
+          "Pricing varies from per-seat SaaS to opaque enterprise contracts. OpsBrain publishes per-tier pricing from $399/mo so you can prove conversion lift on a monthly plan.",
       },
       {
         question: "Will an AI SDR replace human reps?",

@@ -169,22 +169,27 @@ export const hubPages = {
     path: "/pricing",
     title: "Pricing & Plans",
     description:
-      "OpsBrain AI pricing with plans from $299/mo. Scale AI employees across lead calling, support, and outbound campaigns, or go custom with Enterprise.",
+      "OpsBrain AI pricing with plans from $399/mo. Every plan includes multilingual voice, Gmail email campaigns, WhatsApp campaigns, and CRM sync — scale AI employees or go custom with Enterprise.",
     faq: [
       {
         question: "How much does OpsBrain AI cost?",
         answer:
-          "OpsBrain has three plans: Starter at $299/mo for 5 AI employees, Growth at $1,499/mo for 20 AI employees, and Enterprise with custom pricing for unlimited AI employees, SLAs, and compliance. Contact us to find the right fit for your pipeline.",
+          "OpsBrain has three plans: Starter at $399/mo for 5 AI employees, Growth at $1,499/mo for 20 AI employees, and Enterprise with custom pricing for unlimited AI employees, SLAs, and compliance. Every plan includes multilingual voice calling, email (Gmail) campaigns, WhatsApp campaigns, and CRM integration.",
+      },
+      {
+        question: "Which channels are included?",
+        answer:
+          "All plans include multilingual voice calling (Telugu, Hindi, English), email campaigns via Gmail, WhatsApp campaigns, built-in CRM and calendar integration, and the Diya AI site assistant (text + voice). Growth adds bulk multi-channel sequences, two-way CRM sync with Salesforce, HubSpot, and Pipedrive, and social media automation.",
       },
       {
         question: "What is included in Enterprise plans?",
         answer:
-          "Enterprise plans add SOC 2 controls, custom SLAs, EU data residency options, unlimited parallel calling, dedicated phone numbers, and priority support with custom integration work.",
+          "Enterprise plans add SOC 2 controls, custom SLAs, EU data residency options, SSO and advanced security, unlimited parallel calling, custom integrations and API access, and a dedicated customer success manager.",
       },
       {
         question: "Do you charge per minute or per seat?",
         answer:
-          "OpsBrain is priced by AI-employee tiers — 5 with Starter, 20 with Growth, and unlimited with Enterprise — so you pay for outcomes, not idle SDR seats. Usage-based voice minutes are included within each plan.",
+          "OpsBrain is priced by AI-employee tiers — 5 with Starter, 20 with Growth, and unlimited with Enterprise — so you pay for outcomes, not idle SDR seats. Voice, email, and WhatsApp usage is included within each plan.",
       },
     ] satisfies FaqItem[],
   },
@@ -543,15 +548,19 @@ export function getAllIntegrationNames() {
 export const pricingTiers = [
   {
     name: "Starter",
-    price: "$299/mo",
+    price: "$399/mo",
     headline: "5 AI employees",
     description:
-      "Everything you need to get started with AI employees on your first workflows — lead calling, support, or outbound.",
+      "Everything a small revenue team needs to launch AI employees across voice, email, and WhatsApp.",
     features: [
       "5 AI employees",
-      "CRM + calendar integration",
-      "Multilingual voice (Telugu, Hindi, English)",
-      "Standard onboarding",
+      "Multilingual voice calling (Telugu, Hindi, English)",
+      "Email campaigns (Gmail integration)",
+      "WhatsApp campaigns",
+      "Built-in CRM + calendar integration",
+      "AI site assistant (text + Diya voice chat)",
+      "Standard analytics dashboard",
+      "Email support & standard onboarding",
     ],
     cta: { label: "Get started", href: "/#contact" },
   },
@@ -560,11 +569,16 @@ export const pricingTiers = [
     price: "$1,499/mo",
     headline: "20 AI employees",
     description:
-      "Scale AI employees across teams with higher parallel call capacity and advanced analytics for revenue and operations leaders.",
+      "Scale multi-channel campaigns across teams with automation, deeper analytics, and CRM sync.",
     features: [
+      "Everything in Starter, plus:",
       "20 AI employees",
-      "Bulk outbound campaigns",
-      "Pipeline and agent analytics",
+      "Bulk outbound campaigns (CSV upload)",
+      "Multi-channel sequences (voice + email + WhatsApp)",
+      "Two-way CRM sync (Salesforce, HubSpot, Pipedrive)",
+      "Social media automation & approval workflows",
+      "Advanced pipeline & agent analytics",
+      "Higher parallel call capacity",
       "Priority support",
     ],
     cta: { label: "Get started", href: "/#contact" },
@@ -575,12 +589,15 @@ export const pricingTiers = [
     price: "Talk to us",
     headline: "Unlimited AI employees",
     description:
-      "Custom scale with enterprise SLAs, compliance, and dedicated solution engineering for global teams.",
+      "Custom scale with enterprise security, compliance, and dedicated solution engineering.",
     features: [
+      "Everything in Growth, plus:",
       "Unlimited AI employees",
+      "Custom integrations & API access",
+      "SSO & advanced security controls",
       "99.9% uptime SLA",
-      "SOC 2 Type II + GDPR",
-      "Custom integrations",
+      "SOC 2 Type II + GDPR / data residency",
+      "Custom playbooks & compliance rules",
       "Dedicated customer success manager",
     ],
     cta: { label: "Talk to us", href: "/#contact" },

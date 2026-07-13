@@ -35,6 +35,7 @@ export const navLinks = [
   { label: "Platform", href: "/platform" },
   { label: "AI Employees", href: "/ai-employees" },
   { label: "Solutions", href: "/solutions" },
+  { label: "Pricing", href: "/pricing" },
   { label: "Listen Voice", href: "/#voice-demos" },
   { label: "FAQ", href: "/#faq" },
 ] as const;
@@ -260,7 +261,7 @@ export const aboutPage = {
     "Multilingual voice in Telugu, Hindi, English, and 50+ languages",
     "Lead finder and speed-to-lead calling in under 60 seconds",
     "Bi-directional CRM sync (Salesforce, HubSpot, Pipedrive, and more)",
-    "Plans from $299/mo with onboarding support",
+    "Plans from $399/mo with onboarding support",
   ],
 } as const;
 
@@ -1019,4 +1020,11 @@ export const footerLinks = {
 export const footer = {
   tagline: siteConfig.tagline,
   copyright: `© ${new Date().getFullYear()} OpsBrain AI. All rights reserved.`,
+  social: [
+    {
+      label: "LinkedIn",
+      href: "https://www.linkedin.com/company/99239755/",
+      icon: "linkedin",
+    },
+  ],
 } as const;

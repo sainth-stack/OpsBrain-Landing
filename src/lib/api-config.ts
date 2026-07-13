@@ -18,6 +18,8 @@ export const LANDING_BRAND = "opsbrain";
 export const LANDING = {
   leads: `${LANDING_API_BASE}/leads`,
   pageview: `${LANDING_API_BASE}/pageview`,
+  chat: `${LANDING_API_BASE}/chat`,
+  chatSpeak: `${LANDING_API_BASE}/chat/speak`,
   requestDemo: `${LANDING_API_BASE}/requestDemo`,
   emailSignup: `${LANDING_API_BASE}/emailsignup`,
   contactUs: `${LANDING_API_BASE}/contactus`,

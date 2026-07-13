@@ -1,5 +1,6 @@
 import { AnalyticsScripts } from "@/components/analytics/AnalyticsScripts";
 import { PageViewTracker } from "@/components/analytics/PageViewTracker";
+import { SiteAssistantWidget } from "@/components/assistant/SiteAssistantWidget";
 import { Footer } from "@/components/layout/footer";
 import { DeferredMobileCTA } from "@/components/layout/DeferredMobileCTA";
 import { Navbar } from "@/components/layout/navbar";
@@ -135,6 +136,7 @@ export default function RootLayout({
             {children}
             <Footer />
             <DeferredMobileCTA />
+            <SiteAssistantWidget />
           </MotionProvider>
         </ThemeProvider>
       </body>

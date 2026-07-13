@@ -11,7 +11,7 @@ OpsBrain AI was founded by **Sainath Reddy Guraka** (Founder & CEO).
 - [Platform](https://opsbrainai.com/platform): Unified lead prospecting, AI voice calling, CRM sync, scheduling, and analytics.
 - [AI Employees](https://opsbrainai.com/ai-employees): Pre-built AI employee personas by industry.
 - [Solutions](https://opsbrainai.com/solutions): Instant lead calling, 24/7 inbound support, and bulk outbound campaigns.
-- [Pricing](https://opsbrainai.com/pricing): Starter, Growth, and Enterprise plans — from $299/mo.
+- [Pricing](https://opsbrainai.com/pricing): Starter, Growth, and Enterprise plans — from $399/mo.
 - [Integrations](https://opsbrainai.com/integrations): Salesforce, HubSpot, Pipedrive, Twilio, Google Calendar, Zendesk, and more.
 - [FAQ](https://opsbrainai.com/#faq): Capabilities, setup, multilingual voice, CRM, and compliance.
 - [Contact](https://opsbrainai.com/#contact): Deploy your first AI employee — contact sales.
@@ -54,7 +54,7 @@ OpsBrain AI was founded by **Sainath Reddy Guraka** (Founder & CEO).
 - Category: AI employees, AI voice agents, leads finder, SDR automation, revenue operations
 - Languages: Telugu, Hindi, English, and 50+ languages
 - Key outcomes: 10× outreach capacity, 24/7 coverage, lower cost per meeting
-- Pricing: Starter $299/mo (5 AI employees), Growth $1,499/mo (20 AI employees), Enterprise custom (unlimited AI employees)
+- Pricing: Starter $399/mo (5 AI employees), Growth $1,499/mo (20 AI employees), Enterprise custom (unlimited AI employees)
 - App (authenticated product, not for indexing): https://app.opsbrainai.com
 
 ## About the founder

@@ -146,7 +146,7 @@ export function getSoftwareApplicationJsonLd() {
     offers: {
       "@type": "Offer",
       availability: "https://schema.org/InStock",
-      description: "Plans from $299/mo. Contact us for Enterprise.",
+      description: "Plans from $399/mo. Contact us for Enterprise.",
     },
     publisher: { "@id": organizationId },
     author: { "@id": founderId },
@@ -226,8 +226,8 @@ export function getProductOfferJsonLd({
       priceSpecification: {
         "@type": "PriceSpecification",
         priceCurrency: "USD",
-        price: "299",
-        description: "Starter plan from $299/mo.",
+        price: "399",
+        description: "Starter plan from $399/mo.",
       },
     },
   };
