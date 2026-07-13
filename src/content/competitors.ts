@@ -102,7 +102,7 @@ const defaultOpsBrainRows: ComparisonTableRow[] = [
   {
     feature: "Support & onboarding",
     competitor: "Docs-first or developer community",
-    opsbrain: "Guided pilot with revenue-team onboarding",
+    opsbrain: "Guided onboarding with revenue-team support",
   },
   {
     feature: "End-to-end revenue workflow",
@@ -110,9 +110,9 @@ const defaultOpsBrainRows: ComparisonTableRow[] = [
     opsbrain: "Prospect → call → qualify → book → CRM sync",
   },
   {
-    feature: "Pilot availability",
+    feature: "Pricing transparency",
     competitor: "Free tier or self-serve trial varies",
-    opsbrain: "14-day pilot with live workflow validation",
+    opsbrain: "Transparent per-tier pricing, no lock-in",
   },
 ];
 
@@ -157,7 +157,7 @@ export const comparePages: ComparePageContent[] = [
       "Revenue ops wants lead-to-meeting workflows live in under 30 minutes, not sprints.",
       "Pre-built industry personas (sales, real estate, healthcare) must include CRM field mapping.",
       "Inbound support and bulk outbound campaigns should run on one platform.",
-      "A 14-day pilot should prove ROI before annual commitment.",
+      "Start on a monthly plan and scale as ROI is proven.",
       "SOC 2 Type II and GDPR-ready infrastructure are required for enterprise buyers.",
     ],
     faq: [
@@ -174,7 +174,7 @@ export const comparePages: ComparePageContent[] = [
       {
         question: "How hard is migration from Bland AI to OpsBrain?",
         answer:
-          "During the pilot, OpsBrain imports your scripts, ICP criteria, and CRM mappings. Most teams parallel-run one workflow before cutover — typically within two weeks.",
+          "During onboarding, OpsBrain imports your scripts, ICP criteria, and CRM mappings. Most teams parallel-run one workflow before cutover — typically within two weeks.",
       },
       {
         question: "Which industries fit best after leaving a voice API?",
@@ -194,7 +194,7 @@ export const comparePages: ComparePageContent[] = [
       "Evaluating a Vapi alternative? Compare voice deployment, Telugu/Hindi support, inbound+outbound workflows, and revenue CRM sync vs OpsBrain AI employees.",
     keywords: ["Vapi alternative", "Vapi vs OpsBrain", "AI voice agent platform"],
     intro:
-      "Vapi searches often come from product teams evaluating voice infrastructure. OpsBrain targets revenue and operations leaders who need qualified pipeline, not just conversational plumbing — with personas, pilots, and CRM sync included.",
+      "Vapi searches often come from product teams evaluating voice infrastructure. OpsBrain targets revenue and operations leaders who need qualified pipeline, not just conversational plumbing — with personas, onboarding, and CRM sync included.",
     comparisonRows: defaultOpsBrainRows.map((row) =>
       row.feature === "Deployment time"
         ? { ...row, competitor: "Fast for devs; revenue playbook is custom" }
@@ -211,7 +211,7 @@ export const comparePages: ComparePageContent[] = [
       "Telugu and Hindi calling are core to your market, not an add-on language pack.",
       "HubSpot or Salesforce must update automatically after every call.",
       "You want one vendor for lead calling, support, and bulk campaigns.",
-      "14-day pilot with onboarding beats a blank API project.",
+      "Guided onboarding beats a blank API project.",
     ],
     faq: [
       {
@@ -222,7 +222,7 @@ export const comparePages: ComparePageContent[] = [
       {
         question: "Can we migrate Vapi call flows to OpsBrain?",
         answer:
-          "Yes. Script logic, qualification branches, and CRM field maps are recreated during onboarding. OpsBrain runs a parallel pilot on one use case before full migration.",
+          "Yes. Script logic, qualification branches, and CRM field maps are recreated during onboarding. OpsBrain runs a parallel rollout on one use case before full migration.",
       },
       {
         question: "Does OpsBrain offer multilingual voice like Vapi integrations?",
@@ -273,9 +273,9 @@ export const comparePages: ComparePageContent[] = [
           "OpsBrain includes tier-1 support personas with knowledge-base grounding, escalation rules, and Zendesk sync — not only voice conversation layers.",
       },
       {
-        question: "Can we run a pilot before replacing Retell?",
+        question: "Can we test OpsBrain before replacing Retell?",
         answer:
-          "Yes. The 14-day pilot covers one inbound or outbound workflow with success metrics agreed upfront.",
+          "Yes. Start on a monthly plan covering one inbound or outbound workflow with success metrics agreed upfront.",
       },
       {
         question: "Is migration from Retell AI disruptive?",
@@ -295,7 +295,7 @@ export const comparePages: ComparePageContent[] = [
       "Compare Synthflow vs OpsBrain for AI calling: deployment time, Telugu/Hindi voice, CRM sync, compliance, and full revenue workflows for ops teams.",
     keywords: ["Synthflow alternative", "Synthflow vs OpsBrain", "no-code AI calling"],
     intro:
-      "Synthflow appeals to teams wanting no-code voice agents. OpsBrain extends no-code deployment with industry-specific AI employees, deeper CRM automation, and pilots designed for revenue leaders measuring pipeline impact.",
+      "Synthflow appeals to teams wanting no-code voice agents. OpsBrain extends no-code deployment with industry-specific AI employees, deeper CRM automation, and onboarding designed for revenue leaders measuring pipeline impact.",
     comparisonRows: defaultOpsBrainRows.map((row) =>
       row.feature === "Industry templates"
         ? { ...row, competitor: "Templates available; vertical depth varies" }
@@ -339,7 +339,7 @@ export const comparePages: ComparePageContent[] = [
     h1: "Air AI Alternative",
     title: "Air AI Alternative for AI Outbound Sales",
     description:
-      "Compare Air AI vs OpsBrain for AI SDR workflows: multilingual calling, CRM sync, inbound support, industry templates, and 14-day pilot pricing.",
+      "Compare Air AI vs OpsBrain for AI SDR workflows: multilingual calling, CRM sync, inbound support, industry templates, and transparent per-tier pricing.",
     keywords: ["Air AI alternative", "Air AI vs OpsBrain", "AI SDR platform"],
     intro:
       "Air AI searches reflect demand for autonomous outbound agents. OpsBrain delivers comparable outbound automation while adding inbound support, Indian language voice, and vertical personas for teams selling across regions.",
@@ -358,7 +358,7 @@ export const comparePages: ComparePageContent[] = [
       "Telugu and Hindi prospecting are required for your ICP.",
       "Support and sales AI employees should live on one platform and CRM.",
       "Real estate, healthcare, or insurance personas accelerate compliance review.",
-      "You want a pilot tied to meetings booked, not just activity metrics.",
+      "You want ROI measured by meetings booked, not just activity metrics.",
     ],
     faq: [
       {
@@ -369,7 +369,7 @@ export const comparePages: ComparePageContent[] = [
       {
         question: "How quickly can we switch from Air AI?",
         answer:
-          "List imports, scripts, and CRM mappings transfer during the 14-day pilot. Parallel running one cohort is recommended before full cutover.",
+          "List imports, scripts, and CRM mappings transfer during onboarding. Parallel running one cohort is recommended before full cutover.",
       },
       {
         question: "Can OpsBrain book meetings like an AI SDR?",
@@ -386,7 +386,7 @@ export const comparePages: ComparePageContent[] = [
     h1: "11x Alternative",
     title: "11x Alternative for Autonomous Sales Agents",
     description:
-      "Evaluating an 11x alternative? OpsBrain compares on deployment speed, Telugu/Hindi voice, CRM sync, industry playbooks, and pilot-first pricing for AI SDR teams.",
+      "Evaluating an 11x alternative? OpsBrain compares on deployment speed, Telugu/Hindi voice, CRM sync, industry playbooks, and transparent pricing for AI SDR teams.",
     keywords: ["11x alternative", "11x vs OpsBrain", "autonomous sales agent"],
     intro:
       "11x popularized the AI digital worker narrative. OpsBrain focuses on deployable AI employees with voice in 50+ languages, vertical templates, and measurable revenue workflows — especially for teams operating in India and global markets.",
@@ -405,7 +405,7 @@ export const comparePages: ComparePageContent[] = [
       "Indian language outbound is non-negotiable for pipeline growth.",
       "You need hospital, insurance, or hospitality personas — not generic SDR bots.",
       "Inbound call coverage must sit beside outbound in one subscription.",
-      "Ops teams want pilot proof on connect-to-meeting conversion before expansion.",
+      "Ops teams want proof on connect-to-meeting conversion before expansion.",
     ],
     faq: [
       {
@@ -433,7 +433,7 @@ export const comparePages: ComparePageContent[] = [
     h1: "Artisan Alternative",
     title: "Artisan Alternative — AI SDR Ava vs OpsBrain",
     description:
-      "Compare Artisan (Ava) vs OpsBrain for AI outbound: voice languages, CRM automation, industry templates, inbound support, and 14-day pilot options.",
+      "Compare Artisan (Ava) vs OpsBrain for AI outbound: voice languages, CRM automation, industry templates, inbound support, and transparent per-tier pricing.",
     keywords: ["Artisan alternative", "Artisan Ava alternative", "AI SDR comparison"],
     intro:
       "Artisan's Ava agent targets outbound email and LinkedIn-heavy SDR workflows. OpsBrain emphasizes voice-first revenue automation — phone outreach in Telugu and Hindi, meeting booking, and CRM sync for teams where calling still closes deals.",
@@ -468,7 +468,7 @@ export const comparePages: ComparePageContent[] = [
       {
         question: "How does migration from Artisan work?",
         answer:
-          "OpsBrain imports lead lists and rebuilds voice playbooks during the pilot while keeping email nurture with your existing tools if needed.",
+          "OpsBrain imports lead lists and rebuilds voice playbooks during onboarding while keeping email nurture with your existing tools if needed.",
       },
     ],
     relatedIndustrySlugs: ["sales", "realestate"],
@@ -514,7 +514,7 @@ export const comparePages: ComparePageContent[] = [
       {
         question: "What is the migration path from Regie.ai?",
         answer:
-          "OpsBrain connects to the same CRM, imports active sequences as voice playbooks, and validates on a pilot cohort before broad rollout.",
+          "OpsBrain connects to the same CRM, imports active sequences as voice playbooks, and validates on a test cohort before broad rollout.",
       },
     ],
     relatedIndustrySlugs: ["sales", "payment"],
@@ -561,7 +561,7 @@ export const comparePages: ComparePageContent[] = [
       {
         question: "How does pricing compare to Apollo AI add-ons?",
         answer:
-          "OpsBrain uses scoped quotes based on call volume and personas. A 14-day pilot validates ROI before annual commitment.",
+          "OpsBrain publishes per-tier pricing from $299/mo. Start on a monthly plan and scale as ROI is proven.",
       },
     ],
     relatedIndustrySlugs: ["sales", "insurance"],
@@ -645,7 +645,7 @@ export const comparePages: ComparePageContent[] = [
       "Revenue or ops leaders must deploy without a dedicated voice engineering team.",
       "Telugu, Hindi, and English calling are production requirements.",
       "Nine industry personas cover sales, support, healthcare, and hospitality.",
-      "14-day pilots validate connect rates and meetings booked before scale.",
+      "Monthly plans let you validate connect rates and meetings booked before scaling.",
       "SOC 2 Type II and GDPR documentation satisfy enterprise security reviews.",
       "Inbound support and outbound campaigns share analytics and CRM sync.",
     ],
@@ -658,7 +658,7 @@ export const comparePages: ComparePageContent[] = [
       {
         question: "Do I need a developer-first voice API?",
         answer:
-          "APIs excel when you build custom products. Revenue teams hitting pipeline targets usually prefer pre-built personas with pilots and onboarding.",
+          "APIs excel when you build custom products. Revenue teams hitting pipeline targets usually prefer pre-built personas with guided onboarding.",
       },
       {
         question: "How important are Indian languages for AI voice agents?",
@@ -668,7 +668,7 @@ export const comparePages: ComparePageContent[] = [
       {
         question: "Can OpsBrain replace multiple voice tools?",
         answer:
-          "Many teams consolidate outbound, inbound, and bulk campaigns on OpsBrain after a pilot proves lower tooling overhead and better CRM sync.",
+          "Many teams consolidate outbound, inbound, and bulk campaigns on OpsBrain once a rollout proves lower tooling overhead and better CRM sync.",
       },
     ],
     relatedIndustrySlugs: ["sales", "support"],
@@ -681,7 +681,7 @@ export const comparePages: ComparePageContent[] = [
     h1: "AI SDR Tools Comparison",
     title: "AI SDR Tools Comparison for 2026",
     description:
-      "AI SDR tools comparison: evaluate autonomous outbound agents on voice languages, CRM sync, inbound coverage, industry templates, pricing, and pilot options.",
+      "AI SDR tools comparison: evaluate autonomous outbound agents on voice languages, CRM sync, inbound coverage, industry templates, pricing, and plan options.",
     keywords: [
       "AI SDR tools comparison",
       "AI SDR vs human SDR",
@@ -705,13 +705,13 @@ export const comparePages: ComparePageContent[] = [
       "Telugu and Hindi calling unlock your core geography.",
       "Support and sales conversations should share one CRM timeline.",
       "Industry templates (real estate, insurance, EdTech) shorten rollout.",
-      "Pilot pricing de-risks adoption before headcount replacement decisions.",
+      "Transparent per-tier pricing de-risks adoption before headcount replacement decisions.",
     ],
     faq: [
       {
         question: "How do AI SDR tools compare on price?",
         answer:
-          "Pricing varies from per-seat SaaS to opaque enterprise contracts. OpsBrain scopes quotes by call volume and offers a 14-day pilot to prove conversion lift.",
+          "Pricing varies from per-seat SaaS to opaque enterprise contracts. OpsBrain publishes per-tier pricing from $299/mo so you can prove conversion lift on a monthly plan.",
       },
       {
         question: "Will an AI SDR replace human reps?",

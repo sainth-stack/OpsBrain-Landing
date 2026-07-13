@@ -97,7 +97,7 @@ export default function ComplianceGuidePage() {
         </section>
 
         <PageCTA
-          title="Plan a compliant AI calling pilot"
+          title="Plan a compliant AI calling rollout"
           description="Work with our onboarding team to map consent fields, DNC lists, and escalation rules before your first production campaign."
           secondaryHref="/compare"
           secondaryLabel="Compare platforms"

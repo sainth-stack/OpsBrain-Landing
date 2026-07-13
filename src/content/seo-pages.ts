@@ -169,17 +169,12 @@ export const hubPages = {
     path: "/pricing",
     title: "Pricing & Plans",
     description:
-      "OpsBrain AI pricing for pilots and enterprise deployments. Start with a 14-day pilot, then scale AI employees across lead calling, support, and outbound campaigns.",
+      "OpsBrain AI pricing with plans from $299/mo. Scale AI employees across lead calling, support, and outbound campaigns, or go custom with Enterprise.",
     faq: [
       {
         question: "How much does OpsBrain AI cost?",
         answer:
-          "Pricing depends on call volume, number of AI employees, languages, and integrations. We offer a 14-day pilot so teams can validate ROI before committing to an annual plan. Contact us for a quote tailored to your pipeline.",
-      },
-      {
-        question: "Is there a free trial or pilot?",
-        answer:
-          "Yes. Most teams start with a 14-day pilot that includes onboarding support, script configuration, CRM connection, and a dedicated success manager for enterprise accounts.",
+          "OpsBrain has three plans: Starter at $299/mo for 5 AI employees, Growth at $1,499/mo for 20 AI employees, and Enterprise with custom pricing for unlimited AI employees, SLAs, and compliance. Contact us to find the right fit for your pipeline.",
       },
       {
         question: "What is included in Enterprise plans?",
@@ -189,7 +184,7 @@ export const hubPages = {
       {
         question: "Do you charge per minute or per seat?",
         answer:
-          "OpsBrain combines platform access with usage-based voice minutes so you pay for outcomes — not idle SDR seats. Exact structure is shared during scoping based on your workflows.",
+          "OpsBrain is priced by AI-employee tiers — 5 with Starter, 20 with Growth, and unlimited with Enterprise — so you pay for outcomes, not idle SDR seats. Usage-based voice minutes are included within each plan.",
       },
     ] satisfies FaqItem[],
   },
@@ -254,7 +249,7 @@ const industrySeoMeta: Record<
       {
         question: "How quickly can we go live with outbound sales calling?",
         answer:
-          "Most sales teams deploy their first AI Sales Employee in under 30 minutes using pre-built scripts, then refine messaging with our onboarding team during the pilot.",
+          "Most sales teams deploy their first AI Sales Employee in under 30 minutes using pre-built scripts, then refine messaging with our onboarding team as they scale.",
       },
       {
         question: "Does it handle objection handling on live calls?",
@@ -547,44 +542,48 @@ export function getAllIntegrationNames() {
 
 export const pricingTiers = [
   {
-    name: "Pilot",
-    headline: "14-day pilot",
+    name: "Starter",
+    price: "$299/mo",
+    headline: "5 AI employees",
     description:
-      "Validate AI employees on one workflow — lead calling, support, or outbound — with onboarding support and CRM connection included.",
+      "Everything you need to get started with AI employees on your first workflows — lead calling, support, or outbound.",
     features: [
-      "One AI employee persona",
+      "5 AI employees",
       "CRM + calendar integration",
       "Multilingual voice (Telugu, Hindi, English)",
-      "Dedicated onboarding session",
+      "Standard onboarding",
     ],
-    cta: { label: "Book a pilot", href: "/#contact" },
+    cta: { label: "Get started", href: "/#contact" },
   },
   {
     name: "Growth",
-    headline: "Scale across teams",
+    price: "$1,499/mo",
+    headline: "20 AI employees",
     description:
-      "Multiple AI employees, higher parallel call capacity, and advanced analytics for revenue and operations leaders.",
+      "Scale AI employees across teams with higher parallel call capacity and advanced analytics for revenue and operations leaders.",
     features: [
-      "Multiple personas and workflows",
+      "20 AI employees",
       "Bulk outbound campaigns",
       "Pipeline and agent analytics",
       "Priority support",
     ],
-    cta: { label: "Contact sales", href: "/#contact" },
+    cta: { label: "Get started", href: "/#contact" },
     featured: true,
   },
   {
     name: "Enterprise",
-    headline: "Enterprise SLA & compliance",
+    price: "Talk to us",
+    headline: "Unlimited AI employees",
     description:
-      "SOC 2 Type II controls, custom SLAs, EU data residency, unlimited scale, and dedicated solution engineering.",
+      "Custom scale with enterprise SLAs, compliance, and dedicated solution engineering for global teams.",
     features: [
+      "Unlimited AI employees",
       "99.9% uptime SLA",
-      "SOC 2 Type II + GDPR options",
-      "Custom integrations and playbooks",
+      "SOC 2 Type II + GDPR",
+      "Custom integrations",
       "Dedicated customer success manager",
     ],
-    cta: { label: "Talk to enterprise", href: "/#contact" },
+    cta: { label: "Talk to us", href: "/#contact" },
   },
 ] as const;
 

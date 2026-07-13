@@ -14,8 +14,6 @@ import { calculateROI } from "@/lib/roi-model";
 import { cn } from "@/lib/utils";
 import { useCallback, useMemo, useState } from "react";
 
-type Currency = "INR" | "USD";
-
 function SliderInput({
   label,
   value,
@@ -35,7 +33,7 @@ function SliderInput({
 }) {
   const id = `roi-${label.replace(/\s+/g, "-").toLowerCase()}`;
   const displayValue =
-    unit === "₹" || unit === "$"
+    unit === "$"
       ? `${unit}${value.toLocaleString()}`
       : unit === "hrs"
         ? `${value} hrs`
@@ -72,14 +70,13 @@ const DEFAULT_PRESET = roiIndustryPresets.find((p) => p.id === "b2b-saas")!;
 export function ROICalculator() {
   const [activePreset, setActivePreset] = useState(DEFAULT_PRESET.id);
   const [leads, setLeads] = useState(DEFAULT_PRESET.leads);
-  const [dealValue, setDealValue] = useState(DEFAULT_PRESET.dealValueInr);
+  const [dealValue, setDealValue] = useState(DEFAULT_PRESET.dealValueUsd);
   const [conversionRate, setConversionRate] = useState(
     DEFAULT_PRESET.conversionRate,
   );
   const [responseDelay, setResponseDelay] = useState(
     DEFAULT_PRESET.responseDelay,
   );
-  const [currency, setCurrency] = useState<Currency>("INR");
 
   const results = useMemo(
     () =>
@@ -92,19 +89,14 @@ export function ROICalculator() {
     [leads, dealValue, conversionRate, responseDelay],
   );
 
-  const applyPreset = useCallback(
-    (preset: RoiIndustryPreset) => {
-      setActivePreset(preset.id);
-      setLeads(preset.leads);
-      setDealValue(
-        currency === "INR" ? preset.dealValueInr : preset.dealValueUsd,
-      );
-      setConversionRate(preset.conversionRate);
-      setResponseDelay(preset.responseDelay);
-      trackRoiCalculate({ event: "preset", preset: preset.id, leads: preset.leads, currency });
-    },
-    [currency],
-  );
+  const applyPreset = useCallback((preset: RoiIndustryPreset) => {
+    setActivePreset(preset.id);
+    setLeads(preset.leads);
+    setDealValue(preset.dealValueUsd);
+    setConversionRate(preset.conversionRate);
+    setResponseDelay(preset.responseDelay);
+    trackRoiCalculate({ event: "preset", preset: preset.id, leads: preset.leads });
+  }, []);
 
   const update =
     (setter: (v: number) => void) =>
@@ -112,19 +104,6 @@ export function ROICalculator() {
       setActivePreset("custom");
       setter(v);
     };
-
-  const toggleCurrency = () => {
-    const preset = roiIndustryPresets.find((p) => p.id === activePreset);
-    if (currency === "INR") {
-      setCurrency("USD");
-      setDealValue(preset?.dealValueUsd ?? 500);
-    } else {
-      setCurrency("INR");
-      setDealValue(preset?.dealValueInr ?? 25000);
-    }
-  };
-
-  const currencyUnit = currency === "INR" ? "₹" : "$";
 
   return (
     <Section
@@ -146,14 +125,6 @@ export function ROICalculator() {
               <p className="text-sm font-semibold text-text-primary">
                 {roiCalculatorSection.inputsPanelTitle}
               </p>
-              <button
-                type="button"
-                onClick={toggleCurrency}
-                className="rounded-lg border border-brand-primary/30 px-3 py-1.5 text-sm font-medium text-brand-primary transition-colors hover:bg-brand-primary-light"
-                aria-label={`Switch to ${currency === "INR" ? "USD" : "INR"}`}
-              >
-                {currency === "INR" ? "₹ INR" : "$ USD"}
-              </button>
             </div>
 
             <div
@@ -190,10 +161,10 @@ export function ROICalculator() {
               <SliderInput
                 label="Average deal value"
                 value={dealValue}
-                min={currency === "INR" ? 5000 : 100}
-                max={currency === "INR" ? 500000 : 10000}
-                step={currency === "INR" ? 5000 : 100}
-                unit={currencyUnit}
+                min={100}
+                max={10000}
+                step={100}
+                unit="$"
                 onChange={update(setDealValue)}
               />
               <SliderInput
@@ -221,7 +192,6 @@ export function ROICalculator() {
             leads={leads}
             responseDelay={responseDelay}
             results={results}
-            currency={currency}
           />
         </div>
 

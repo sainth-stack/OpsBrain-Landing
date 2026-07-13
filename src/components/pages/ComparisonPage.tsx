@@ -168,8 +168,8 @@ export function ComparisonPage({ content }: { content: ComparePageContent }) {
                 },
                 {
                   href: "/pricing",
-                  label: "Pricing & pilot",
-                  description: "14-day pilot and enterprise plans — contact for quote.",
+                  label: "Pricing & plans",
+                  description: "Plans from $299/mo — Starter, Growth, and Enterprise.",
                 },
                 {
                   href: "/solutions/lead-calling",
@@ -181,7 +181,7 @@ export function ComparisonPage({ content }: { content: ComparePageContent }) {
 
             <PageCTA
               title="See OpsBrain on your workflow"
-              description="Book a demo to run a 14-day pilot on your scripts, languages, and CRM — no engineering sprint required."
+              description="Book a demo to see OpsBrain on your scripts, languages, and CRM — no engineering sprint required."
             />
 
             <p className="text-small leading-relaxed text-text-muted">

@@ -7,8 +7,6 @@ import {
 } from "@/lib/roi-model";
 import { cn } from "@/lib/utils";
 
-type Currency = "INR" | "USD";
-
 function MetricCard({
   label,
   value,
@@ -82,14 +80,12 @@ export function ROIVisualization({
   leads,
   responseDelay,
   results,
-  currency,
 }: {
   leads: number;
   responseDelay: number;
   results: ROIResults;
-  currency: Currency;
 }) {
-  const symbol = currency === "INR" ? "₹" : "$";
+  const symbol = "$";
   const { funnel, comparison } = roiCalculatorSection;
 
   const followUpPct = Math.round((results.followUpsCompleted / leads) * 100);

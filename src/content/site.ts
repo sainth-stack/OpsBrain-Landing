@@ -96,7 +96,7 @@ export const hero = {
           liveCalls: 46,
           qualifiedLeads: 127,
           meetingsBooked: 22,
-          pipeline: "₹18.2L",
+          pipeline: "$220K",
         },
       },
       {
@@ -110,7 +110,7 @@ export const hero = {
           liveCalls: 47,
           qualifiedLeads: 127,
           meetingsBooked: 22,
-          pipeline: "₹18.2L",
+          pipeline: "$220K",
         },
         voice: {
           transcript:
@@ -128,7 +128,7 @@ export const hero = {
           liveCalls: 47,
           qualifiedLeads: 128,
           meetingsBooked: 22,
-          pipeline: "₹18.2L",
+          pipeline: "$220K",
         },
       },
       {
@@ -142,7 +142,7 @@ export const hero = {
           liveCalls: 47,
           qualifiedLeads: 128,
           meetingsBooked: 23,
-          pipeline: "₹18.3L",
+          pipeline: "$221K",
         },
       },
       {
@@ -156,7 +156,7 @@ export const hero = {
           liveCalls: 46,
           qualifiedLeads: 128,
           meetingsBooked: 23,
-          pipeline: "₹18.3L",
+          pipeline: "$221K",
         },
       },
       {
@@ -170,7 +170,7 @@ export const hero = {
           liveCalls: 46,
           qualifiedLeads: 128,
           meetingsBooked: 23,
-          pipeline: "₹18.4L",
+          pipeline: "$222K",
         },
         highlightPipeline: true,
       },
@@ -260,7 +260,7 @@ export const aboutPage = {
     "Multilingual voice in Telugu, Hindi, English, and 50+ languages",
     "Lead finder and speed-to-lead calling in under 60 seconds",
     "Bi-directional CRM sync (Salesforce, HubSpot, Pipedrive, and more)",
-    "14-day pilot with onboarding support",
+    "Plans from $299/mo with onboarding support",
   ],
 } as const;
 
@@ -834,7 +834,6 @@ export type RoiIndustryPreset = {
   id: string;
   label: string;
   leads: number;
-  dealValueInr: number;
   dealValueUsd: number;
   conversionRate: number;
   responseDelay: number;
@@ -845,7 +844,6 @@ export const roiIndustryPresets: RoiIndustryPreset[] = [
     id: "real-estate",
     label: "Real Estate",
     leads: 400,
-    dealValueInr: 75000,
     dealValueUsd: 1500,
     conversionRate: 4,
     responseDelay: 3,
@@ -854,7 +852,6 @@ export const roiIndustryPresets: RoiIndustryPreset[] = [
     id: "healthcare",
     label: "Healthcare",
     leads: 250,
-    dealValueInr: 35000,
     dealValueUsd: 800,
     conversionRate: 6,
     responseDelay: 2,
@@ -863,7 +860,6 @@ export const roiIndustryPresets: RoiIndustryPreset[] = [
     id: "b2b-saas",
     label: "B2B SaaS",
     leads: 300,
-    dealValueInr: 25000,
     dealValueUsd: 500,
     conversionRate: 5,
     responseDelay: 2,
@@ -872,7 +868,6 @@ export const roiIndustryPresets: RoiIndustryPreset[] = [
     id: "insurance",
     label: "Insurance",
     leads: 500,
-    dealValueInr: 18000,
     dealValueUsd: 350,
     conversionRate: 7,
     responseDelay: 4,
@@ -953,7 +948,7 @@ export const faqCategories = [
       {
         question: "Do I need technical resources to set it up?",
         answer:
-          "No. OpsBrain is designed for revenue and operations teams. Our onboarding team helps configure scripts, voice settings, escalation rules, and CRM field mapping during your 14-day pilot.",
+          "No. OpsBrain is designed for revenue and operations teams. Our onboarding team helps configure scripts, voice settings, escalation rules, and CRM field mapping during onboarding.",
       },
       {
         question: "Is OpsBrain AI SOC 2 compliant?",

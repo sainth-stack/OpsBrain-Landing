@@ -156,7 +156,7 @@ export default async function AIEmployeePage({ params }: PageProps) {
 
         <PageCTA
           title={`Deploy ${employee.name} today`}
-          description={`Start with a 14-day pilot configured for ${employee.industry.toLowerCase()} workflows — scripts, voice, and CRM sync included.`}
+          description={`Get started with AI employees configured for ${employee.industry.toLowerCase()} workflows — scripts, voice, and CRM sync included.`}
           secondaryHref="/pricing"
         />
       </MarketingPageShell>

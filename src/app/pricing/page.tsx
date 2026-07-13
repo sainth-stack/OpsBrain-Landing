@@ -41,7 +41,7 @@ export default function PricingPage() {
       <MarketingPageShell breadcrumbs={breadcrumbs}>
         <PageHero
           eyebrow="Pricing"
-          title="Pilot first. Scale when ROI is proven."
+          title="Simple, transparent pricing. Scale as you grow."
           subtitle={hubPages.pricing.description}
         />
 
@@ -63,7 +63,10 @@ export default function PricingPage() {
                 <p className="text-small font-semibold uppercase tracking-wider text-brand-primary">
                   {tier.name}
                 </p>
-                <h3 className="mt-2 text-h3 font-bold text-text-primary">
+                <p className="mt-2 text-h2 font-bold text-text-primary">
+                  {tier.price}
+                </p>
+                <h3 className="mt-1 text-h3 font-bold text-text-primary">
                   {tier.headline}
                 </h3>
                 <p className="mt-3 text-body leading-relaxed text-text-secondary">
@@ -79,9 +82,6 @@ export default function PricingPage() {
                     </li>
                   ))}
                 </ul>
-                <p className="mt-6 text-small font-medium text-text-muted">
-                  Contact for quote — no list prices published online.
-                </p>
                 <a
                   href={tier.cta.href}
                   className={cn(
@@ -104,11 +104,11 @@ export default function PricingPage() {
             Honest pricing
           </h2>
           <p className="mt-4 text-body leading-relaxed text-text-secondary">
-            OpsBrain pricing reflects your call volume, number of AI employees,
-            languages, and integration complexity. We do not publish one-size-fits-all
-            rates because a regional restaurant and a global SaaS team have different
-            workloads. Every engagement starts with a scoped quote and optional 14-day
-            pilot so you validate ROI before annual commitment.
+            Starter and Growth are self-serve plans with published monthly pricing —
+            $299/mo for 5 AI employees and $1,499/mo for 20 AI employees. Enterprise is
+            custom-priced for teams that need unlimited AI employees, SLAs, and
+            compliance. Pick a plan and scale AI employees up or down as your pipeline
+            grows.
           </p>
         </section>
 

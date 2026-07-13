@@ -38,7 +38,7 @@ export const blogPosts: BlogPost[] = [
       { href: "/solutions/lead-calling", label: "Instant lead calling solution" },
       { href: "/ai-employees/sales", label: "AI Sales Employee" },
       { href: "/compare/bland-ai-alternative", label: "Bland AI alternative" },
-      { href: "/pricing", label: "Pricing & pilot" },
+      { href: "/pricing", label: "Pricing & plans" },
     ],
     sections: [
       {
@@ -65,7 +65,7 @@ export const blogPosts: BlogPost[] = [
       {
         heading: "Implementing instant lead calling in four steps",
         paragraphs: [
-          "First, connect lead sources: HubSpot forms, Salesforce web-to-lead, Meta lead ads, or Zapier webhooks into your AI calling platform. Second, define qualification branches aligned to your ICP — disqualify politely, nurture, or book. Third, attach calendar routing rules so meetings land on the right rep with briefing notes. Fourth, measure connect rate, talk time, meetings booked, and CRM field completeness weekly during a pilot.",
+          "First, connect lead sources: HubSpot forms, Salesforce web-to-lead, Meta lead ads, or Zapier webhooks into your AI calling platform. Second, define qualification branches aligned to your ICP — disqualify politely, nurture, or book. Third, attach calendar routing rules so meetings land on the right rep with briefing notes. Fourth, measure connect rate, talk time, meetings booked, and CRM field completeness weekly during your initial rollout.",
           "OpsBrain ships a pre-built AI Sales Employee persona with these workflows so revenue teams deploy in under 30 minutes rather than building telephony stacks from scratch.",
         ],
       },
@@ -73,7 +73,7 @@ export const blogPosts: BlogPost[] = [
         heading: "Metrics that prove ROI",
         paragraphs: [
           "Track speed-to-lead median and p95, connect rate within three dial attempts, qualified meeting rate, and cost per booked meeting versus human SDR benchmarks. Teams that move from 42-hour average response to sub-60-second AI calling routinely report higher pipeline creation without proportional headcount growth.",
-          "Run a 14-day pilot on one lead source before expanding — compare cohort conversion against a holdout group still routed to manual follow-up.",
+          "Start with one lead source before expanding — compare cohort conversion against a holdout group still routed to manual follow-up.",
         ],
       },
     ],
@@ -108,7 +108,7 @@ export const blogPosts: BlogPost[] = [
         heading: "Use cases that benefit first",
         paragraphs: [
           "Real estate portal follow-ups, EdTech admissions, insurance renewals, restaurant reservations during peak hours, and B2B SaaS inbound support lines all see measurable lift when voice matches the caller's language. Outbound sales to leads captured from Telugu or Hindi ad campaigns especially require immediate native calling — not an English callback queue.",
-          "OpsBrain voice demos on the homepage illustrate sample Telugu, Hindi, and English conversations so teams can evaluate quality before piloting.",
+          "OpsBrain voice demos on the homepage illustrate sample Telugu, Hindi, and English conversations so teams can evaluate quality before rolling out.",
         ],
       },
       {
@@ -116,7 +116,7 @@ export const blogPosts: BlogPost[] = [
         paragraphs: [
           "Start with script localization — not literal translation. Sales objections, payment terms, and healthcare disclaimers need culturally vetted phrasing reviewed by native speakers on your team. Configure language detection or explicit routing based on lead metadata (state, ad language, IVR selection).",
           "Set calling windows aligned to TRAI and TCPA-equivalent policies for your operating regions. Map CRM fields for language preference, disposition codes, and escalation reasons. Test escalation to bilingual human agents with transcript handoff.",
-          "Pilot one workflow — for example Hyderabad real estate inquiries — before rolling Hindi support nationally.",
+          "Start with one workflow — for example Hyderabad real estate inquiries — before rolling Hindi support nationally.",
         ],
       },
       {
@@ -130,7 +130,7 @@ export const blogPosts: BlogPost[] = [
         heading: "Measuring multilingual success",
         paragraphs: [
           "Compare connect rate, average handle time, meeting booking rate, and CSAT by language channel. Monitor escalation rate — spikes may indicate script gaps rather than model quality issues.",
-          "Expand languages only after baseline KPIs stabilize in Telugu and Hindi pilots.",
+          "Expand languages only after baseline KPIs stabilize in initial Telugu and Hindi rollouts.",
         ],
       },
     ],
@@ -151,7 +151,7 @@ export const blogPosts: BlogPost[] = [
       { href: "/compare/ai-sdr-tools-comparison", label: "AI SDR tools comparison" },
       { href: "/compare/11x-alternative", label: "11x alternative" },
       { href: "/ai-employees/sales", label: "AI Sales Employee" },
-      { href: "/pricing", label: "Pricing & pilot" },
+      { href: "/pricing", label: "Pricing & plans" },
     ],
     sections: [
       {
@@ -185,7 +185,7 @@ export const blogPosts: BlogPost[] = [
       {
         heading: "Building a business case",
         paragraphs: [
-          "Model current median response time, connect rate, meetings per rep per week, and CRM hygiene scores. Pilot AI on one lead channel for 14 days with holdout comparison. OpsBrain pilots include onboarding to map scripts and CRM fields so finance teams see attributable meetings booked.",
+          "Model current median response time, connect rate, meetings per rep per week, and CRM hygiene scores. Test AI on one lead channel with a holdout comparison. OpsBrain onboarding maps scripts and CRM fields so finance teams see attributable meetings booked.",
           "For multilingual markets, factor language coverage that would otherwise require multiple specialized hires — Telugu and Hindi AI calling is a common tipping point in APAC ROI models.",
         ],
       },
