@@ -59,7 +59,7 @@ export const hero = {
   subheadline:
     "AI agents that prospect, call in Telugu, Hindi, and English, qualify leads, book meetings, and sync to your CRM.",
   primaryCta: { label: "Get Started", href: homepageAnchors.contact },
-  secondaryCta: { label: "Watch Voice Demo", href: homepageAnchors.voiceDemos },
+  secondaryCta: { label: "Talk with AI employee", action: "diya" as const },
   stats: [
     { value: "10×", label: "More outreach capacity" },
     { value: "24/7", label: "Always-on coverage" },

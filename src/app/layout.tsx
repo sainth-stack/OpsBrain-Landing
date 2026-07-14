@@ -1,6 +1,6 @@
 import { AnalyticsScripts } from "@/components/analytics/AnalyticsScripts";
 import { PageViewTracker } from "@/components/analytics/PageViewTracker";
-import { SiteAssistantWidget } from "@/components/assistant/SiteAssistantWidget";
+import { DiyaAssistantProvider } from "@/components/assistant/DiyaAssistantContext";
 import { Footer } from "@/components/layout/footer";
 import { DeferredMobileCTA } from "@/components/layout/DeferredMobileCTA";
 import { Navbar } from "@/components/layout/navbar";
@@ -132,11 +132,12 @@ export default function RootLayout({
         <PageViewTracker />
         <ThemeProvider>
           <MotionProvider>
-            <Navbar />
-            {children}
-            <Footer />
-            <DeferredMobileCTA />
-            <SiteAssistantWidget />
+            <DiyaAssistantProvider>
+              <Navbar />
+              {children}
+              <Footer />
+              <DeferredMobileCTA />
+            </DiyaAssistantProvider>
           </MotionProvider>
         </ThemeProvider>
       </body>

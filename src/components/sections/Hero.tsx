@@ -1,4 +1,5 @@
 import { CtaLink } from "@/components/ui/cta-link";
+import { TalkWithDiyaButton } from "@/components/assistant/TalkWithDiyaButton";
 import { Container } from "@/components/ui/container";
 import { HeroOrbVisual } from "@/components/sections/HeroOrbVisual";
 import { HeroStats } from "@/components/sections/HeroStats";
@@ -76,9 +77,10 @@ export function Hero() {
             >
               {hero.primaryCta.label}
             </CtaLink>
-            <CtaLink href={hero.secondaryCta.href} variant="outline" size="lg">
-              {hero.secondaryCta.label}
-            </CtaLink>
+            <TalkWithDiyaButton
+              label={hero.secondaryCta.label}
+              trackAs="hero_talk_with_diya"
+            />
           </div>
 
           <div className="hidden lg:block">

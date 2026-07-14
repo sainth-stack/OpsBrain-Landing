@@ -359,6 +359,37 @@ html[data-theme="dark"] {
     animation: glow-pulse 2.5s ease-in-out infinite;
   }
 
+  .diya-widget-shadow {
+    box-shadow:
+      0 0 0 1px rgb(79 70 229 / 0.06),
+      0 12px 48px -16px rgb(79 70 229 / 0.22),
+      0 4px 20px -4px rgb(15 23 42 / 0.1);
+  }
+
+  .diya-widget-enter {
+    animation: diya-widget-enter 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .diya-pill-attention {
+    animation: diya-pill-ping 3s ease-in-out infinite;
+  }
+
+  .diya-online-pulse {
+    animation: diya-online-pulse 2.4s ease-in-out infinite;
+  }
+
+  .diya-message-in {
+    animation: diya-message-in 0.3s ease-out both;
+  }
+
+  .diya-widget-header-gradient {
+    background: linear-gradient(
+      135deg,
+      var(--color-surface-tint) 0%,
+      var(--color-surface-white) 60%
+    );
+  }
+
   .card-tilt {
     transform-style: preserve-3d;
     transition: transform 0.2s ease-out;
@@ -628,6 +659,46 @@ html[data-theme="dark"] {
 @keyframes waveform-bar {
   0%, 100% { transform: scaleY(0.4); }
   50% { transform: scaleY(1); }
+}
+
+@keyframes diya-widget-enter {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes diya-pill-ping {
+  0%, 100% {
+    box-shadow:
+      0 0 0 0 rgb(79 70 229 / 0.3),
+      0 4px 20px -4px rgb(79 70 229 / 0.15);
+  }
+  50% {
+    box-shadow:
+      0 0 0 6px rgb(79 70 229 / 0),
+      0 4px 20px -4px rgb(79 70 229 / 0.2);
+  }
+}
+
+@keyframes diya-online-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(0.85); }
+}
+
+@keyframes diya-message-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @utility animate-orb-drift-1 {

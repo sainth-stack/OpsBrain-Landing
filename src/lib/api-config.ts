@@ -20,6 +20,7 @@ export const LANDING = {
   pageview: `${LANDING_API_BASE}/pageview`,
   chat: `${LANDING_API_BASE}/chat`,
   chatSpeak: `${LANDING_API_BASE}/chat/speak`,
+  voiceSession: `${LANDING_API_BASE}/voice/session`,
   requestDemo: `${LANDING_API_BASE}/requestDemo`,
   emailSignup: `${LANDING_API_BASE}/emailsignup`,
   contactUs: `${LANDING_API_BASE}/contactus`,

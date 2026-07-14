@@ -1,19 +1,18 @@
 "use client";
 
+import { TalkWithDiyaButton } from "@/components/assistant/TalkWithDiyaButton";
 import { CtaLink } from "@/components/ui/cta-link";
-import { ctaLinks, homepageAnchors } from "@/content/site";
+import { ctaLinks } from "@/content/site";
 
 export function MobileStickyCTA() {
   return (
     <div className="fixed inset-x-0 bottom-0 z-40 flex gap-2 border-t border-border-default bg-surface-white/95 p-3 backdrop-blur-md lg:hidden">
-      <CtaLink
-        href={homepageAnchors.voiceDemos}
-        variant="outline"
-        size="lg"
+      <TalkWithDiyaButton
+        label="Talk to Diya"
+        size="md"
         className="flex-1"
-      >
-        Watch Voice Demo
-      </CtaLink>
+        trackAs="mobile_sticky_talk_diya"
+      />
       <CtaLink
         href={ctaLinks.getStarted.href}
         variant="primary"
