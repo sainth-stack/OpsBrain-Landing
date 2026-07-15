@@ -93,7 +93,7 @@ export function DiyaTranscript({
   return (
     <div
       className={cn(
-        "space-y-3 overflow-y-auto rounded-2xl",
+        "diya-scrollbar space-y-3 overflow-y-auto rounded-2xl",
         compact
           ? "max-h-[28vh] min-h-[4rem] p-1"
           : "max-h-[32vh] min-h-[6rem] border border-border-default/60 bg-surface-muted/20 p-3",

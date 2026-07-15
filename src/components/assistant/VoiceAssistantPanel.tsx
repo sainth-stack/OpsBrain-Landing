@@ -15,7 +15,7 @@ import {
   getPromptChips,
 } from "@/components/assistant/diya-prompts";
 import { cn } from "@/lib/utils";
-import { AlertCircle } from "lucide-react";
+import { AlertCircle, Clock3 } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import { useCallback, useMemo, useState } from "react";
 
@@ -27,6 +27,45 @@ function formatDuration(s: number): string {
 
 function isDemoChip(chip: string): boolean {
   return chip.toLowerCase().includes("book a demo");
+}
+
+function ChipsSection({
+  title,
+  chips,
+  selected,
+  onSelect,
+}: {
+  title: string;
+  chips: readonly string[];
+  selected: string | null;
+  onSelect: (chip: string) => void;
+}) {
+  return (
+    <div className="diya-message-in space-y-2">
+      <p className="text-center text-xs font-semibold uppercase tracking-wider text-text-secondary">
+        {title}
+      </p>
+      <DiyaPromptChips chips={chips} selected={selected} onSelect={onSelect} />
+    </div>
+  );
+}
+
+function ErrorBanner({ error, onRetry }: { error: string; onRetry: () => void }) {
+  return (
+    <div className="diya-message-in space-y-2.5 rounded-2xl border border-red-200/80 bg-red-50/80 px-4 py-3">
+      <div className="flex items-start gap-2">
+        <AlertCircle className="mt-0.5 h-4 w-4 shrink-0 text-red-600" aria-hidden="true" />
+        <p className="text-xs leading-relaxed text-red-700">{error}</p>
+      </div>
+      <button
+        type="button"
+        onClick={onRetry}
+        className="w-full rounded-xl border border-red-200 bg-white px-3 py-2 text-xs font-semibold text-red-700 transition-colors hover:bg-red-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-500"
+      >
+        Try again
+      </button>
+    </div>
+  );
 }
 
 function ConfirmEndBanner({
@@ -73,11 +112,19 @@ function WelcomeCard() {
   );
 }
 
-function EndedMessage() {
+function EndedSummary({ duration }: { duration: number }) {
   return (
-    <p className="diya-message-in px-1 text-center text-[15px] font-medium leading-relaxed text-text-primary">
-      {DIYA_ENDED_MESSAGE}
-    </p>
+    <div className="diya-message-in flex flex-col items-center gap-2.5 px-1 text-center">
+      <p className="text-[15px] font-medium leading-relaxed text-text-primary">
+        {DIYA_ENDED_MESSAGE}
+      </p>
+      {duration > 0 ? (
+        <span className="inline-flex items-center gap-1.5 rounded-full bg-surface-muted px-2.5 py-1 text-xs font-semibold text-text-secondary">
+          <Clock3 className="h-3 w-3" aria-hidden="true" />
+          {formatDuration(duration)} conversation
+        </span>
+      ) : null}
+    </div>
   );
 }
 
@@ -165,7 +212,7 @@ export function VoiceAssistantPanel() {
         className={cn(
           "diya-widget-enter diya-widget-shadow fixed bottom-24 right-5 z-[60]",
           "flex w-[min(100vw-1.25rem,26rem)] flex-col",
-          "max-h-[min(82vh,32rem)] overflow-hidden rounded-[1.25rem]",
+          "max-h-[min(90dvh,40rem)] overflow-hidden rounded-[1.5rem]",
           "border border-border-default/80 bg-surface-white",
           "lg:bottom-6",
         )}
@@ -193,99 +240,64 @@ export function VoiceAssistantPanel() {
             ) : null}
           </div>
 
+          <div
+            className={cn(
+              "flex shrink-0 justify-center px-4",
+              isInCall ? "pt-2" : "pt-3",
+            )}
+          >
+            <DiyaOrb callState={callState} size={orbSize} />
+          </div>
+
           {isEnded ? (
-            <div className="flex min-h-0 flex-1 flex-col px-4">
-              <div
-                className={cn(
-                  "flex flex-col items-center",
-                  turns.length > 0 ? "shrink-0 pt-2" : "flex-1 justify-center py-2",
-                )}
-              >
-                <DiyaOrb callState={callState} size="default" />
-                <div className="mt-4 w-full max-w-[20rem]">
-                  <EndedMessage />
-                </div>
-              </div>
-
-              {turns.length > 0 ? (
-                <div className="mt-3 min-h-0 flex-1 overflow-y-auto pb-2">
-                  <DiyaTranscript turns={turns} compact />
-                </div>
-              ) : null}
-
-              {error ? (
-                <div className="shrink-0 pb-2">
-                  <div className="diya-message-in space-y-2.5 rounded-2xl border border-red-200/80 bg-red-50/80 px-4 py-3">
-                    <div className="flex items-start gap-2">
-                      <AlertCircle className="mt-0.5 h-4 w-4 shrink-0 text-red-600" aria-hidden="true" />
-                      <p className="text-xs leading-relaxed text-red-700">{error}</p>
-                    </div>
-                    <button
-                      type="button"
-                      onClick={handleStart}
-                      className="w-full rounded-xl border border-red-200 bg-white px-3 py-2 text-xs font-semibold text-red-700 transition-colors hover:bg-red-50"
-                    >
-                      Try again
-                    </button>
-                  </div>
-                </div>
-              ) : null}
+            <div className="mx-auto w-full max-w-[20rem] shrink-0 px-4 pt-3">
+              <EndedSummary duration={callDuration} />
             </div>
-          ) : (
-            <>
-              <div
-                className={cn(
-                  "flex shrink-0 justify-center px-4",
-                  isInCall ? "pt-2" : "pt-3",
-                )}
-              >
-                <DiyaOrb callState={callState} size={orbSize} />
+          ) : null}
+
+          <div className="diya-scrollbar min-h-0 flex-1 overflow-y-auto px-4 py-3">
+            {isIdle ? (
+              <div className="space-y-4 pb-2">
+                <WelcomeCard />
+                <ChipsSection
+                  title="Popular questions"
+                  chips={promptChips}
+                  selected={selectedPrompt}
+                  onSelect={handleChipSelect}
+                />
               </div>
+            ) : null}
 
-              <div className="min-h-0 flex-1 overflow-y-auto px-4 py-3">
-                {isIdle ? (
-                  <div className="space-y-4 pb-2">
-                    <WelcomeCard />
-                    <div className="space-y-2">
-                      <p className="text-center text-xs font-semibold uppercase tracking-wider text-text-secondary">
-                        Popular questions
-                      </p>
-                      <DiyaPromptChips
-                        chips={promptChips}
-                        selected={selectedPrompt}
-                        onSelect={handleChipSelect}
-                      />
-                    </div>
-                  </div>
-                ) : null}
+            {isInCall ? (
+              <DiyaTranscript
+                turns={turns}
+                liveAgentText={agentText}
+                liveUserText={userTranscript}
+                compact
+              />
+            ) : null}
 
-                {isInCall ? (
-                  <DiyaTranscript
-                    turns={turns}
-                    liveAgentText={agentText}
-                    liveUserText={userTranscript}
-                    compact
+            {isEnded ? (
+              <div className="pb-2">
+                {turns.length > 0 ? (
+                  <DiyaTranscript turns={turns} compact />
+                ) : (
+                  <ChipsSection
+                    title="Continue exploring"
+                    chips={promptChips}
+                    selected={selectedPrompt}
+                    onSelect={handleChipSelect}
                   />
-                ) : null}
-
-                {error ? (
-                  <div className="diya-message-in mt-3 space-y-2.5 rounded-2xl border border-red-200/80 bg-red-50/80 px-4 py-3">
-                    <div className="flex items-start gap-2">
-                      <AlertCircle className="mt-0.5 h-4 w-4 shrink-0 text-red-600" aria-hidden="true" />
-                      <p className="text-xs leading-relaxed text-red-700">{error}</p>
-                    </div>
-                    <button
-                      type="button"
-                      onClick={handleStart}
-                      className="w-full rounded-xl border border-red-200 bg-white px-3 py-2 text-xs font-semibold text-red-700 transition-colors hover:bg-red-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-500"
-                    >
-                      Try again
-                    </button>
-                  </div>
-                ) : null}
+                )}
               </div>
-            </>
-          )}
+            ) : null}
+
+            {error ? (
+              <div className="mt-3">
+                <ErrorBanner error={error} onRetry={handleStart} />
+              </div>
+            ) : null}
+          </div>
 
           <DiyaWidgetFooter
             callState={callState}

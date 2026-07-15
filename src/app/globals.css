@@ -361,9 +361,9 @@ html[data-theme="dark"] {
 
   .diya-widget-shadow {
     box-shadow:
-      0 0 0 1px rgb(79 70 229 / 0.06),
-      0 12px 48px -16px rgb(79 70 229 / 0.22),
-      0 4px 20px -4px rgb(15 23 42 / 0.1);
+      0 0 0 1px rgb(79 70 229 / 0.08),
+      0 24px 64px -20px rgb(79 70 229 / 0.28),
+      0 8px 28px -6px rgb(15 23 42 / 0.14);
   }
 
   .diya-widget-enter {
@@ -388,6 +388,28 @@ html[data-theme="dark"] {
       var(--color-surface-tint) 0%,
       var(--color-surface-white) 60%
     );
+  }
+
+  .diya-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(79 70 229 / 0.25) transparent;
+  }
+
+  .diya-scrollbar::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  .diya-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .diya-scrollbar::-webkit-scrollbar-thumb {
+    background-color: rgb(79 70 229 / 0.22);
+    border-radius: 9999px;
+  }
+
+  .diya-scrollbar::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(79 70 229 / 0.4);
   }
 
   .card-tilt {
@@ -624,7 +646,11 @@ html[data-theme="dark"] {
   .revenue-orbit-track,
   .revenue-node-pulse,
   .card-tilt,
-  .card-tilt:hover {
+  .card-tilt:hover,
+  .diya-widget-enter,
+  .diya-pill-attention,
+  .diya-online-pulse,
+  .diya-message-in {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;

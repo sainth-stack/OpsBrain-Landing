@@ -41,25 +41,28 @@ export function DiyaWidgetFooter({
               <Mic className="h-4 w-4" aria-hidden="true" />
               Talk to Diya
             </button>
-            <div className="flex items-center justify-center gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <Link
                 href="/#contact"
                 className={cn(
-                  "inline-flex items-center gap-1.5 text-xs font-medium text-brand-primary",
-                  "transition-colors hover:text-brand-primary-hover",
-                  "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary rounded-sm",
+                  "inline-flex min-h-[38px] items-center justify-center gap-1.5 rounded-xl border px-3",
+                  "border-border-default bg-surface-white text-xs font-semibold text-text-primary",
+                  "transition-colors hover:border-brand-primary/30 hover:bg-brand-primary-light/60 hover:text-brand-primary",
+                  "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary",
                 )}
               >
                 <Calendar className="h-3.5 w-3.5" aria-hidden="true" />
                 Book a demo
               </Link>
-              <span className="text-border-default" aria-hidden="true">
-                ·
-              </span>
               <button
                 type="button"
                 onClick={onDismiss}
-                className="text-xs font-medium text-text-secondary transition-colors hover:text-text-primary"
+                className={cn(
+                  "inline-flex min-h-[38px] items-center justify-center rounded-xl px-3",
+                  "text-xs font-semibold text-text-secondary transition-colors",
+                  "hover:bg-surface-muted hover:text-text-primary",
+                  "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary",
+                )}
               >
                 Maybe later
               </button>
