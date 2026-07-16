@@ -1,11 +1,10 @@
 /** Matches backend `SITE_OPENING_TEXT` — Diya's default voice + panel greeting. */
-export const DIYA_WELCOME_HEADLINE = "Welcome to OpsBrain AI.";
-export const DIYA_WELCOME_BODY =
-  "I'm Diya, your AI guide. Ask me about our product, or anything else you'd like to know.";
+export const DIYA_WELCOME_HEADLINE = "Hi, I'm Diya from OpsBrain.";
+export const DIYA_WELCOME_BODY = "What would you like to know?";
 export const DIYA_WELCOME = `${DIYA_WELCOME_HEADLINE} ${DIYA_WELCOME_BODY}`;
 
 export const DIYA_ENDED_MESSAGE =
-  "Thanks for stopping by. I'm here whenever you want to explore plans, AI employees, or integrations.";
+  "Thanks for chatting — come back anytime if you have more questions.";
 
 const DEFAULT_CHIPS = [
   "What's in the $399 plan?",
