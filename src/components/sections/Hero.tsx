@@ -25,10 +25,10 @@ export function Hero() {
 
       <Container className="relative grid items-center gap-16 py-20 md:py-28 lg:grid-cols-[1.05fr_1fr]">
         <div>
-          <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-brand-primary/20 bg-brand-primary/5 px-4 py-1.5 text-sm font-medium text-brand-primary motion-safe:animate-fade-up">
+          {/* <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-brand-primary/20 bg-brand-primary/5 px-4 py-1.5 text-sm font-medium text-brand-primary motion-safe:animate-fade-up">
             <Sparkles className="h-3.5 w-3.5" aria-hidden="true" />
             {hero.eyebrow}
-          </p>
+          </p> */}
 
           <h1
             className="font-display text-4xl font-bold leading-[1.08] tracking-tight text-text-primary sm:text-5xl xl:text-[3.6rem] motion-safe:animate-fade-up"
