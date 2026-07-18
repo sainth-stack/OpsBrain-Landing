@@ -1,6 +1,6 @@
 import { Container } from "@/components/ui/container";
 import { Logo } from "@/components/ui/logo";
-import { aboutBlurb, footer, footerLinks, siteConfig } from "@/content/site";
+import { footer, footerLinks, siteConfig } from "@/content/site";
 import Link from "next/link";
 
 const columns = [
@@ -49,17 +49,16 @@ function FooterLink({ href, label }: { href: string; label: string }) {
 export function Footer() {
   return (
     <footer className="bg-ink text-on-dark-muted">
-      <Container className="py-16">
-        <div id="about" className="scroll-mt-24 border-b border-white/10 pb-12">
-          <h2 className="text-sm font-semibold uppercase tracking-wider text-on-dark">
-            {aboutBlurb.title}
-          </h2>
-          <p className="mt-3 max-w-3xl text-sm leading-relaxed text-on-dark-muted">
-            {aboutBlurb.description}
+      <div className="border-b border-white/10">
+        <Container className="py-4">
+          <p className="text-center text-xs font-medium tracking-wide text-on-dark-muted/90 md:text-sm">
+            {footer.strip}
           </p>
-        </div>
+        </Container>
+      </div>
 
-        <div className="grid gap-10 pt-12 lg:grid-cols-[1.4fr_repeat(4,1fr)]">
+      <Container className="py-14 md:py-16">
+        <div className="grid gap-10 lg:grid-cols-[1.5fr_repeat(4,1fr)]">
           <div>
             <Link
               href="/"
@@ -107,9 +106,9 @@ export function Footer() {
           ))}
         </div>
 
-        <div className="mt-12 flex flex-col gap-2 border-t border-white/10 pt-7 text-xs text-on-dark-muted/80 sm:flex-row sm:justify-between">
+        <div className="mt-12 flex flex-col gap-2 border-t border-white/10 pt-7 text-xs text-on-dark-muted/80 sm:flex-row sm:items-center sm:justify-between">
           <p>{footer.copyright}</p>
-          <p>Built for revenue teams that never sleep.</p>
+          <p>{footer.location}</p>
         </div>
       </Container>
     </footer>

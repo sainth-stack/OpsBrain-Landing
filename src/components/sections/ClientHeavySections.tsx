@@ -3,10 +3,6 @@
 import dynamic from "next/dynamic";
 import { SectionSkeleton } from "@/components/ui/SectionSkeleton";
 
-const Multilingual = dynamic(
-  () => import("@/components/sections/Multilingual").then((m) => m.Multilingual),
-  { loading: () => <SectionSkeleton /> },
-);
 const OutcomesMetrics = dynamic(
   () =>
     import("@/components/sections/OutcomesMetrics").then((m) => m.OutcomesMetrics),
@@ -36,9 +32,6 @@ const FinalCTA = dynamic(
 export function ClientHeavySections() {
   return (
     <>
-      <div className="below-fold-section">
-        <Multilingual />
-      </div>
       <div className="below-fold-section">
         <OutcomesMetrics />
       </div>

@@ -1,9 +1,11 @@
 "use client";
 
+import { useDiyaAssistant } from "@/components/assistant/DiyaAssistantContext";
 import { CtaLink } from "@/components/ui/cta-link";
 import { Container } from "@/components/ui/container";
 import { Logo } from "@/components/ui/logo";
 import { LOGIN_PAGE } from "@/lib/api-config";
+import { trackDemoClick } from "@/lib/analytics";
 import { ctaLinks, navLinks } from "@/content/site";
 import { isNavLinkActive } from "@/lib/navigation";
 import { cn } from "@/lib/utils";
@@ -11,6 +13,32 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
+
+function NavDiyaButton({
+  label,
+  className,
+  onAfterOpen,
+}: {
+  label: string;
+  className?: string;
+  onAfterOpen?: () => void;
+}) {
+  const { openDiya } = useDiyaAssistant();
+
+  return (
+    <button
+      type="button"
+      onClick={() => {
+        trackDemoClick("navbar_talk_to_diya");
+        openDiya({ autoStart: true, withBackdrop: true });
+        onAfterOpen?.();
+      }}
+      className={className}
+    >
+      {label}
+    </button>
+  );
+}
 
 export function Navbar() {
   const pathname = usePathname();
@@ -59,18 +87,28 @@ export function Navbar() {
 
           <ul className="hidden items-center gap-7 lg:flex" role="list">
             {navLinks.map((link) => (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  className={cn(
-                    "text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary",
-                    isNavLinkActive(pathname, link.href)
-                      ? "text-brand-primary"
-                      : "text-text-secondary hover:text-text-primary",
-                  )}
-                >
-                  {link.label}
-                </Link>
+              <li key={link.label}>
+                {"action" in link && link.action === "diya" ? (
+                  <NavDiyaButton
+                    label={link.label}
+                    className={cn(
+                      "text-sm font-medium text-text-secondary transition-colors hover:text-text-primary",
+                      "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary",
+                    )}
+                  />
+                ) : (
+                  <Link
+                    href={"href" in link ? link.href : "/"}
+                    className={cn(
+                      "text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary",
+                      "href" in link && isNavLinkActive(pathname, link.href)
+                        ? "text-brand-primary"
+                        : "text-text-secondary hover:text-text-primary",
+                    )}
+                  >
+                    {link.label}
+                  </Link>
+                )}
               </li>
             ))}
           </ul>
@@ -110,14 +148,22 @@ export function Navbar() {
         <div id="mobile-menu" className="border-t border-border-default bg-surface-white lg:hidden">
           <ul className="flex flex-col gap-1 px-5 py-4 sm:px-8">
             {navLinks.map((link) => (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  className="block rounded-lg px-3 py-3 text-base font-medium text-text-primary hover:bg-surface-muted"
-                  onClick={closeMobile}
-                >
-                  {link.label}
-                </Link>
+              <li key={link.label}>
+                {"action" in link && link.action === "diya" ? (
+                  <NavDiyaButton
+                    label={link.label}
+                    onAfterOpen={closeMobile}
+                    className="block w-full rounded-lg px-3 py-3 text-left text-base font-medium text-text-primary hover:bg-surface-muted"
+                  />
+                ) : (
+                  <Link
+                    href={"href" in link ? link.href : "/"}
+                    className="block rounded-lg px-3 py-3 text-base font-medium text-text-primary hover:bg-surface-muted"
+                    onClick={closeMobile}
+                  >
+                    {link.label}
+                  </Link>
+                )}
               </li>
             ))}
             <li className="mt-2 flex flex-col gap-2 px-3">

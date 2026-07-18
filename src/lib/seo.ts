@@ -1,11 +1,18 @@
 import type { FaqItem } from "@/content/seo-pages";
-import { brandLogos, faqCategories, founder, siteConfig } from "@/content/site";
+import {
+  brandLogos,
+  faqCategories,
+  founder,
+  founders,
+  siteConfig,
+} from "@/content/site";
 import type { Metadata } from "next";
 
 const organizationId = `${siteConfig.url}/#organization`;
 const websiteId = `${siteConfig.url}/#website`;
 const softwareId = `${siteConfig.url}/#software`;
 const founderId = `${siteConfig.url}/#sainath`;
+const cofounderId = `${siteConfig.url}/#eswar`;
 
 export function buildPageMetadata({
   title,
@@ -69,9 +76,12 @@ export function getFounderJsonLd() {
     "@type": "Person",
     "@id": founderId,
     name: founder.name,
+    alternateName: founder.shortName,
     jobTitle: founder.jobTitle,
     description: founder.description,
     url: `${siteConfig.url}/about`,
+    image: `${siteConfig.url}${founder.image}`,
+    sameAs: [founder.linkedin],
     worksFor: { "@id": organizationId },
     knowsAbout: [
       "AI employees",
@@ -79,6 +89,30 @@ export function getFounderJsonLd() {
       "Lead generation",
       "SDR automation",
       "Revenue operations",
+    ],
+  };
+}
+
+export function getCofounderJsonLd() {
+  const eswar = founders.find((person) => person.id === "eswar");
+  if (!eswar) return null;
+
+  return {
+    "@type": "Person",
+    "@id": cofounderId,
+    name: eswar.name,
+    alternateName: eswar.shortName,
+    jobTitle: eswar.jobTitle,
+    description: eswar.bio,
+    url: `${siteConfig.url}/about`,
+    image: `${siteConfig.url}${eswar.image}`,
+    sameAs: [eswar.linkedin],
+    worksFor: { "@id": organizationId },
+    knowsAbout: [
+      "AI systems",
+      "Voice AI",
+      "CRM automation",
+      "Scalable infrastructure",
     ],
   };
 }
@@ -96,12 +130,19 @@ export function getOrganizationJsonLd() {
       url: `${siteConfig.url}/icon.png`,
     },
     image: `${siteConfig.url}${brandLogos.ogImage}`,
-    founder: { "@id": founderId },
+    founder: [{ "@id": founderId }, { "@id": cofounderId }],
     foundingLocation: {
       "@type": "Place",
       name: "India",
     },
     areaServed: "Worldwide",
+    sameAs: [
+      "https://www.linkedin.com/company/99239755/",
+      founder.linkedin,
+      ...founders
+        .filter((person) => person.id === "eswar")
+        .map((person) => person.linkedin),
+    ],
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "sales",
@@ -267,8 +308,10 @@ export function getArticleJsonLd({
 }
 
 export function getAboutJsonLd() {
+  const cofounder = getCofounderJsonLd();
   return getPageJsonLd([
     getFounderJsonLd(),
+    ...(cofounder ? [cofounder] : []),
     getOrganizationJsonLd(),
     getBreadcrumbJsonLd([
       { name: "Home", path: "/" },

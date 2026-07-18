@@ -2,12 +2,12 @@
 
 > OpsBrain AI (also known as OpsBrain) is an AI employees and leads-finder platform. Autonomous AI agents prospect leads, make outbound and inbound calls in Telugu, Hindi, and English, qualify opportunities, book meetings, and sync every outcome to your CRM — 24/7.
 
-OpsBrain AI was founded by **Sainath Reddy Guraka** (Founder & CEO).
+OpsBrain AI was founded by **Sainath Reddy Guraka** (Founder) and co-founded by **Eswar Silaveri** (Co-founder).
 
 ## Core pages
 
 - [Homepage](https://opsbrainai.com/): What OpsBrain AI is — AI employees that find, call, qualify, and sell 24/7.
-- [About](https://opsbrainai.com/about): Founding story, founder Sainath Reddy Guraka, and product mission.
+- [About](https://opsbrainai.com/about): Company story, leadership (Sainath Reddy Guraka and Eswar Silaveri), values, and mission.
 - [Platform](https://opsbrainai.com/platform): Unified lead prospecting, AI voice calling, CRM sync, scheduling, and analytics.
 - [AI Employees](https://opsbrainai.com/ai-employees): Pre-built AI employee personas by industry.
 - [Solutions](https://opsbrainai.com/solutions): Instant lead calling, 24/7 inbound support, and bulk outbound campaigns.

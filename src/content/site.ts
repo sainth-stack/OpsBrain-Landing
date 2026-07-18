@@ -23,27 +23,51 @@ export const siteConfig = {
   },
 } as const;
 
-/** Founder entity — used in JSON-LD, /about, and llms.txt. */
+/** Primary founder entity — used in JSON-LD, layout authorship, and llms.txt. */
 export const founder = {
   name: "Sainath Reddy Guraka",
-  jobTitle: "Founder & CEO",
+  shortName: "Sai",
+  jobTitle: "Founder",
   description:
     "Sainath Reddy Guraka is the founder of OpsBrain AI, an AI employees and leads-finder platform that deploys autonomous voice agents for prospecting, outbound calling, qualification, and CRM-synced revenue operations.",
+  image: "/founders/sai.png",
+  linkedin: "https://www.linkedin.com/in/sainathreddyguraka/",
 } as const;
+
+/** Leadership team for /about — Sai (Founder) and Eswar (Co-founder). */
+export const founders = [
+  {
+    id: "sai",
+    name: "Sainath Reddy Guraka",
+    shortName: "Sai",
+    jobTitle: "Founder",
+    bio: "Driving product vision, revenue outcomes, and the future of autonomous AI employees for sales and support teams.",
+    image: "/founders/sai.png",
+    linkedin: "https://www.linkedin.com/in/sainathreddyguraka/",
+  },
+  {
+    id: "eswar",
+    name: "Eswar Silaveri",
+    shortName: "Eswar",
+    jobTitle: "Co-founder",
+    bio: "Building secure, scalable AI systems that turn voice, messaging, and CRM workflows into measurable pipeline.",
+    image: "/founders/eswar.png",
+    linkedin: "https://www.linkedin.com/in/silaveri-eswar-829876208/",
+  },
+] as const;
 
 export const navLinks = [
   { label: "Platform", href: "/platform" },
   { label: "AI Employees", href: "/ai-employees" },
   { label: "Solutions", href: "/solutions" },
   { label: "Pricing", href: "/pricing" },
-  { label: "Listen Voice", href: "/#voice-demos" },
+  { label: "Talk to Diya", action: "diya" as const },
   { label: "FAQ", href: "/#faq" },
 ] as const;
 
 /** Homepage-only anchors (sections exist only on `/`). */
 export const homepageAnchors = {
   contact: "#contact",
-  voiceDemos: "#voice-demos",
   faq: "#faq",
 } as const;
 
@@ -248,14 +272,73 @@ export const aboutBlurb = {
 
 export const aboutPage = {
   path: "/about",
-  title: "About OpsBrain AI — Founded by Sainath Reddy Guraka",
+  title: "About OpsBrain AI — Founder-led AI employees for revenue teams",
   description:
-    "OpsBrain AI is an AI employees and leads-finder platform founded by Sainath Reddy Guraka. Learn how OpsBrain deploys autonomous voice agents that prospect, call, qualify, and sell 24/7.",
-  h1: "About OpsBrain AI",
+    "OpsBrain AI is an AI employees platform founded by Sainath Reddy Guraka and co-founded by Eswar Silaveri. Learn our story, leadership, and how OpsBrain deploys autonomous voice agents that prospect, call, qualify, and sell 24/7.",
+  eyebrow: "About Us",
+  h1: "Building AI employees for revenue teams that never sleep",
   intro:
-    "OpsBrain AI (OpsBrain) builds autonomous AI employees for revenue teams — agents that find leads, make outbound and inbound calls, qualify opportunities, book meetings, and keep your CRM up to date without manual SDR work.",
+    "OpsBrain AI helps growing companies run outbound calling, inbound support, and multi-channel follow-up with autonomous AI employees — so every lead gets a fast, natural conversation and every outcome lands in your CRM.",
+  storyEyebrow: "Our story",
+  storyTitle: "Why OpsBrain AI exists",
+  story: [
+    "Revenue teams lose deals every day to capacity limits, not lack of effort. Leads fill a form and wait hours. Inbound calls ring out after hours. SDRs burn energy on cold lists while warm prospects get a tired follow-up.",
+    "We built OpsBrain AI to close that gap. By combining multilingual voice agents, WhatsApp and email sequences, and CRM sync, we help companies move from manual SDR grind to always-on revenue operations — built for India-first teams, ready to scale globally.",
+  ],
+  storyHighlight:
+    "We are not building another dialer. We are building AI employees that find, call, qualify, and hand off ready conversations to humans.",
+  leadershipEyebrow: "Leadership",
+  leadershipTitle:
+    "Founder-led, with deep product and AI systems expertise",
+  leadershipSubtitle:
+    "Built by founders who understand revenue operations, voice AI, and scalable customer infrastructure.",
   mission:
     "Our mission is to give every business an always-on revenue team. Humans focus on relationships, strategy, and closing; AI employees handle prospecting, calling, qualification, and follow-up at scale.",
+  valuesEyebrow: "What we believe",
+  valuesTitle: "The values behind every product decision",
+  values: [
+    {
+      title: "Speed over delay",
+      description:
+        "First response in under 60 seconds. The team that answers first usually wins the deal.",
+    },
+    {
+      title: "Humans close, AI qualifies",
+      description:
+        "AI handles the grind of cold and inbound volume. Your team talks when prospects are ready.",
+    },
+    {
+      title: "Language that feels local",
+      description:
+        "Natural conversations in Telugu, Hindi, English, and 50+ languages — not robotic translations.",
+    },
+    {
+      title: "CRM as the source of truth",
+      description:
+        "Every call, note, and status syncs automatically so pipeline stays accurate without busywork.",
+    },
+  ],
+  visionEyebrow: "Our vision",
+  visionTitle: "The future of revenue teams, built on autonomous AI employees",
+  vision:
+    "In the next decade, every growing company will run an AI-native revenue stack — agents that answer every call, follow up every lead, and keep humans focused on closing. OpsBrain exists to make that future practical, affordable, and live in minutes.",
+  visionPoints: [
+    {
+      title: "Always-on coverage",
+      description:
+        "Inbound and outbound voice that works nights, weekends, and peak hours without missed calls.",
+    },
+    {
+      title: "Qualified pipeline",
+      description:
+        "AI filters uninterested prospects so SDRs spend energy only on conversations that matter.",
+    },
+    {
+      title: "Measurable outcomes",
+      description:
+        "Meetings booked, CRM updates, and campaign results you can see — not vanity dial counts.",
+    },
+  ],
   productFacts: [
     "AI employees for sales, support, healthcare, real estate, HR, insurance, education, and hospitality",
     "Multilingual voice in Telugu, Hindi, English, and 50+ languages",
@@ -263,6 +346,15 @@ export const aboutPage = {
     "Bi-directional CRM sync (Salesforce, HubSpot, Pipedrive, and more)",
     "Plans from $399/mo with onboarding support",
   ],
+  cta: {
+    title: "Ready to deploy your first AI employee?",
+    description:
+      "Tell us about your pipeline — we will configure OpsBrain for lead calling, inbound support, or bulk campaigns.",
+    primaryLabel: "Get started",
+    primaryHref: "/#contact",
+    secondaryLabel: "See pricing",
+    secondaryHref: "/pricing",
+  },
 } as const;
 
 export const workflowSection = {
@@ -1005,7 +1097,7 @@ export const footerLinks = {
     { label: "View all personas", href: "/ai-employees" },
   ],
   company: [
-    { label: "About", href: "/about" },
+    { label: "About Us", href: "/about" },
     { label: "Blog", href: "/blog" },
     { label: "Contact", href: "/#contact" },
     { label: "Get Started", href: "/#contact" },
@@ -1019,7 +1111,9 @@ export const footerLinks = {
 
 export const footer = {
   tagline: siteConfig.tagline,
+  strip: "Built for revenue teams that never sleep. India-first. Globally ready.",
   copyright: `© ${new Date().getFullYear()} OpsBrain AI. All rights reserved.`,
+  location: "India",
   social: [
     {
       label: "LinkedIn",

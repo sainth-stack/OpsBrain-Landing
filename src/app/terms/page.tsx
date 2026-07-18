@@ -22,7 +22,7 @@ export default function TermsPage() {
           backLabel="Back to home"
         />
         <h1 className="mt-8 text-h1 font-bold text-text-primary md:mt-10">Terms of Service</h1>
-        <p className="mt-2 text-small text-text-muted">Last updated: July 9, 2026</p>
+        <p className="mt-2 text-small text-text-muted">Last updated: July 17, 2026</p>
 
         <div className="mt-8 space-y-8 text-body leading-relaxed text-text-secondary">
 

@@ -22,7 +22,7 @@ export default function PrivacyPage() {
           backLabel="Back to home"
         />
         <h1 className="mt-8 text-h1 font-bold text-text-primary md:mt-10">Privacy Policy</h1>
-        <p className="mt-2 text-small text-text-muted">Last updated: July 9, 2026</p>
+        <p className="mt-2 text-small text-text-muted">Last updated: July 17, 2026</p>
 
         <div className="mt-8 space-y-8 text-body leading-relaxed text-text-secondary">
 
@@ -55,7 +55,7 @@ export default function PrivacyPage() {
             <p className="mt-3 font-medium text-text-primary">What Google data we access and why:</p>
             <ul className="mt-2 list-disc space-y-2 pl-6">
               <li>
-                <span className="font-medium text-text-primary">Gmail (send &amp; read):</span> When you connect your Gmail account, we request permission to send emails on your behalf and to read inbound email replies. This access is used exclusively to send outbound campaign emails through your Gmail account and to receive and display replies from your leads within those campaigns.
+                <span className="font-medium text-text-primary">Gmail (send only):</span> When you connect your Gmail account, we request permission solely to send emails on your behalf. This access is used exclusively to send outbound campaign emails and AI-assisted replies through your Gmail account. We do <strong>not</strong> request Gmail read/inbox access and we do not read your Gmail mailbox via Google APIs.
               </li>
               <li>
                 <span className="font-medium text-text-primary">Google Calendar (events &amp; read):</span> When you connect Google Calendar, we request permission to create, update, delete, and read calendar events. This access is used exclusively to schedule meetings on your behalf when a lead confirms interest, to check your availability, and to manage or cancel meetings created through OpsBrain.
@@ -88,8 +88,7 @@ export default function PrivacyPage() {
             <p className="mt-3 font-medium text-text-primary">Google Gmail Data (only when you connect Gmail)</p>
             <ul className="mt-1 list-disc space-y-1 pl-6">
               <li>The email address of your connected Gmail account</li>
-              <li>Content of inbound email replies from your leads within campaigns you create</li>
-              <li>Gmail thread identifiers used to match replies to your campaigns</li>
+              <li>Metadata needed to send mail on your behalf (for example, message IDs returned by Gmail after a successful send)</li>
             </ul>
 
             <p className="mt-3 font-medium text-text-primary">Google Calendar Data (only when you connect Google Calendar)</p>
@@ -118,8 +117,7 @@ export default function PrivacyPage() {
             <h2 className="text-h3 font-semibold text-text-primary">4. How We Use Your Information</h2>
             <p className="mt-2">We use the information we collect solely to deliver the specific services you have requested. This includes:</p>
             <ul className="mt-2 list-disc space-y-2 pl-6">
-              <li>Sending campaign emails through your connected Gmail account to leads you have uploaded</li>
-              <li>Receiving and displaying inbound email replies from your leads within the OpsBrain platform</li>
+              <li>Sending campaign emails and approved AI-assisted replies through your connected Gmail account to leads you have uploaded</li>
               <li>Creating, managing, and cancelling Google Calendar meetings on your behalf when your AI employee schedules an appointment</li>
               <li>Operating AI voice and messaging campaigns as configured by you</li>
               <li>Responding to your support inquiries and processing demo requests</li>
@@ -165,7 +163,7 @@ export default function PrivacyPage() {
                 <span className="font-medium text-text-primary">Cloud infrastructure providers:</span> Hosting, database storage, and computing infrastructure used to run the platform.
               </li>
               <li>
-                <span className="font-medium text-text-primary">AI / language model providers:</span> If your AI employee processes an inbound email reply to generate a suggested response, the reply content may be sent to an AI language model provider. These providers are contractually bound to process data only as directed and may not use it for their own model training.
+                <span className="font-medium text-text-primary">AI / language model providers:</span> Content required to operate AI employees (for example, campaign context, lead details you provide, and calendar availability needed to draft or schedule meetings) may be sent to AI language model providers solely to generate the requested user-facing response. These providers are used under commercial/enterprise terms that do not permit use of that content to train their foundational or generalised AI/ML models.
               </li>
               <li>
                 <span className="font-medium text-text-primary">Telephony &amp; communications providers:</span> For AI voice calls, call audio and transcripts may be processed by our telephony infrastructure partners.
@@ -188,7 +186,7 @@ export default function PrivacyPage() {
                 <span className="font-medium text-text-primary">Google OAuth tokens (Gmail &amp; Calendar):</span> Retained until you disconnect the integration from your dashboard or revoke access via your Google account, after which tokens are permanently deleted within 24 hours.
               </li>
               <li>
-                <span className="font-medium text-text-primary">Gmail reply content:</span> Retained for the lifetime of your account. Deleted within 30 days of account closure.
+                <span className="font-medium text-text-primary">Outbound Gmail send metadata:</span> Retained for the lifetime of your account (or until you disconnect Gmail). Deleted within 30 days of account closure.
               </li>
               <li>
                 <span className="font-medium text-text-primary">Google Calendar event IDs &amp; meeting details:</span> Retained until the meeting is deleted or your account is closed.
