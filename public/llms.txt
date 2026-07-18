@@ -11,7 +11,7 @@ OpsBrain AI was founded by **Sainath Reddy Guraka** (Founder) and co-founded by 
 - [Platform](https://opsbrainai.com/platform): Unified lead prospecting, AI voice calling, CRM sync, scheduling, and analytics.
 - [AI Employees](https://opsbrainai.com/ai-employees): Pre-built AI employee personas by industry.
 - [Solutions](https://opsbrainai.com/solutions): Instant lead calling, 24/7 inbound support, and bulk outbound campaigns.
-- [Pricing](https://opsbrainai.com/pricing): Starter, Growth, and Enterprise plans — from $399/mo.
+- [Pricing](https://opsbrainai.com/pricing): Starter, Growth, and Enterprise — monthly AI employees with included voice minutes from $399/mo.
 - [Integrations](https://opsbrainai.com/integrations): Salesforce, HubSpot, Pipedrive, Twilio, Google Calendar, Zendesk, and more.
 - [FAQ](https://opsbrainai.com/#faq): Capabilities, setup, multilingual voice, CRM, and compliance.
 - [Contact](https://opsbrainai.com/#contact): Deploy your first AI employee — contact sales.
@@ -54,7 +54,7 @@ OpsBrain AI was founded by **Sainath Reddy Guraka** (Founder) and co-founded by 
 - Category: AI employees, AI voice agents, leads finder, SDR automation, revenue operations
 - Languages: Telugu, Hindi, English, and 50+ languages
 - Key outcomes: 10× outreach capacity, 24/7 coverage, lower cost per meeting
-- Pricing: Starter $399/mo (5 AI employees), Growth $1,499/mo (20 AI employees), Enterprise custom (unlimited AI employees)
+- Pricing: Monthly or annual AI-employee plans with included voice minutes. Starter $399/mo or $3,830/year (5 AI employees, 2,000 voice minutes/mo), Growth $1,499/mo or $14,390/year (20 AI employees, 7,500 voice minutes/mo), Enterprise custom. Annual = 20% off. Voice overage $0.12/min.
 - App (authenticated product, not for indexing): https://app.opsbrainai.com
 
 ## About the founder

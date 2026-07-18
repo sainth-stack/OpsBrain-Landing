@@ -14,7 +14,8 @@ const DEFAULT_CHIPS = [
 
 const PRICING_CHIPS = [
   "What's in the $399 plan?",
-  "Compare Starter vs Growth",
+  "How does annual pricing work?",
+  "How many voice minutes are included?",
   "Book a demo",
 ] as const;
 

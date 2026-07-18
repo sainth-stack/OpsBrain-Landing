@@ -344,7 +344,7 @@ export const aboutPage = {
     "Multilingual voice in Telugu, Hindi, English, and 50+ languages",
     "Lead finder and speed-to-lead calling in under 60 seconds",
     "Bi-directional CRM sync (Salesforce, HubSpot, Pipedrive, and more)",
-    "Plans from $399/mo with onboarding support",
+    "Plans from $399/mo with included voice minutes and onboarding support",
   ],
   cta: {
     title: "Ready to deploy your first AI employee?",

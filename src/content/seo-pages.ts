@@ -169,12 +169,17 @@ export const hubPages = {
     path: "/pricing",
     title: "Pricing & Plans",
     description:
-      "OpsBrain AI pricing with plans from $399/mo. Every plan includes multilingual voice, Gmail email campaigns, WhatsApp campaigns, and CRM sync — scale AI employees or go custom with Enterprise.",
+      "OpsBrain AI pricing from $399/mo, or save 20% with annual billing. AI-employee plans with included voice minutes — Starter 2,000 min/mo, Growth 7,500 min/mo — plus email, WhatsApp, and CRM sync.",
     faq: [
       {
         question: "How much does OpsBrain AI cost?",
         answer:
-          "OpsBrain has three plans: Starter at $399/mo for 5 AI employees, Growth at $1,499/mo for 20 AI employees, and Enterprise with custom pricing for unlimited AI employees, SLAs, and compliance. Every plan includes multilingual voice calling, email (Gmail) campaigns, WhatsApp campaigns, and CRM integration.",
+          "OpsBrain has three plans: Starter at $399/mo ($3,830/year billed annually) for 5 AI employees and 2,000 included voice minutes per month, Growth at $1,499/mo ($14,390/year billed annually) for 20 AI employees and 7,500 included voice minutes per month, and Enterprise with custom pricing, minutes, and SLAs. Every plan includes multilingual voice calling, email (Gmail) campaigns, WhatsApp campaigns, and CRM integration.",
+      },
+      {
+        question: "Is there a discount for annual billing?",
+        answer:
+          "Yes. Annual plans are 20% off. Starter is $3,830/year and Growth is $14,390/year. Voice minutes still refresh monthly (2,000 on Starter, 7,500 on Growth).",
       },
       {
         question: "Which channels are included?",
@@ -182,14 +187,19 @@ export const hubPages = {
           "All plans include multilingual voice calling (Telugu, Hindi, English), email campaigns via Gmail, WhatsApp campaigns, built-in CRM and calendar integration, and the Diya AI site assistant (text + voice). Growth adds bulk multi-channel sequences, two-way CRM sync with Salesforce, HubSpot, and Pipedrive, and social media automation.",
       },
       {
+        question: "How do voice minutes work?",
+        answer:
+          "Each plan includes a monthly pool of connected voice minutes — 2,000 on Starter and 7,500 on Growth. Unused minutes do not roll over. If you exceed your pool, additional minutes are billed at $0.12/min, or you can upgrade. Enterprise minutes are custom.",
+      },
+      {
         question: "What is included in Enterprise plans?",
         answer:
-          "Enterprise plans add SOC 2 controls, custom SLAs, EU data residency options, SSO and advanced security, unlimited parallel calling, custom integrations and API access, and a dedicated customer success manager.",
+          "Enterprise plans add SOC 2 controls, custom SLAs, EU data residency options, SSO and advanced security, custom voice minute pools, unlimited parallel calling, custom integrations and API access, and a dedicated customer success manager.",
       },
       {
         question: "Do you charge per minute or per seat?",
         answer:
-          "OpsBrain is priced by AI-employee tiers — 5 with Starter, 20 with Growth, and unlimited with Enterprise — so you pay for outcomes, not idle SDR seats. Voice, email, and WhatsApp usage is included within each plan.",
+          "OpsBrain is priced as an AI-employee subscription — 5 on Starter, 20 on Growth, unlimited on Enterprise — with a clear included voice-minute pool. You are not buying a raw dialer API. Email and WhatsApp campaign tools are included; voice overage beyond the pool is $0.12/min.",
       },
     ] satisfies FaqItem[],
   },
@@ -545,15 +555,19 @@ export function getAllIntegrationNames() {
   return [...new Set([...fromTrust, ...fromEmployees])].sort();
 }
 
+/** Annual discount off the full 12-month monthly total. */
+export const PRICING_ANNUAL_DISCOUNT = 0.2;
+
 export const pricingTiers = [
   {
     name: "Starter",
-    price: "$399/mo",
+    monthlyPriceUsd: 399,
     headline: "5 AI employees",
+    includedMinutes: "2,000 voice minutes / mo",
+    minutesNote: "~670 answered calls · overage $0.12/min",
     description:
       "Everything a small revenue team needs to launch AI employees across voice, email, and WhatsApp.",
     features: [
-      "5 AI employees",
       "Multilingual voice calling (Telugu, Hindi, English)",
       "Email campaigns (Gmail integration)",
       "WhatsApp campaigns",
@@ -566,13 +580,14 @@ export const pricingTiers = [
   },
   {
     name: "Growth",
-    price: "$1,499/mo",
+    monthlyPriceUsd: 1499,
     headline: "20 AI employees",
+    includedMinutes: "7,500 voice minutes / mo",
+    minutesNote: "~2,500 answered calls · overage $0.12/min",
     description:
       "Scale multi-channel campaigns across teams with automation, deeper analytics, and CRM sync.",
     features: [
       "Everything in Starter, plus:",
-      "20 AI employees",
       "Bulk outbound campaigns (CSV upload)",
       "Multi-channel sequences (voice + email + WhatsApp)",
       "Two-way CRM sync (Salesforce, HubSpot, Pipedrive)",
@@ -586,13 +601,14 @@ export const pricingTiers = [
   },
   {
     name: "Enterprise",
-    price: "Talk to us",
+    monthlyPriceUsd: null,
     headline: "Unlimited AI employees",
+    includedMinutes: "Custom voice minute pool",
+    minutesNote: "Committed volume negotiated with you",
     description:
       "Custom scale with enterprise security, compliance, and dedicated solution engineering.",
     features: [
       "Everything in Growth, plus:",
-      "Unlimited AI employees",
       "Custom integrations & API access",
       "SSO & advanced security controls",
       "99.9% uptime SLA",
@@ -603,5 +619,54 @@ export const pricingTiers = [
     cta: { label: "Talk to us", href: "/#contact" },
   },
 ] as const;
+
+export type PricingTier = (typeof pricingTiers)[number];
+export type BillingPeriod = "monthly" | "annual";
+
+export function formatUsd(amount: number): string {
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    maximumFractionDigits: 0,
+  }).format(amount);
+}
+
+export function getAnnualTotalUsd(monthlyPriceUsd: number): number {
+  return Math.round(monthlyPriceUsd * 12 * (1 - PRICING_ANNUAL_DISCOUNT));
+}
+
+export function getTierPricing(tier: PricingTier, period: BillingPeriod) {
+  if (tier.monthlyPriceUsd == null) {
+    return {
+      kind: "custom" as const,
+      displayPrice: "Talk to us",
+      priceSuffix: "",
+      billingNote: "Custom monthly or annual contract",
+      totalLabel: null,
+    };
+  }
+
+  const monthly = tier.monthlyPriceUsd;
+  const annualTotal = getAnnualTotalUsd(monthly);
+  const annualEffectiveMonthly = Math.round(annualTotal / 12);
+
+  if (period === "annual") {
+    return {
+      kind: "priced" as const,
+      displayPrice: formatUsd(annualEffectiveMonthly),
+      priceSuffix: "/mo",
+      billingNote: `${formatUsd(annualTotal)}/year · ${formatUsd(monthly)}/mo on monthly`,
+      totalLabel: null,
+    };
+  }
+
+  return {
+    kind: "priced" as const,
+    displayPrice: formatUsd(monthly),
+    priceSuffix: "/mo",
+    billingNote: `or ${formatUsd(annualTotal)}/year with annual (save 20%)`,
+    totalLabel: null,
+  };
+}
 
 export { aiEmployeesSection, capabilities, capabilitiesSection, platformOverview, siteConfig };
