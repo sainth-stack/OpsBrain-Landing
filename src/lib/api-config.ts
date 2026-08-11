@@ -4,7 +4,7 @@
  */
 
 export const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_BASE_URL ?? "https://api.opsbrainai.com";
+  process.env.NEXT_PUBLIC_API_BASE_URL ?? "https://app.opsbrainai.com/api/v1";
 
 export const LANDING_API_BASE =
   process.env.NEXT_PUBLIC_LANDING_API_BASE ?? `${API_BASE_URL}/landing`;
