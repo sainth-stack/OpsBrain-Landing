@@ -1,137 +1,116 @@
 /**
- * Voice demo scripts + voice mapping.
- * Free regen: npm run generate:voice-demos:free
+ * Landing voice demo scripts — Cartesia Sonic (Simi / Arushi / Sindhu).
+ * Regen: npm run generate:voice-demos
  */
 
-/** Microsoft Edge neural TTS — "Conversation" voices where available. */
-export const EDGE_VOICES = {
+export const CARTESIA_VOICES = {
   en: {
-    agent: "en-US-AvaNeural",
-    customer: "en-US-AndrewNeural",
+    agent: "cartesia:3b554273-4299-48b9-9aaf-eefd438e3941:en", // Simi
+    customer: "cartesia:638efaaa-4d0c-442e-b701-3fae16aad012:en", // Sameer
   },
   hi: {
-    agent: "hi-IN-SwaraNeural",
-    customer: "hi-IN-MadhurNeural",
+    agent: "cartesia:95d51f79-c397-46f9-b49a-23763d3eaa2d:hi", // Arushi
+    customer: "cartesia:be79f378-47fe-4f9c-b92b-f02cefa62ccf:hi", // Sunil
   },
   te: {
-    agent: "te-IN-ShrutiNeural",
-    customer: "te-IN-MohanNeural",
+    agent: "cartesia:07bc462a-c644-49f1-baf7-82d5599131be:te", // Sindhu
+    customer: "cartesia:38bded0a-3ab4-42d1-8e47-2e0b6b10ced9:te", // Vikram
   },
 };
 
-/** Per-line TTS tuning — slower + pitch shift reads more like a phone call. */
-export const EDGE_PROSODY = {
-  agent: { rate: "-4%", pitch: "+2Hz" },
-  customer: { rate: "-2%", pitch: "-1Hz" },
-};
-
-export const VOICES = {
-  en: { agent: "21m00Tcm4TlvDq8ikWAM", customer: "nPczCjzI2devNBz1zQrb" },
-  hi: { agent: "FiIgWdzVKAalJyAgg8Pg", customer: "zT03pEAEi0VHKciJODfn" },
-  te: { agent: "OwA6IqdLakQOd19pSLOn", customer: "3gsg3cxXyFLcGIfNbM6C" },
-};
-
-export const VOICE_FALLBACKS = {
-  en: { agent: "cgSgspJ2msm6clMCkdW9", customer: "onwK4e9ZLuTAKqWW03F9" },
-  hi: { agent: "EXAVITQu4vr4xnSDxMaL", customer: "pNInz6obpgDQGcFmaJgB" },
-  te: { agent: "cgSgspJ2msm6clMCkdW9", customer: "onwK4e9ZLuTAKqWW03F9" },
-};
-
-/** Fewer, longer turns = fewer stitched seams (sounds less robotic). */
 export const DEMOS = [
   {
     file: "sales-en.mp3",
     lang: "en",
-    persona: "Sarah",
-    trait: "Confident & Clear",
+    persona: "Simi",
+    trait: "Warm & Conversational",
     fallbackDuration: 28,
     dialogue: [
       {
         speaker: "agent",
-        text: "Hey! Sarah here from OpsBrain. You filled out our form yesterday — got a quick minute? We call every new lead in under sixty seconds and book the demo for you.",
+        text: "Hello, this is Simi calling from OpsBrain. You asked about AI employees — is now a good time for one minute?",
       },
       {
         speaker: "customer",
-        text: "Sure, go ahead. We're about fifteen on the sales team.",
+        text: "Yes, go ahead.",
       },
       {
         speaker: "agent",
-        text: "Perfect. Could we do Thursday at two PM for a short walkthrough?",
+        text: "We call every new lead in under a minute and book the demo for you. Would Thursday at two work?",
       },
       {
         speaker: "customer",
-        text: "Yeah, that works.",
+        text: "Thursday works.",
       },
       {
         speaker: "agent",
-        text: "Great — I'll send the calendar invite and a confirmation text right now. Thanks!",
+        text: "I'll send the invite now. Thank you.",
       },
     ],
   },
   {
     file: "sales-hi.mp3",
     lang: "hi",
-    persona: "Priya",
-    trait: "Warm & Professional",
+    persona: "Arushi",
+    trait: "Hinglish & Natural",
     fallbackDuration: 32,
     dialogue: [
       {
         speaker: "agent",
-        text: "नमस्ते जी, Priya बोल रही हूँ OpsBrain से। आपने कल form भरा था — अभी दो minute मिलेंगे? हम lead आते ही एक minute में call करके demo book करवा देते हैं।",
+        text: "नमस्ते जी, मैं OpsBrain से Arushi बोल रही हूँ। आपने AI employees के बारे में पूछा था — क्या अभी एक minute मिल सकता है?",
       },
       {
         speaker: "customer",
-        text: "हाँ जी, बताइए। team में लगभग पंद्रह लोग हैं।",
+        text: "हाँ जी, बताइए।",
       },
       {
         speaker: "agent",
-        text: "अच्छा। इस गुरुवार दोपहर दो बजे demo के लिए time ठीक रहेगा?",
+        text: "हम हर नई lead को एक minute में call करके qualify करते हैं, और आपकी team के लिए demo book कर देते हैं। गुरुवार दो बजे ठीक रहेगा?",
       },
       {
         speaker: "customer",
-        text: "हाँ, ठीक है।",
+        text: "हाँ, गुरुवार ठीक है।",
       },
       {
         speaker: "agent",
-        text: "बढ़िया — calendar invite और confirmation message अभी भेज रही हूँ। धन्यवाद!",
+        text: "Invite अभी भेज रही हूँ। धन्यवाद जी।",
       },
     ],
   },
   {
     file: "sales-te.mp3",
-    lang: "en",
-    persona: "Alex",
-    trait: "Sharp & Persuasive",
-    fallbackDuration: 38,
+    lang: "te",
+    persona: "Sindhu",
+    trait: "Conversational Partner",
+    fallbackDuration: 32,
     dialogue: [
       {
         speaker: "agent",
-        text: "Hey, this is Alex from OpsBrain! You just filled out our form — got sixty seconds? I'm calling because most sales teams lose deals just from slow follow-up. We fix that with AI.",
+        text: "నమస్కారం అండి, నేను OpsBrain నుంచి Sindhu మాట్లాడుతున్నాను. AI employees గురించి enquire చేసారు కదా — ఇప్పుడు ఒక నిమిషం సమయం ఉందా?",
       },
       {
         speaker: "customer",
-        text: "Yeah I've been looking at a few tools. What makes you different?",
+        text: "ఉంది అండి, చెప్పండి.",
       },
       {
         speaker: "agent",
-        text: "Great question. OpsBrain calls every lead in under sixty seconds — day or night — qualifies them, and books the demo automatically. No SDR needed. Your team only talks to people who are ready to buy.",
+        text: "కొత్త lead వస్తే ఒక నిమిషంలో call చేసి qualify చేసి, మీ team కి demo book చేస్తాం. గురువారం రెండు గంటలు సరిపోతుందా?",
       },
       {
         speaker: "customer",
-        text: "Okay that sounds interesting. How quick can we get started?",
+        text: "సరే అండి, గురువారం ఫైన్.",
       },
       {
         speaker: "agent",
-        text: "Honestly, same week. Can I grab Thursday at two PM to show you a live demo? Takes thirty minutes and you'll see exactly how it works for your pipeline.",
-      },
-      {
-        speaker: "customer",
-        text: "Yeah, Thursday works for me.",
-      },
-      {
-        speaker: "agent",
-        text: "Perfect — sending the calendar invite right now. Talk soon!",
+        text: "Invite ఇప్పుడే పంపిస్తాను. ధన్యవాదాలు అండి.",
       },
     ],
   },
 ];
+
+export const HERO = {
+  file: "hero-demo.mp3",
+  lang: "en",
+  voice: CARTESIA_VOICES.en.agent,
+  text: "Hello, this is Simi calling from OpsBrain. You asked about AI employees — is now a good time for one minute?",
+};

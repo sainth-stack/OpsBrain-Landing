@@ -831,46 +831,342 @@ export const multilingualSection = {
   eyebrow: "Voice Demos",
   title: "Hear Your AI Employees in Action",
   subtitle:
-    "Natural AI voice samples in English, Hindi, and Telugu — the same languages your team sells and supports in every day.",
-  nativeEngineBadge: "Sample Voices",
+    "The same Cartesia voices your AI employees use on live calls — English, Hindi, and Telugu, with natural office ambience.",
+  nativeEngineBadge: "Cartesia Sonic",
 } as const;
 
 export const voiceDemos = [
   {
     id: "sales-en",
-    voiceId: "oO7sLA3dWfQXsKeSAjpA",
+    voiceId: "cartesia:3b554273-4299-48b9-9aaf-eefd438e3941:en",
     language: "English",
     languageNative: "English",
     scriptBadge: "EN",
-    persona: "Sarah",
-    trait: "Confident & Clear",
-    audioSrc: "/audio/sales-en.mp3?v=elevenlabs5",
-    fallbackLang: "en-US",
-    fallbackDuration: 26,
+    persona: "Simi",
+    trait: "Warm & Conversational",
+    audioSrc: "/audio/sales-en.mp3?v=cartesia-simi1",
+    fallbackLang: "en-IN",
+    fallbackDuration: 17,
   },
   {
     id: "sales-hi",
-    voiceId: "RABOvaPec1ymXz02oDQi",
+    voiceId: "cartesia:95d51f79-c397-46f9-b49a-23763d3eaa2d:hi",
     language: "Hindi",
     languageNative: "हिंदी",
     scriptBadge: "HI",
-    persona: "Priya",
-    trait: "Warm & Professional",
-    audioSrc: "/audio/sales-hi.mp3?v=elevenlabs7",
+    persona: "Arushi",
+    trait: "Hinglish & Natural",
+    audioSrc: "/audio/sales-hi.mp3?v=cartesia-arushi1",
     fallbackLang: "hi-IN",
-    fallbackDuration: 40,
+    fallbackDuration: 22,
   },
   {
-    id: "sales-en-alex",
-    voiceId: "oO7sLA3dWfQXsKeSAjpA",
-    language: "English",
-    languageNative: "English",
-    scriptBadge: "EN",
-    persona: "Emma",
-    trait: "Sharp & Persuasive",
-    audioSrc: "/audio/hero-demo.mp3",
-    fallbackLang: "en-US",
-    fallbackDuration: 38,
+    id: "sales-te",
+    voiceId: "cartesia:07bc462a-c644-49f1-baf7-82d5599131be:te",
+    language: "Telugu",
+    languageNative: "తెలుగు",
+    scriptBadge: "TE",
+    persona: "Sindhu",
+    trait: "Conversational Partner",
+    audioSrc: "/audio/sales-te.mp3?v=cartesia-sindhu1",
+    fallbackLang: "te-IN",
+    fallbackDuration: 24,
+  },
+] as const;
+
+export const industryVoiceSection = {
+  eyebrow: "Hear them work",
+  titleBefore: "Who is your AI Employee ",
+  titleHighlight: "best",
+  titleAfter: " for?",
+  subtitle:
+    "From local businesses in Andhra & Telangana to teams across India, your AI employee pays for itself whenever your business runs on phone calls.",
+  funFact:
+    "Fun fact: in these recordings, both the prospect and the agent are our AI — Cartesia Sonic, the same voices your employees use.",
+} as const;
+
+export const industryVoiceLangs = [
+  { id: "te", label: "Telugu", native: "తెలుగు" },
+  { id: "en", label: "English", native: "English" },
+  { id: "hi", label: "Hindi", native: "हिंदी" },
+] as const;
+
+export type IndustryVoiceLangId = (typeof industryVoiceLangs)[number]["id"];
+
+const V = "cartesia-en7";
+
+export const industryVoiceCards = [
+  {
+    id: "realestate",
+    title: "Real Estate & Builders",
+    href: "/ai-employees/realestate",
+    deployLabel: "Deploy for Real Estate",
+    icon: "Building2",
+    iconClass: "bg-sky-100 text-sky-700",
+    variants: {
+      te: {
+        voiceCode: "Sindhu",
+        description:
+          "99acres enquiry వస్తే వెంటనే call — budget, location qualify చేసి weekend site visit book చేస్తుంది.",
+        audioSrc: `/audio/industry-realestate-te.mp3?v=${V}`,
+        fallbackLang: "te-IN",
+        fallbackDuration: 48,
+      },
+      en: {
+        voiceCode: "Simi",
+        description:
+          "Calls Facebook, 99acres and MagicBricks leads within seconds, qualifies budget and location, and books the weekend site visit.",
+        audioSrc: `/audio/industry-realestate-en-simi.mp3?v=${V}`,
+        fallbackLang: "en-IN",
+        fallbackDuration: 23,
+      },
+      hi: {
+        voiceCode: "Arushi",
+        description:
+          "99acres enquiry आते ही call — budget और location qualify करके weekend site visit book करती है।",
+        audioSrc: `/audio/industry-realestate-hi.mp3?v=${V}`,
+        fallbackLang: "hi-IN",
+        fallbackDuration: 41,
+      },
+    },
+  },
+  {
+    id: "school",
+    title: "Coaching & Admissions",
+    href: "/ai-employees/school",
+    deployLabel: "Deploy for Coaching",
+    icon: "GraduationCap",
+    iconClass: "bg-orange-100 text-orange-700",
+    variants: {
+      te: {
+        voiceCode: "Ramya",
+        description:
+          "Student enquiryకి instant Telugu call — class, batch timings, fees explain చేసి counseling slot book చేస్తుంది.",
+        audioSrc: `/audio/industry-school-te.mp3?v=${V}`,
+        fallbackLang: "te-IN",
+        fallbackDuration: 42,
+      },
+      en: {
+        voiceCode: "Devansh",
+        description:
+          "Screens student inquiries instantly, explains fees and batch timings, and books the counseling session.",
+        audioSrc: `/audio/industry-school-en-devansh.mp3?v=${V}`,
+        fallbackLang: "en-IN",
+        fallbackDuration: 20,
+      },
+      hi: {
+        voiceCode: "Aadhya",
+        description:
+          "Student enquiry पर तुरंत call — class, batch, fees बताकर counseling slot book करती है।",
+        audioSrc: `/audio/industry-school-hi.mp3?v=${V}`,
+        fallbackLang: "hi-IN",
+        fallbackDuration: 41,
+      },
+    },
+  },
+  {
+    id: "hospital",
+    title: "Hospitals & Diagnostics",
+    href: "/ai-employees/hospital",
+    deployLabel: "Deploy for Hospitals",
+    icon: "HeartPulse",
+    iconClass: "bg-emerald-100 text-emerald-700",
+    variants: {
+      te: {
+        voiceCode: "Bhavani",
+        description:
+          "OPD calls 24/7 — doctor availability చెప్పి appointment book చేసి, report reminders పంపుతుంది.",
+        audioSrc: `/audio/industry-hospital-te.mp3?v=${V}`,
+        fallbackLang: "te-IN",
+        fallbackDuration: 46,
+      },
+      en: {
+        voiceCode: "Sindhu",
+        description:
+          "Handles OPD inquiries 24/7, books doctor appointments, and sends report-ready reminders.",
+        audioSrc: `/audio/industry-hospital-en-sindhu.mp3?v=${V}`,
+        fallbackLang: "en-IN",
+        fallbackDuration: 19,
+      },
+      hi: {
+        voiceCode: "Arushi",
+        description:
+          "OPD calls 24/7 — डॉक्टर की उपलब्धता बताकर appointment book करती है और report reminders भेजती है।",
+        audioSrc: `/audio/industry-hospital-hi.mp3?v=${V}`,
+        fallbackLang: "hi-IN",
+        fallbackDuration: 39,
+      },
+    },
+  },
+  {
+    id: "restaurant",
+    title: "Restaurants & Banquets",
+    href: "/ai-employees/restaurant",
+    deployLabel: "Deploy for Restaurants",
+    icon: "UtensilsCrossed",
+    iconClass: "bg-rose-100 text-rose-700",
+    variants: {
+      te: {
+        voiceCode: "Sindhu",
+        description:
+          "Rush hourలో ప్రతి call — table reservation, waitlist, buffet packages — Teluguలో confirm చేస్తుంది.",
+        audioSrc: `/audio/industry-restaurant-te.mp3?v=${V}`,
+        fallbackLang: "te-IN",
+        fallbackDuration: 34,
+      },
+      en: {
+        voiceCode: "Sindhu",
+        description:
+          "Answers every call during rush hours, takes reservations, manages waitlists, and confirms party packages.",
+        audioSrc: `/audio/industry-restaurant-en-sindhu.mp3?v=${V}`,
+        fallbackLang: "en-IN",
+        fallbackDuration: 17,
+      },
+      hi: {
+        voiceCode: "Aadhya",
+        description:
+          "Rush hour में हर call — table, waitlist, buffet — हिंदी में confirm करती है।",
+        audioSrc: `/audio/industry-restaurant-hi.mp3?v=${V}`,
+        fallbackLang: "hi-IN",
+        fallbackDuration: 32,
+      },
+    },
+  },
+  {
+    id: "sales",
+    title: "Sales & Lead Calling",
+    href: "/ai-employees/sales",
+    deployLabel: "Deploy for Sales",
+    icon: "Phone",
+    iconClass: "bg-violet-100 text-violet-700",
+    variants: {
+      te: {
+        voiceCode: "Bhavani",
+        description:
+          "Form fill అయిన ఒక నిమిషంలో call — interest qualify చేసి మీ calendarలో demo book చేస్తుంది.",
+        audioSrc: `/audio/industry-sales-te.mp3?v=${V}`,
+        fallbackLang: "te-IN",
+        fallbackDuration: 47,
+      },
+      en: {
+        voiceCode: "Simi",
+        description:
+          "Calls every new form fill in under a minute, qualifies interest, and books the demo on your calendar.",
+        audioSrc: `/audio/industry-sales-en-simi.mp3?v=${V}`,
+        fallbackLang: "en-IN",
+        fallbackDuration: 18,
+      },
+      hi: {
+        voiceCode: "Arushi",
+        description:
+          "Form fill होते ही एक minute में call — qualify करके आपके calendar पर demo book करती है।",
+        audioSrc: `/audio/industry-sales-hi.mp3?v=${V}`,
+        fallbackLang: "hi-IN",
+        fallbackDuration: 42,
+      },
+    },
+  },
+  {
+    id: "insurance",
+    title: "Insurance Renewals",
+    href: "/ai-employees/insurance",
+    deployLabel: "Deploy for Insurance",
+    icon: "ShieldCheck",
+    iconClass: "bg-cyan-100 text-cyan-700",
+    variants: {
+      te: {
+        voiceCode: "Ramya",
+        description:
+          "Policy expire అయ్యే ముందు call — cover plain Teluguలో explain చేసి renewal complete చేస్తుంది.",
+        audioSrc: `/audio/industry-insurance-te.mp3?v=${V}`,
+        fallbackLang: "te-IN",
+        fallbackDuration: 41,
+      },
+      en: {
+        voiceCode: "Devansh",
+        description:
+          "Proactively calls policyholders, explains coverage in plain language, and completes the renewal on the call.",
+        audioSrc: `/audio/industry-insurance-en-devansh.mp3?v=${V}`,
+        fallbackLang: "en-IN",
+        fallbackDuration: 17,
+      },
+      hi: {
+        voiceCode: "Sameer",
+        description:
+          "Policy expire से पहले call — cover सादी भाषा में समझाकर renewal complete करता है।",
+        audioSrc: `/audio/industry-insurance-hi.mp3?v=${V}`,
+        fallbackLang: "hi-IN",
+        fallbackDuration: 35,
+      },
+    },
+  },
+  {
+    id: "hr",
+    title: "HR & Recruiting",
+    href: "/ai-employees/hr",
+    deployLabel: "Deploy for HR",
+    icon: "Users",
+    iconClass: "bg-indigo-100 text-indigo-700",
+    variants: {
+      te: {
+        voiceCode: "Ramya",
+        description:
+          "Candidateని screen చేసి notice period, availability confirm చేసి interview slot book చేస్తుంది.",
+        audioSrc: `/audio/industry-hr-te.mp3?v=${V}`,
+        fallbackLang: "te-IN",
+        fallbackDuration: 39,
+      },
+      en: {
+        voiceCode: "Devansh",
+        description:
+          "Screens candidates, checks notice period and availability, and schedules interviews on your calendar.",
+        audioSrc: `/audio/industry-hr-en-devansh.mp3?v=${V}`,
+        fallbackLang: "en-IN",
+        fallbackDuration: 15,
+      },
+      hi: {
+        voiceCode: "Aadhya",
+        description:
+          "Candidate को screen करके notice period confirm करती है और interview slot book करती है।",
+        audioSrc: `/audio/industry-hr-hi.mp3?v=${V}`,
+        fallbackLang: "hi-IN",
+        fallbackDuration: 37,
+      },
+    },
+  },
+  {
+    id: "support",
+    title: "Customer Support",
+    href: "/ai-employees/support",
+    deployLabel: "Deploy for Support",
+    icon: "Headphones",
+    iconClass: "bg-teal-100 text-teal-700",
+    variants: {
+      te: {
+        voiceCode: "Bhavani",
+        description:
+          "Order, billing, ticket FAQsని Teluguలో resolve చేసి, complex issuesని humanకి contextతో escalate చేస్తుంది.",
+        audioSrc: `/audio/industry-support-te.mp3?v=${V}`,
+        fallbackLang: "te-IN",
+        fallbackDuration: 37,
+      },
+      en: {
+        voiceCode: "Simi",
+        description:
+          "Resolves FAQs from your knowledge base 24/7 and escalates complex tickets to humans with full context.",
+        audioSrc: `/audio/industry-support-en-simi.mp3?v=${V}`,
+        fallbackLang: "en-IN",
+        fallbackDuration: 14,
+      },
+      hi: {
+        voiceCode: "Arushi",
+        description:
+          "Order और ticket FAQs हिंदी में resolve करती है, जटिल issues human को context के साथ escalate करती है।",
+        audioSrc: `/audio/industry-support-hi.mp3?v=${V}`,
+        fallbackLang: "hi-IN",
+        fallbackDuration: 33,
+      },
+    },
   },
 ] as const;
 

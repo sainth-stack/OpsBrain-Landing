@@ -112,6 +112,8 @@ export interface AudioPlayerProps {
   isActiveCard?: boolean;
   preferSpeech?: boolean;
   showDemoLabel?: boolean;
+  variant?: "default" | "compact";
+  tone?: "light" | "dark";
 }
 
 export function AudioPlayer({
@@ -125,6 +127,8 @@ export function AudioPlayer({
   isActiveCard,
   preferSpeech = false,
   showDemoLabel = false,
+  variant = "default",
+  tone = "light",
 }: AudioPlayerProps) {
   const audioRef = useRef<HTMLAudioElement>(null);
   const speechRef = useRef<SpeechSynthesisUtterance | null>(null);
@@ -284,9 +288,11 @@ export function AudioPlayer({
   };
 
   const progress = duration > 0 ? (currentTime / duration) * 100 : 0;
+  const isDark = tone === "dark";
+  const compact = variant === "compact";
 
   return (
-    <div className={cn("space-y-3", className)}>
+    <div className={cn(compact ? "space-y-0" : "space-y-3", className)}>
       {showDemoLabel && (
         <p className="text-[11px] font-medium text-brand-accent">
           {playbackMode === "speech" && isPlaying
@@ -325,9 +331,16 @@ export function AudioPlayer({
         aria-hidden="true"
       />
 
-      <WaveformVisualizer isPlaying={isPlaying && isGlobalActive} />
+      {variant === "default" && (
+        <WaveformVisualizer isPlaying={isPlaying && isGlobalActive} />
+      )}
 
-      <div className="flex items-center gap-3">
+      <div
+        className={cn(
+          "flex items-center gap-3",
+          isDark && compact && "rounded-xl border border-white/10 bg-white/[0.04] px-3 py-2.5",
+        )}
+      >
         <button
           type="button"
           onClick={togglePlay}
@@ -335,24 +348,57 @@ export function AudioPlayer({
           aria-label={isPlaying ? `Pause ${label} demo` : `Play ${label} demo`}
           aria-pressed={isPlaying}
           className={cn(
-            "flex size-11 shrink-0 items-center justify-center rounded-full transition-all",
+            "flex shrink-0 items-center justify-center rounded-full transition-all",
+            compact ? "size-9" : "size-11",
             "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary",
-            isPlaying && isGlobalActive
-              ? "bg-brand-primary text-white ring-2 ring-brand-primary/30"
-              : "bg-brand-primary-light text-brand-primary hover:bg-brand-primary hover:text-white",
-            isActiveCard && isPlaying && "ring-2 ring-brand-accent ring-offset-2",
+            isDark
+              ? isPlaying && isGlobalActive
+                ? "bg-brand-accent text-ink shadow-[0_0_20px_rgba(52,211,153,0.35)]"
+                : "bg-white/10 text-white hover:bg-brand-accent hover:text-ink"
+              : isPlaying && isGlobalActive
+                ? "bg-brand-primary text-white ring-2 ring-brand-primary/30"
+                : "bg-brand-primary-light text-brand-primary hover:bg-brand-primary hover:text-white",
+            isActiveCard && isPlaying && !isDark && "ring-2 ring-brand-accent ring-offset-2",
           )}
         >
           {isPlaying && isGlobalActive ? (
-            <Pause className="size-5" aria-hidden="true" />
+            <Pause className={cn(compact ? "size-4" : "size-5")} aria-hidden="true" />
           ) : (
-            <Play className="size-5 translate-x-0.5" aria-hidden="true" />
+            <Play
+              className={cn(compact ? "size-4 translate-x-px" : "size-5 translate-x-0.5")}
+              aria-hidden="true"
+            />
           )}
         </button>
 
-        <div className="flex-1">
+        <div className="min-w-0 flex-1">
+          {compact && isDark && (
+            <div className="mb-1.5 flex h-3.5 items-end gap-[2px]" aria-hidden="true">
+              {Array.from({ length: 18 }).map((_, i) => (
+                <span
+                  key={i}
+                  className={cn(
+                    "w-[2.5px] rounded-full bg-brand-accent/80",
+                    isPlaying && isGlobalActive ? "animate-waveform-bar" : "h-1 opacity-40",
+                  )}
+                  style={
+                    isPlaying && isGlobalActive
+                      ? {
+                          animationDelay: `${i * 0.04}s`,
+                          height: `${4 + ((i * 7) % 10)}px`,
+                        }
+                      : undefined
+                  }
+                />
+              ))}
+            </div>
+          )}
           <div
-            className="h-1.5 overflow-hidden rounded-full bg-border-default"
+            className={cn(
+              "overflow-hidden rounded-full",
+              compact ? "h-1" : "h-1.5",
+              isDark ? "bg-white/10" : "bg-border-default",
+            )}
             role="progressbar"
             aria-valuenow={Math.round(progress)}
             aria-valuemin={0}
@@ -360,11 +406,21 @@ export function AudioPlayer({
             aria-label={`${label} playback progress`}
           >
             <div
-              className="h-full rounded-full bg-gradient-to-r from-brand-primary to-brand-accent transition-all duration-150"
+              className={cn(
+                "h-full rounded-full transition-all duration-150",
+                isDark
+                  ? "bg-brand-accent"
+                  : "bg-gradient-to-r from-brand-primary to-brand-accent",
+              )}
               style={{ width: `${progress}%` }}
             />
           </div>
-          <div className="mt-1 flex justify-between text-[11px] tabular-nums text-text-muted">
+          <div
+            className={cn(
+              "mt-1 flex justify-between text-[11px] tabular-nums",
+              isDark ? "text-on-dark-muted" : "text-text-muted",
+            )}
+          >
             <span>{formatTime(currentTime)}</span>
             <span>{formatTime(duration)}</span>
           </div>

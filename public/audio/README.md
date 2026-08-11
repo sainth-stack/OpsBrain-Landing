@@ -1,41 +1,23 @@
 # Voice demo audio
 
-Landing page voice demos (`/#voice-demos`) use **3 MP3 files** — English, Hindi, and Telugu.
+Landing demos are **Cartesia Sonic 3.5** plus quiet office ambience.
+
+Industry carousel (`/#industries`): Telugu / English / Hindi filters. Each industry has its own clip (`industry-{slug}-{te|en|hi}.mp3`).
 
 | File | Persona | Language |
 |------|---------|----------|
-| `sales-en.mp3` | Sarah | English |
-| `sales-hi.mp3` | Priya | Hindi |
-| `sales-te.mp3` | Ananya | Telugu |
+| `sales-en.mp3` | Simi | English |
+| `sales-hi.mp3` | Arushi | Hindi |
+| `sales-te.mp3` | Sindhu | Telugu |
+| `hero-demo.mp3` | Simi | English |
+| `industry-*-{te,en,hi}.mp3` | TE: Sindhu / Ramya / Bhavani · EN: Sindhu / Devansh / Simi · HI: Arushi / Aadhya / Sameer | per card |
 
-Scripts: `scripts/voice-demo-dialogues.mjs`  
-Site: `src/content/site.ts` → `voiceDemos`
-
-## Regenerate for free (recommended)
-
-Uses **Microsoft Edge neural TTS** — the same “Read aloud” voices in Edge browser.
-
-- **Not** an AI model like ElevenLabs  
-- **No** API key or subscription  
-- **Requires** `ffmpeg` (`brew install ffmpeg`) and Python `edge-tts`:
+Generator: `OpsBrain-Backend/scripts/generate_landing_voice_demos.py`
 
 ```bash
-pip3 install -r scripts/requirements-voice.txt
-npm run generate:voice-demos:free
+cd OpsBrain-Backend
+source venv/bin/activate
+python scripts/generate_landing_voice_demos.py --industry
 ```
 
-One file only:
-
-```bash
-node scripts/generate-voice-demos-free.mjs --only=sales-te
-```
-
-Commit the MP3s to deploy — visitors play static files, no runtime TTS cost.
-
-## Regenerate with ElevenLabs (paid credits)
-
-```bash
-npm run generate:voice-demos
-```
-
-Needs `ELEVENLABS_API_KEY` in `.env` and ~500 credits per file.
+Bump `?v=` in `src/content/site.ts` after regenerating.

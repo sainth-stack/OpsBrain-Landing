@@ -86,7 +86,7 @@ function EmployeeOrb() {
 
       <audio
         ref={audioRef}
-        src="/audio/hero-demo.mp3"
+        src="/audio/hero-demo.mp3?v=cartesia-simi1"
         preload="none"
         onEnded={() => { setIsPlaying(false); }}
         className="sr-only"

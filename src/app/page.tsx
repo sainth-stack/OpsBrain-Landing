@@ -26,6 +26,13 @@ const AIEmployees = dynamic(
   () => import("@/components/sections/AIEmployees").then((m) => m.AIEmployees),
   { loading: () => <SectionSkeleton /> },
 );
+const IndustryVoiceShowcase = dynamic(
+  () =>
+    import("@/components/sections/IndustryVoiceShowcase").then(
+      (m) => m.IndustryVoiceShowcase,
+    ),
+  { loading: () => <SectionSkeleton /> },
+);
 
 export const metadata = buildPageMetadata({
   title: siteConfig.seo.title,
@@ -59,6 +66,9 @@ export default function Home() {
         </div>
         <div className="below-fold-section">
           <AIEmployees />
+        </div>
+        <div className="below-fold-section">
+          <IndustryVoiceShowcase />
         </div>
         <ClientHeavySections />
       </main>

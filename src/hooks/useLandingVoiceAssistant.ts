@@ -109,17 +109,25 @@ export function useLandingVoiceAssistant() {
     }
   }, []);
 
+  const connectMic = useCallback(() => {
+    if (micSourceRef.current && workletNodeRef.current && !micConnectedRef.current) {
+      micSourceRef.current.connect(workletNodeRef.current);
+      micConnectedRef.current = true;
+    }
+  }, []);
+
   const openMicWhenReady = useCallback(() => {
     const ctx = audioCtxRef.current;
     if (ctx?.state === "suspended") ctx.resume().catch(() => {});
     if (!playbackActiveRef.current) {
       micOpenPendingRef.current = false;
+      connectMic();
       setCaptureMode(false);
       setCallState("active");
       return;
     }
     micOpenPendingRef.current = true;
-  }, [setCaptureMode]);
+  }, [connectMic, setCaptureMode]);
 
   const handleBargeIn = useCallback(() => {
     bargedInRef.current = true;
@@ -261,6 +269,7 @@ export function useLandingVoiceAssistant() {
         playbackActiveRef.current = false;
         if (micOpenPendingRef.current) {
           micOpenPendingRef.current = false;
+          connectMic();
           setCaptureMode(false);
           setCallState("active");
         }
@@ -283,8 +292,8 @@ export function useLandingVoiceAssistant() {
 
     const micSource = ctx.createMediaStreamSource(stream);
     micSourceRef.current = micSource;
-    micSource.connect(workletNode);
-    micConnectedRef.current = true;
+    // Hold capture until the backend sends mic_open (after Diya's greeting).
+    // Forwarding PCM during STT handshake used to abort the Cartesia connect.
 
     const ws = new WebSocket(buildLandingVoiceWsUrl(session.sessionToken));
     ws.binaryType = "arraybuffer";
@@ -393,6 +402,7 @@ export function useLandingVoiceAssistant() {
     };
   }, [
     cleanup,
+    connectMic,
     enqueuePCMChunk,
     handleBargeIn,
     openMicWhenReady,
