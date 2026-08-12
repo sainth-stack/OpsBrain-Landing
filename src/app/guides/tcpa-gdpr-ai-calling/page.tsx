@@ -11,7 +11,7 @@ import {
 export const metadata = buildPageMetadata({
   title: "TCPA, GDPR & AI Calling Compliance Guide",
   description:
-    "Compliance checklist for AI outbound and inbound calling under TCPA, GDPR, and telemarketing rules — consent, DNC, calling windows, and data retention for voice AI.",
+    "Compliance checklist for AI outbound and inbound calling under TCPA, GDPR, and telemarketing rules - consent, DNC, calling windows, and data retention for voice AI.",
   path: "/guides/tcpa-gdpr-ai-calling",
   keywords: [
     "TCPA AI calling",
@@ -35,7 +35,7 @@ export default function ComplianceGuidePage() {
         <PageHero
           eyebrow="Compliance"
           title="TCPA, GDPR & AI Calling: What Revenue Teams Should Know"
-          subtitle="AI voice agents scale outreach fast — which makes consent, disclosure, and data handling more important, not less. Use this guide as a starting point with your legal counsel."
+          subtitle="AI voice agents scale outreach fast - which makes consent, disclosure, and data handling more important, not less. Use this guide as a starting point with your legal counsel."
         />
 
         <section aria-labelledby="tcpa-heading">
@@ -45,7 +45,7 @@ export default function ComplianceGuidePage() {
           <p className="mt-4 text-body leading-relaxed text-text-secondary">
             The Telephone Consumer Protection Act regulates autodialed calls, prerecorded
             messages, and texts to mobile numbers. AI voice agents that place outbound calls
-            generally require prior express consent for marketing — or an established business
+            generally require prior express consent for marketing - or an established business
             relationship where applicable. Maintain proof of consent tied to each lead record.
           </p>
           <ul className="mt-4 list-disc space-y-2 pl-6 text-body text-text-secondary">
@@ -61,7 +61,7 @@ export default function ComplianceGuidePage() {
             GDPR and EU data subjects
           </h2>
           <p className="mt-4 text-body leading-relaxed text-text-secondary">
-            Processing personal data for AI calling requires a lawful basis — often consent or
+            Processing personal data for AI calling requires a lawful basis - often consent or
             legitimate interest with balancing tests. Call recordings and transcripts are personal
             data; define retention periods and honor access, rectification, and erasure requests.
           </p>
@@ -79,7 +79,7 @@ export default function ComplianceGuidePage() {
           <p className="mt-4 text-body leading-relaxed text-text-secondary">
             Commercial communications in India fall under TRAI regulations including DND
             preferences and registered telemarketer requirements. Telugu and Hindi campaigns still
-            require consent artifacts and calling discipline — language choice does not exempt teams
+            require consent artifacts and calling discipline - language choice does not exempt teams
             from registry checks.
           </p>
         </section>

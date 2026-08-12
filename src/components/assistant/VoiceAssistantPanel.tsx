@@ -180,12 +180,16 @@ export function VoiceAssistantPanel() {
   const handleConfirmEnd = useCallback(() => {
     endCall();
     setConfirmEnd(false);
-    minimizeDiya();
-  }, [endCall, minimizeDiya]);
+    dismissDiya();
+  }, [endCall, dismissDiya]);
 
   const isIdle = callState === "idle";
   const isEnded = callState === "ended";
   const orbSize = isInCall ? "compact" : isIdle ? "hero" : "default";
+
+  if (view === "hidden") {
+    return null;
+  }
 
   if (view === "pill") {
     return <DiyaFloatingPill onClick={() => openDiya()} />;
@@ -218,7 +222,7 @@ export function VoiceAssistantPanel() {
         )}
         role="dialog"
         aria-labelledby="diya-widget-title"
-        aria-label="OpsBrain voice assistant — Diya"
+        aria-label="OpsBrain voice assistant - Diya"
         aria-modal={showBackdrop ? true : undefined}
       >
         <DiyaWidgetHeader onMinimize={handleMinimize} />

@@ -224,6 +224,57 @@ html[data-theme="dark"] {
     @apply rounded-2xl border border-border-default bg-surface-white p-8 transition-shadow hover:shadow-lg;
   }
 
+.talk-agent-stage {
+  background:
+    radial-gradient(ellipse 72% 50% at 50% 0%, rgb(79 70 229 / 0.09), transparent 58%),
+    radial-gradient(ellipse 40% 36% at 92% 88%, rgb(16 185 129 / 0.06), transparent 62%),
+    var(--color-surface-muted);
+}
+
+.talk-agent-card {
+  background:
+    linear-gradient(180deg, rgb(255 255 255 / 0.96) 0%, rgb(248 250 252 / 0.94) 100%);
+  box-shadow:
+    0 0 0 1px rgb(15 23 42 / 0.04),
+    0 1px 1px rgb(15 23 42 / 0.03),
+    0 24px 64px -28px rgb(15 23 42 / 0.22);
+}
+
+.talk-agent-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgb(79 70 229 / 0.35),
+    rgb(16 185 129 / 0.25),
+    transparent
+  );
+  pointer-events: none;
+}
+
+.talk-agent-orb {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 32% 28%, #eef2ff 0%, #a5b4fc 24%, #6366f1 50%, #4338ca 76%, #312e81 96%);
+  box-shadow:
+    0 24px 80px rgb(79 70 229 / 0.32),
+    inset 0 -26px 56px rgb(30 27 75 / 0.35),
+    inset 0 14px 40px rgb(255 255 255 / 0.5);
+}
+
+.talk-agent-orb::after {
+  content: "";
+  position: absolute;
+  inset: 14%;
+  border-radius: inherit;
+  background: radial-gradient(circle at 30% 24%, rgb(255 255 255 / 0.5), transparent 42%);
+  pointer-events: none;
+}
+
   .animate-fade-up {
     animation: ts-fade-up 0.5s ease-out both;
   }
@@ -779,3 +830,4 @@ html[data-theme="dark"] {
   background: var(--color-brand-primary);
   cursor: pointer;
 }
+

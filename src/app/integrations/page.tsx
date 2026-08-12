@@ -75,7 +75,7 @@ export default function IntegrationsPage() {
                   </h3>
                   <p className="mt-2 text-small leading-relaxed text-text-secondary">
                     Bi-directional sync for leads, call logs, meetings, and
-                    disposition codes — so {integration.label} stays the system
+                    disposition codes - so {integration.label} stays the system
                     of record while AI employees handle voice workflows.
                   </p>
                 </article>

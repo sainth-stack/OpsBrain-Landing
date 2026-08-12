@@ -14,9 +14,7 @@ import {
   type ReactNode,
 } from "react";
 
-const DISMISSED_KEY = "opsbrain_voice_dismissed";
-
-export type PanelView = "pill" | "panel";
+export type PanelView = "hidden" | "pill" | "panel";
 
 export type OpenDiyaOptions = {
   /** Request mic and start voice in the same user click (hero CTA). */
@@ -54,7 +52,7 @@ export function useDiyaAssistant(): DiyaAssistantContextValue {
 
 export function DiyaAssistantProvider({ children }: { children: ReactNode }) {
   const [mounted, setMounted] = useState(false);
-  const [view, setView] = useState<PanelView>("pill");
+  const [view, setView] = useState<PanelView>("hidden");
   const [showBackdrop, setShowBackdrop] = useState(false);
 
   const voice = useLandingVoiceAssistant();
@@ -67,19 +65,10 @@ export function DiyaAssistantProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     setMounted(true);
-    prefetchLandingVoiceSession();
-    const dismissed = sessionStorage.getItem(DISMISSED_KEY);
-    if (dismissed) return;
-    const timer = window.setTimeout(() => {
-      setView("panel");
-      setShowBackdrop(false);
-    }, 600);
-    return () => window.clearTimeout(timer);
   }, []);
 
   const openDiya = useCallback(
     (options?: OpenDiyaOptions) => {
-      sessionStorage.removeItem(DISMISSED_KEY);
       prefetchLandingVoiceSession();
       setView("panel");
       setShowBackdrop(options?.withBackdrop ?? Boolean(options?.autoStart));
@@ -91,13 +80,12 @@ export function DiyaAssistantProvider({ children }: { children: ReactNode }) {
   );
 
   const minimizeDiya = useCallback(() => {
-    setView("pill");
+    setView(voice.isInCall ? "pill" : "hidden");
     setShowBackdrop(false);
-  }, []);
+  }, [voice.isInCall]);
 
   const dismissDiya = useCallback(() => {
-    sessionStorage.setItem(DISMISSED_KEY, "1");
-    setView("pill");
+    setView("hidden");
     setShowBackdrop(false);
     if (voice.isInCall) voice.endCall();
   }, [voice]);

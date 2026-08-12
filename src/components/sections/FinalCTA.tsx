@@ -12,7 +12,7 @@ export function FinalCTA() {
     <Section
       id="contact"
       surface="ink"
-      className="scroll-mt-16"
+      className="scroll-mt-24 md:scroll-mt-28"
       aria-label={finalCTASection.title}
     >
       <Container className="grid items-center gap-14 lg:grid-cols-2">

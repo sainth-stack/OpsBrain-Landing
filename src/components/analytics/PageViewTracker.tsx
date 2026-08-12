@@ -8,7 +8,7 @@ import { useEffect, useRef } from "react";
 /**
  * Fires a pageview ping to the OpsBrain backend on every route change.
  * Also captures UTM attribution on first load.
- * Renders nothing — mount once in the root layout.
+ * Renders nothing - mount once in the root layout.
  */
 export function PageViewTracker() {
   const pathname = usePathname();

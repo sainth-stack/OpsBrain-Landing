@@ -3,23 +3,108 @@
 import { cn } from "@/lib/utils";
 import { VoiceWaveform } from "@/components/ui/VoiceWaveform";
 import { hero } from "@/content/site";
-import { CalendarCheck, Database, Pause, Phone, Play, TrendingUp } from "lucide-react";
+import {
+  Calendar,
+  CreditCard,
+  Database,
+  Mail,
+  MessageCircle,
+  Pause,
+  Play,
+  Smartphone,
+  type LucideIcon,
+} from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 
-const leadStep = hero.visual.storySteps[0];
-const callStep = hero.visual.storySteps[1];
-const crmStep = hero.visual.storySteps[4];
-const metrics = crmStep.metrics;
+const TOOL_ICONS: Record<string, LucideIcon> = {
+  CreditCard,
+  MessageCircle,
+  Mail,
+  Calendar,
+  Database,
+  Smartphone,
+};
 
-const parallax = (factor: number): React.CSSProperties => ({
-  transform: `translate3d(calc(var(--mx, 0) * ${factor}px), calc(var(--my, 0) * ${factor}px), 0)`,
-  transition: "transform 0.4s cubic-bezier(0.22, 1, 0.36, 1)",
-});
+const tools = hero.visual.orbitTools;
+const languages = hero.visual.orbitLanguages;
 
-function EmployeeOrb() {
-  const [liveLabel, setLiveLabel] = useState<string>(callStep.languageChip);
-  const [isPlaying, setIsPlaying] = useState(false);
+const LANG_RADIUS = 48;
+const TOOL_RADIUS = 36.5;
+
+function polar(radiusPct: number, angleDeg: number) {
+  const rad = ((angleDeg - 90) * Math.PI) / 180;
+  return {
+    left: `${50 + radiusPct * Math.cos(rad)}%`,
+    top: `${50 + radiusPct * Math.sin(rad)}%`,
+  };
+}
+
+function RingTrack({
+  radiusPct,
+  dashed = false,
+}: {
+  radiusPct: number;
+  dashed?: boolean;
+}) {
+  return (
+    <div
+      className={cn(
+        "pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full",
+        dashed
+          ? "border border-dashed border-brand-primary/25"
+          : "border border-brand-primary/14",
+      )}
+      style={{ width: `${radiusPct * 2}%`, height: `${radiusPct * 2}%` }}
+      aria-hidden="true"
+    />
+  );
+}
+
+function ChipFace({
+  label,
+  icon,
+  variant,
+}: {
+  label: string;
+  icon?: string;
+  variant: "tool" | "language";
+}) {
+  const Icon = icon ? TOOL_ICONS[icon] : null;
+  return (
+    <div
+      className={cn(
+        "flex items-center gap-2 rounded-full border bg-white/95 backdrop-blur-md",
+        "shadow-[0_10px_30px_rgba(15,23,42,0.08)] ring-1 ring-slate-900/[0.03]",
+        variant === "tool" ? "border-brand-primary/15 px-3 py-1.5" : "border-slate-200/90 px-3 py-1.5",
+      )}
+    >
+      {variant === "tool" && Icon ? (
+        <span className="flex size-5 items-center justify-center rounded-full bg-brand-primary/10">
+          <Icon className="size-3 text-brand-primary" aria-hidden="true" />
+        </span>
+      ) : (
+        <span className="size-1.5 rounded-full bg-brand-primary" aria-hidden="true" />
+      )}
+      <span
+        className={cn(
+          "whitespace-nowrap text-[12px] leading-none",
+          variant === "tool" ? "font-semibold text-text-primary" : "font-medium text-text-secondary",
+        )}
+      >
+        {label}
+      </span>
+    </div>
+  );
+}
+
+export function HeroOrbVisual() {
+  const stageRef = useRef<HTMLDivElement>(null);
   const audioRef = useRef<HTMLAudioElement>(null);
+  const chipRefs = useRef<Array<HTMLDivElement | null>>([]);
+  const accentRefs = useRef<Array<HTMLSpanElement | null>>([]);
+
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [liveLabel, setLiveLabel] = useState("TE · Telugu");
 
   const togglePlay = useCallback(() => {
     const audio = audioRef.current;
@@ -34,136 +119,19 @@ function EmployeeOrb() {
   }, [isPlaying]);
 
   useEffect(() => {
-    const chips = hero.visual.storySteps
-      .map((step) => step.languageChip)
-      .filter(Boolean);
+    const chips = hero.visual.storySteps.map((s) => s.languageChip).filter(Boolean);
     if (chips.length <= 1) return;
-
-    let index = 0;
+    let i = 0;
     const timer = window.setInterval(() => {
-      index = (index + 1) % chips.length;
-      setLiveLabel(chips[index] ?? callStep.languageChip);
+      i = (i + 1) % chips.length;
+      setLiveLabel(chips[i] ?? "TE · Telugu");
     }, 2800);
-
     return () => window.clearInterval(timer);
   }, []);
 
-  return (
-    <div className="relative flex aspect-square w-[72%] items-center justify-center">
-      <div
-        className="absolute inset-0 rounded-full border-2 border-brand-primary/25 animate-pulse-ring"
-        aria-hidden="true"
-      />
-      <div
-        className="absolute inset-0 rounded-full border border-brand-primary/15 animate-pulse-ring"
-        style={{ animationDelay: "1.6s" }}
-        aria-hidden="true"
-      />
-
-      <div
-        className="absolute -inset-4 rounded-full animate-spin-slow"
-        style={{
-          background:
-            "conic-gradient(from 0deg, transparent 0%, rgba(79,70,229,0.35) 10%, transparent 28%, rgba(16,185,129,0.25) 52%, transparent 70%, rgba(79,70,229,0.3) 90%, transparent 100%)",
-          maskImage: "radial-gradient(closest-side, transparent 84%, black 86%)",
-          WebkitMaskImage:
-            "radial-gradient(closest-side, transparent 84%, black 86%)",
-        }}
-        aria-hidden="true"
-      />
-
-      <div className="absolute -inset-7 animate-orbit" aria-hidden="true">
-        <span className="absolute left-1/2 top-0 -ml-1 h-2.5 w-2.5 rounded-full bg-brand-primary shadow-[0_0_12px_rgba(79,70,229,0.8)]" />
-        <span className="absolute bottom-[12%] right-[8%] h-1.5 w-1.5 rounded-full bg-brand-accent shadow-[0_0_10px_rgba(16,185,129,0.9)]" />
-      </div>
-      <div
-        className="absolute -inset-12 animate-orbit"
-        style={{ animationDirection: "reverse", animationDuration: "38s" }}
-        aria-hidden="true"
-      >
-        <span className="absolute right-0 top-1/2 h-2 w-2 rounded-full bg-brand-accent shadow-[0_0_12px_rgba(16,185,129,0.8)]" />
-      </div>
-
-      <audio
-        ref={audioRef}
-        src="/audio/hero-demo.mp3?v=cartesia-simi1"
-        preload="none"
-        onEnded={() => { setIsPlaying(false); }}
-        className="sr-only"
-        aria-hidden="true"
-      />
-
-      <div
-        className="relative flex h-full w-full flex-col items-center justify-center rounded-full animate-breathe"
-        style={{
-          background:
-            "radial-gradient(circle at 32% 28%, #eef2ff 0%, #a5b4fc 24%, #6366f1 50%, #4338ca 76%, #312e81 96%)",
-          boxShadow:
-            "0 24px 80px rgba(79,70,229,0.32), inset 0 -26px 56px rgba(30,27,75,0.35), inset 0 14px 40px rgba(255,255,255,0.5)",
-        }}
-      >
-        <div
-          className="absolute left-[16%] top-[10%] h-[26%] w-[38%] rounded-full bg-white/45 blur-xl"
-          aria-hidden="true"
-        />
-
-        <VoiceWaveform />
-
-        <p className="mt-3 text-xl font-bold tracking-[0.18em] text-white sm:text-2xl">
-          {hero.visual.centerLabel}
-        </p>
-        <p className="mt-1.5 flex items-center gap-1.5 text-xs font-medium text-white/90">
-          <span className="relative flex h-2 w-2" aria-hidden="true">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-300 opacity-75" />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-300" />
-          </span>
-          Live call · {liveLabel}
-        </p>
-
-        {/* Play button — bottom-left of orb sphere */}
-        <div className="absolute bottom-[10%] left-[10%] flex flex-col items-center gap-1.5">
-          {/* Attention pulse ring — only shown when idle */}
-          {!isPlaying && (
-            <span
-              className="pointer-events-none absolute inset-0 rounded-full animate-ping opacity-40"
-              style={{ background: "rgba(255,255,255,0.35)" }}
-              aria-hidden="true"
-            />
-          )}
-          <button
-            type="button"
-            onClick={togglePlay}
-            aria-label={isPlaying ? "Pause OpsBrain demo" : "Play OpsBrain demo"}
-            aria-pressed={isPlaying}
-            className={cn(
-              "relative flex size-16 items-center justify-center rounded-full transition-all duration-300",
-              "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white",
-              "active:scale-95",
-              isPlaying
-                ? "bg-brand-primary text-white shadow-[0_0_32px_rgba(79,70,229,0.8),0_0_12px_rgba(79,70,229,0.5)] ring-2 ring-white/30"
-                : "border-2 border-white/50 bg-white/20 text-white backdrop-blur-md shadow-[0_4px_24px_rgba(0,0,0,0.2)] hover:bg-white/35 hover:border-white/70 hover:scale-105",
-            )}
-          >
-            {isPlaying ? (
-              <Pause className="size-6" aria-hidden="true" />
-            ) : (
-              <Play className="size-6 translate-x-0.5" aria-hidden="true" />
-            )}
-          </button>
-          <span className="text-[10px] font-semibold tracking-widest text-white/80 uppercase select-none">
-            {isPlaying ? "Playing" : "Hear Demo"}
-          </span>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-export function HeroOrbVisual() {
-  const visualRef = useRef<HTMLDivElement>(null);
-
+  // Parallax
   useEffect(() => {
-    const el = visualRef.current;
+    const el = stageRef.current;
     if (!el) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     if (window.matchMedia("(hover: none)").matches) return;
@@ -192,79 +160,244 @@ export function HeroOrbVisual() {
     };
   }, []);
 
+  // Smooth orbit via DOM — no React re-render per frame
+  useEffect(() => {
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduced) {
+      // Static even spread
+      languages.forEach((lang, index) => {
+        const node = chipRefs.current[index];
+        if (!node) return;
+        const pos = polar(LANG_RADIUS, (360 / languages.length) * index);
+        node.style.left = pos.left;
+        node.style.top = pos.top;
+      });
+      tools.forEach((tool, index) => {
+        const node = chipRefs.current[languages.length + index];
+        if (!node) return;
+        const pos = polar(
+          TOOL_RADIUS,
+          (360 / tools.length) * index + 180 / tools.length,
+        );
+        node.style.left = pos.left;
+        node.style.top = pos.top;
+      });
+      return;
+    }
+
+    let raf = 0;
+    let last = performance.now();
+    let langDeg = 0;
+    let toolDeg = 0;
+
+    const tick = (now: number) => {
+      const dt = Math.min((now - last) / 1000, 0.048);
+      last = now;
+      langDeg += 7 * dt;
+      toolDeg -= 10 * dt;
+
+      languages.forEach((_, index) => {
+        const node = chipRefs.current[index];
+        if (!node) return;
+        const base = (360 / languages.length) * index;
+        const pos = polar(LANG_RADIUS, base + langDeg);
+        node.style.left = pos.left;
+        node.style.top = pos.top;
+      });
+
+      tools.forEach((_, index) => {
+        const node = chipRefs.current[languages.length + index];
+        if (!node) return;
+        const base = (360 / tools.length) * index + 180 / tools.length;
+        const pos = polar(TOOL_RADIUS, base + toolDeg);
+        node.style.left = pos.left;
+        node.style.top = pos.top;
+      });
+
+      const a0 = accentRefs.current[0];
+      const a1 = accentRefs.current[1];
+      if (a0) {
+        const p = polar(TOOL_RADIUS, toolDeg + 18);
+        a0.style.left = p.left;
+        a0.style.top = p.top;
+      }
+      if (a1) {
+        const p = polar(LANG_RADIUS, langDeg + 55);
+        a1.style.left = p.left;
+        a1.style.top = p.top;
+      }
+
+      raf = requestAnimationFrame(tick);
+    };
+
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, []);
+
   return (
     <div
-      ref={visualRef}
-      className="relative mx-auto flex aspect-square w-full max-w-[500px] items-center justify-center"
+      ref={stageRef}
+      className="relative mx-auto aspect-square w-full max-w-[600px]"
       role="img"
       aria-label={hero.visual.ariaLabel}
     >
-      <div style={parallax(16)} className="flex h-full w-full items-center justify-center">
-        <EmployeeOrb />
-      </div>
+      <audio
+        ref={audioRef}
+        src="/audio/hero-demo.mp3?v=cartesia-simi1"
+        preload="none"
+        onEnded={() => setIsPlaying(false)}
+        className="sr-only"
+        aria-hidden="true"
+      />
 
       <div
-        className="absolute left-0 top-0 z-10 hidden w-[220px] sm:block md:-left-4 lg:w-60"
-        style={parallax(-26)}
-      >
-        <div className="animate-float rounded-xl border border-border-default bg-white/95 p-4 shadow-xl backdrop-blur-md">
-          <p className="flex items-center gap-1.5 text-xs font-semibold text-brand-primary">
-            <Phone className="h-3.5 w-3.5" aria-hidden="true" />
-            {leadStep.feedLabel}
-          </p>
-          <p className="mt-2 text-[13px] leading-relaxed text-text-secondary">
-            {callStep.voice?.transcript ?? callStep.message}
-          </p>
-          <p className="mt-2.5 border-t border-border-muted pt-2.5 text-xs font-medium text-brand-accent">
-            {callStep.activeCallsNote}
-          </p>
-        </div>
-      </div>
+        className="pointer-events-none absolute inset-[4%] rounded-full"
+        style={{
+          background:
+            "radial-gradient(circle at center, rgba(79,70,229,0.11) 0%, rgba(79,70,229,0.04) 42%, transparent 70%)",
+        }}
+        aria-hidden="true"
+      />
 
       <div
-        className="absolute right-0 top-0 z-10 hidden w-[200px] sm:block md:-right-4 lg:w-[220px]"
-        style={parallax(-18)}
+        className="absolute inset-0"
+        style={{
+          transform:
+            "translate3d(calc(var(--mx, 0) * 12px), calc(var(--my, 0) * 12px), 0)",
+          transition: "transform 0.45s cubic-bezier(0.22, 1, 0.36, 1)",
+        }}
       >
-        <div
-          className="animate-float rounded-xl border border-border-default bg-white/95 px-4 py-3 shadow-xl backdrop-blur-md"
-          style={{ animationDelay: "1.1s" }}
-        >
-          <p className="text-[10px] font-semibold uppercase tracking-wider text-text-muted">
-            {hero.visual.commandCenterTitle}
-          </p>
-          <div className="mt-2 grid grid-cols-2 gap-x-3 gap-y-1.5 text-xs">
-            <span className="text-text-muted">{hero.visual.metricLabels.liveCalls}</span>
-            <span className="font-semibold text-text-primary">{metrics.liveCalls}</span>
-            <span className="text-text-muted">{hero.visual.metricLabels.qualifiedLeads}</span>
-            <span className="font-semibold text-text-primary">{metrics.qualifiedLeads}</span>
-            <span className="text-text-muted">{hero.visual.metricLabels.meetingsBooked}</span>
-            <span className="font-semibold text-brand-accent">{metrics.meetingsBooked}</span>
-            <span className="text-text-muted">{hero.visual.metricLabels.pipeline}</span>
-            <span className="font-semibold text-brand-primary">{metrics.pipeline}</span>
+        <RingTrack radiusPct={48} />
+        <RingTrack radiusPct={36.5} dashed />
+        <RingTrack radiusPct={24} />
+
+        {languages.map((lang, index) => (
+          <div
+            key={`lang-${lang.locale}`}
+            ref={(el) => {
+              chipRefs.current[index] = el;
+            }}
+            className="absolute z-20 -translate-x-1/2 -translate-y-1/2 animate-float"
+            style={{
+              left: "50%",
+              top: "50%",
+              animationDelay: `${index * 160}ms`,
+            }}
+          >
+            <ChipFace label={lang.label} variant="language" />
           </div>
-        </div>
+        ))}
+
+        {tools.map((tool, index) => (
+          <div
+            key={`tool-${tool.label}`}
+            ref={(el) => {
+              chipRefs.current[languages.length + index] = el;
+            }}
+            className="absolute z-20 -translate-x-1/2 -translate-y-1/2 animate-float"
+            style={{
+              left: "50%",
+              top: "50%",
+              animationDelay: `${220 + index * 140}ms`,
+            }}
+          >
+            <ChipFace label={tool.label} icon={tool.icon} variant="tool" />
+          </div>
+        ))}
+
+        <span
+          ref={(el) => {
+            accentRefs.current[0] = el;
+          }}
+          className="pointer-events-none absolute z-10 size-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-accent shadow-[0_0_14px_rgba(16,185,129,0.9)]"
+          style={{ left: "50%", top: "50%" }}
+          aria-hidden="true"
+        />
+        <span
+          ref={(el) => {
+            accentRefs.current[1] = el;
+          }}
+          className="pointer-events-none absolute z-10 size-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-primary shadow-[0_0_12px_rgba(79,70,229,0.85)]"
+          style={{ left: "50%", top: "50%" }}
+          aria-hidden="true"
+        />
       </div>
 
-      <div
-        className="absolute bottom-0 left-1/2 z-10 w-[240px] -translate-x-1/2 lg:w-64"
-        style={parallax(-22)}
-      >
+      {/* Center */}
+      <div className="absolute inset-0 z-30 flex items-center justify-center">
         <div
-          className="animate-float rounded-xl border border-border-default bg-white/95 p-4 shadow-xl backdrop-blur-md"
-          style={{ animationDelay: "2.2s" }}
+          className="flex w-[40%] max-w-[250px] flex-col items-center sm:w-[42%]"
+          style={{
+            transform:
+              "translate3d(calc(var(--mx, 0) * 6px), calc(var(--my, 0) * 6px), 0)",
+            transition: "transform 0.45s cubic-bezier(0.22, 1, 0.36, 1)",
+          }}
         >
-          <p className="flex items-center gap-1.5 text-xs font-semibold text-brand-primary">
-            <Database className="h-3.5 w-3.5" aria-hidden="true" />
-            {crmStep.feedLabel}
-          </p>
-          <p className="mt-2 flex items-center gap-2 text-sm text-text-secondary">
-            <CalendarCheck className="h-4 w-4 shrink-0 text-brand-accent" aria-hidden="true" />
-            {crmStep.message}
-          </p>
-          <p className="mt-2 flex items-center gap-1.5 text-xs font-medium text-brand-accent">
-            <TrendingUp className="h-3.5 w-3.5" aria-hidden="true" />
-            Pipeline updated automatically
-          </p>
+          <div className="relative aspect-square w-full">
+            <div
+              className="absolute inset-[-12%] rounded-full border border-brand-primary/15 animate-pulse-ring"
+              aria-hidden="true"
+            />
+            <div
+              className="absolute -inset-[6%] rounded-full animate-spin-slow"
+              style={{
+                animationDuration: "18s",
+                background:
+                  "conic-gradient(from 0deg, transparent 0%, rgba(79,70,229,0.42) 12%, transparent 30%, rgba(16,185,129,0.2) 55%, transparent 72%, rgba(79,70,229,0.32) 90%, transparent 100%)",
+                maskImage: "radial-gradient(closest-side, transparent 76%, black 78%)",
+                WebkitMaskImage:
+                  "radial-gradient(closest-side, transparent 76%, black 78%)",
+              }}
+              aria-hidden="true"
+            />
+
+            <div
+              className="relative flex h-full w-full flex-col items-center justify-center rounded-full px-5 pb-14 animate-breathe sm:pb-16"
+              style={{
+                background:
+                  "radial-gradient(circle at 30% 26%, #f8f7ff 0%, #c7d2fe 20%, #818cf8 46%, #4f46e5 72%, #312e81 100%)",
+                boxShadow:
+                  "0 30px 80px rgba(79,70,229,0.28), inset 0 -22px 50px rgba(30,27,75,0.3), inset 0 14px 36px rgba(255,255,255,0.5)",
+              }}
+            >
+              <div
+                className="absolute left-[12%] top-[8%] h-[30%] w-[44%] rounded-full bg-white/45 blur-2xl"
+                aria-hidden="true"
+              />
+              <VoiceWaveform className="relative z-[1]" />
+              <p className="relative z-[1] mt-3 text-center text-[15px] font-bold tracking-[0.16em] text-white sm:text-[17px]">
+                {hero.visual.centerLabel}
+              </p>
+              <p className="relative z-[1] mt-2 inline-flex items-center gap-1.5 rounded-full bg-white/15 px-2.5 py-1 text-[10px] font-medium text-white backdrop-blur-sm sm:text-[11px]">
+                <span className="relative flex size-1.5" aria-hidden="true">
+                  <span className="absolute inline-flex size-full animate-ping rounded-full bg-emerald-300 opacity-70" />
+                  <span className="relative inline-flex size-1.5 rounded-full bg-emerald-300" />
+                </span>
+                Live · {liveLabel}
+              </p>
+
+              <button
+                type="button"
+                onClick={togglePlay}
+                aria-label={isPlaying ? "Pause OpsBrain demo" : "Play OpsBrain demo"}
+                aria-pressed={isPlaying}
+                className={cn(
+                  "absolute bottom-4 left-1/2 z-10 flex size-11 -translate-x-1/2 items-center justify-center rounded-full transition-all sm:bottom-5 sm:size-12",
+                  "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white",
+                  "active:scale-95",
+                  isPlaying
+                    ? "bg-white text-brand-primary shadow-[0_8px_28px_rgba(0,0,0,0.25)]"
+                    : "border-2 border-white/80 bg-white/25 text-white shadow-[0_8px_24px_rgba(0,0,0,0.18)] backdrop-blur-md hover:scale-105 hover:bg-white/40 hover:border-white",
+                )}
+              >
+                {isPlaying ? (
+                  <Pause className="size-5" aria-hidden="true" />
+                ) : (
+                  <Play className="size-5 translate-x-0.5" fill="currentColor" aria-hidden="true" />
+                )}
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -9,7 +9,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 const WELCOME: ChatMessage = {
   role: "assistant",
   content:
-    "Hi, I'm Diya — your OpsBrain AI guide. Ask me about pricing, features, and getting started, or anything else on your mind.",
+    "Hi, I'm Diya - your OpsBrain AI guide. Ask me about pricing, features, and getting started, or anything else on your mind.",
 };
 
 function getSpeechRecognition(): SpeechRecognitionCtor | null {

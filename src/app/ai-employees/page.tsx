@@ -51,7 +51,7 @@ export default function AIEmployeesHubPage() {
               <Link
                 key={employee.id}
                 href={`/ai-employees/${employee.id}`}
-                className="group flex flex-col rounded-xl border border-border-default bg-surface-white p-6 transition-all hover:-translate-y-0.5 hover:border-brand-primary/40 hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary"
+                className="group flex flex-col rounded-2xl border border-border-default bg-surface-white p-6 transition-colors hover:border-brand-primary/35 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary"
               >
                 <p className="text-[11px] font-medium uppercase tracking-wider text-text-muted">
                   {employee.industry}
@@ -59,7 +59,7 @@ export default function AIEmployeesHubPage() {
                 <h3 className="mt-2 text-body font-semibold text-text-primary group-hover:text-brand-primary md:text-lg">
                   {employee.name}
                 </h3>
-                <p className="mt-2 text-small font-medium text-brand-accent">
+                <p className="mt-2 text-small font-medium text-brand-primary">
                   {employee.outcomeMetric}
                 </p>
                 <p className="mt-3 flex-1 text-small leading-relaxed text-text-secondary">
@@ -75,7 +75,7 @@ export default function AIEmployeesHubPage() {
 
         <PageCTA
           title="Not sure which AI employee fits?"
-          description="Share your industry and workflow — we'll recommend the right persona and solution during a 30-minute demo."
+          description="Share your industry and workflow - we'll recommend the right persona and solution during a 30-minute demo."
         />
       </MarketingPageShell>
     </>

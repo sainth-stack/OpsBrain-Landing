@@ -38,7 +38,7 @@ function micPermissionError(err: unknown): string {
 async function requestMicrophoneStream(): Promise<MediaStream> {
   if (!navigator.mediaDevices?.getUserMedia) {
     throw new DOMException(
-      "Microphone API unavailable — use HTTPS or localhost.",
+      "Microphone API unavailable - use HTTPS or localhost.",
       "NotSupportedError",
     );
   }
@@ -48,7 +48,10 @@ async function requestMicrophoneStream(): Promise<MediaStream> {
   });
 }
 
-export function useLandingVoiceAssistant() {
+export function useLandingVoiceAssistant(options?: { captions?: boolean }) {
+  const captionsRef = useRef(options?.captions !== false);
+  captionsRef.current = options?.captions !== false;
+
   const [callState, setCallState] = useState<VoiceCallState>("idle");
   const [turns, setTurns] = useState<VoiceTurn[]>([]);
   const [agentText, setAgentText] = useState("");
@@ -70,6 +73,9 @@ export function useLandingVoiceAssistant() {
   const durationIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const callStartTimeRef = useRef(0);
   const callStateRef = useRef<VoiceCallState>("idle");
+  const agentIdRef = useRef<string | undefined>(undefined);
+  const mutedRef = useRef(false);
+  const [micMuted, setMicMuted] = useState(false);
 
   useEffect(() => {
     callStateRef.current = callState;
@@ -119,14 +125,25 @@ export function useLandingVoiceAssistant() {
   const openMicWhenReady = useCallback(() => {
     const ctx = audioCtxRef.current;
     if (ctx?.state === "suspended") ctx.resume().catch(() => {});
-    if (!playbackActiveRef.current) {
-      micOpenPendingRef.current = false;
+    micOpenPendingRef.current = false;
+    if (!mutedRef.current) {
       connectMic();
-      setCaptureMode(false);
-      setCallState("active");
-      return;
+      setCaptureMode(playbackActiveRef.current);
     }
-    micOpenPendingRef.current = true;
+    if (!playbackActiveRef.current) {
+      setCallState("active");
+    }
+  }, [connectMic, setCaptureMode]);
+
+  const releaseListen = useCallback(() => {
+    const ctx = audioCtxRef.current;
+    if (ctx?.state === "suspended") ctx.resume().catch(() => {});
+    if (mutedRef.current) return;
+    connectMic();
+    setCaptureMode(false);
+    setCallState((current) =>
+      current === "agent_speaking" || current === "opening" ? "active" : current,
+    );
   }, [connectMic, setCaptureMode]);
 
   const handleBargeIn = useCallback(() => {
@@ -192,9 +209,14 @@ export function useLandingVoiceAssistant() {
     }
   }, [stopTimer, muteMic, stopPlayback, closeWs]);
 
-  const startCall = useCallback(async () => {
-    if (callStateRef.current !== "idle" && callStateRef.current !== "ended") return;
+  const startCall = useCallback(async (options?: { agentId?: string }) => {
+    if (callStateRef.current !== "idle" && callStateRef.current !== "ended") {
+      cleanup();
+    }
 
+    agentIdRef.current = options?.agentId;
+    mutedRef.current = false;
+    setMicMuted(false);
     cleanup();
     setError(null);
     setTurns([]);
@@ -203,7 +225,7 @@ export function useLandingVoiceAssistant() {
     setCallDuration(0);
     setCallState("connecting");
 
-    // Request mic in the same user gesture as the button click — before any network
+    // Request mic in the same user gesture as the button click - before any network
     // await, or Chrome blocks getUserMedia without showing the permission prompt.
     let stream: MediaStream;
     try {
@@ -237,7 +259,7 @@ export function useLandingVoiceAssistant() {
     try {
       const [, sessionResult] = await Promise.all([
         Promise.all([ctx.audioWorklet.addModule(capUrl), ctx.audioWorklet.addModule(playUrl)]),
-        consumeLandingVoiceSession(),
+        consumeLandingVoiceSession(agentIdRef.current),
       ]);
       session = sessionResult;
     } catch {
@@ -267,12 +289,7 @@ export function useLandingVoiceAssistant() {
     playerNode.port.onmessage = (evt: MessageEvent<{ type?: string }>) => {
       if (evt.data?.type === "drained") {
         playbackActiveRef.current = false;
-        if (micOpenPendingRef.current) {
-          micOpenPendingRef.current = false;
-          connectMic();
-          setCaptureMode(false);
-          setCallState("active");
-        }
+        releaseListen();
       }
     };
 
@@ -280,7 +297,21 @@ export function useLandingVoiceAssistant() {
       processorOptions: DEFAULT_VAD_OPTIONS,
     });
     workletNodeRef.current = workletNode;
-    workletNode.port.onmessage = (evt: MessageEvent<ArrayBuffer>) => {
+    workletNode.port.onmessage = (
+      evt: MessageEvent<ArrayBuffer | { type?: string }>,
+    ) => {
+      if (
+        evt.data &&
+        typeof evt.data === "object" &&
+        "type" in evt.data &&
+        evt.data.type === "interrupt"
+      ) {
+        handleBargeIn();
+        if (wsRef.current?.readyState === WebSocket.OPEN) {
+          wsRef.current.send(JSON.stringify({ type: "barge_in" }));
+        }
+        return;
+      }
       if (evt.data instanceof ArrayBuffer && wsRef.current?.readyState === WebSocket.OPEN) {
         wsRef.current.send(evt.data);
       }
@@ -295,7 +326,9 @@ export function useLandingVoiceAssistant() {
     // Hold capture until the backend sends mic_open (after Diya's greeting).
     // Forwarding PCM during STT handshake used to abort the Cartesia connect.
 
-    const ws = new WebSocket(buildLandingVoiceWsUrl(session.sessionToken));
+    const ws = new WebSocket(
+      buildLandingVoiceWsUrl(session.sessionToken, agentIdRef.current),
+    );
     ws.binaryType = "arraybuffer";
     wsRef.current = ws;
 
@@ -321,7 +354,7 @@ export function useLandingVoiceAssistant() {
         case "agent_start": {
           setCallState("agent_speaking");
           const chunk = (data.text as string) ?? "";
-          setAgentText(chunk);
+          if (captionsRef.current) setAgentText(chunk);
           bargedInRef.current = false;
           if (!agentUtteranceActiveRef.current) {
             agentUtteranceActiveRef.current = true;
@@ -331,6 +364,7 @@ export function useLandingVoiceAssistant() {
           break;
         }
         case "agent_token": {
+          if (!captionsRef.current) break;
           const chunk = (data.text as string) ?? "";
           if (!chunk) break;
           setAgentText((prev) => {
@@ -342,11 +376,18 @@ export function useLandingVoiceAssistant() {
         }
         case "agent_done":
           agentUtteranceActiveRef.current = false;
+          window.setTimeout(() => releaseListen(), 280);
+          break;
+        case "listen":
+          releaseListen();
           break;
         case "barge_in":
           handleBargeIn();
           break;
         case "done": {
+          agentUtteranceActiveRef.current = false;
+          window.setTimeout(() => releaseListen(), 280);
+          if (!captionsRef.current) break;
           const reply = (data.reply as string) ?? "";
           if (reply) {
             setTurns((prev) => [
@@ -361,6 +402,7 @@ export function useLandingVoiceAssistant() {
           openMicWhenReady();
           break;
         case "transcript": {
+          if (!captionsRef.current) break;
           const text = (data.text as string) ?? "";
           const isFinal = data.is_final as boolean;
           if (isFinal && text) {
@@ -406,11 +448,24 @@ export function useLandingVoiceAssistant() {
     enqueuePCMChunk,
     handleBargeIn,
     openMicWhenReady,
+    releaseListen,
     setCaptureMode,
     startTimer,
     stopPlayback,
     stopTimer,
   ]);
+
+  const toggleMute = useCallback(() => {
+    const next = !mutedRef.current;
+    mutedRef.current = next;
+    setMicMuted(next);
+    if (next) {
+      muteMic();
+    } else if (!playbackActiveRef.current) {
+      connectMic();
+      setCaptureMode(false);
+    }
+  }, [muteMic, connectMic, setCaptureMode]);
 
   const endCall = useCallback(() => {
     if (agentText.trim()) {
@@ -444,6 +499,8 @@ export function useLandingVoiceAssistant() {
     callDuration,
     startCall,
     endCall,
+    micMuted,
+    toggleMute,
     isInCall:
       callState === "connecting" ||
       callState === "opening" ||

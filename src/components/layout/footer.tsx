@@ -1,10 +1,18 @@
 import { Container } from "@/components/ui/container";
 import { Logo } from "@/components/ui/logo";
-import { footer, footerLinks, siteConfig } from "@/content/site";
+import {
+  footer,
+  footerLinks,
+  poweredByPartners,
+  poweredBySection,
+  siteConfig,
+} from "@/content/site";
+import { cn } from "@/lib/utils";
 import Link from "next/link";
 
 const columns = [
   { title: "Product", links: footerLinks.product },
+  { title: "Also from OpsBrain", links: footerLinks.alsoFromOpsBrain },
   { title: "AI Employees", links: footerLinks.aiEmployees },
   { title: "Company", links: footerLinks.company },
   { title: "Legal", links: footerLinks.legal },
@@ -26,6 +34,100 @@ function LinkedinIcon({ className }: { className?: string }) {
 const socialIcons = {
   linkedin: LinkedinIcon,
 } as const;
+
+function PartnerMark({ id }: { id: string }) {
+  if (id === "sarvam") {
+    return (
+      <span className="inline-flex items-center gap-1.5">
+        <span className="font-display text-[15px] font-bold tracking-tight text-on-dark">
+          sarvam
+        </span>
+        <span className="size-1.5 rounded-full bg-violet-400" aria-hidden="true" />
+      </span>
+    );
+  }
+
+  if (id === "cartesia") {
+    return (
+      <span className="inline-flex items-center gap-1.5">
+        <svg
+          viewBox="0 0 24 24"
+          className="size-4 text-on-dark"
+          fill="none"
+          aria-hidden="true"
+        >
+          <path
+            d="M4 12c0-4.4 3.6-8 8-8s8 3.6 8 8"
+            stroke="currentColor"
+            strokeWidth="2.2"
+            strokeLinecap="round"
+          />
+          <path
+            d="M8 12c0-2.2 1.8-4 4-4s4 1.8 4 4"
+            stroke="#A5B4FC"
+            strokeWidth="2.2"
+            strokeLinecap="round"
+          />
+        </svg>
+        <span className="font-display text-[15px] font-bold tracking-tight text-on-dark">
+          Cartesia
+        </span>
+      </span>
+    );
+  }
+
+  if (id === "aws") {
+    return (
+      <span className="inline-flex flex-col items-start leading-none">
+        <span className="font-display text-[15px] font-bold tracking-wide text-on-dark">
+          aws
+        </span>
+        <svg
+          viewBox="0 0 40 8"
+          className="mt-0.5 h-1.5 w-9"
+          fill="none"
+          aria-hidden="true"
+        >
+          <path
+            d="M1 3c7 3.2 18 4.4 30 1.6"
+            stroke="#FF9900"
+            strokeWidth="2"
+            strokeLinecap="round"
+          />
+          <path
+            d="M28 2.4l3.8 1.2-4 1.5"
+            stroke="#FF9900"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </span>
+    );
+  }
+
+  return (
+    <span className="inline-flex items-center gap-1.5">
+      <svg
+        viewBox="0 0 24 24"
+        className="size-4"
+        fill="none"
+        aria-hidden="true"
+      >
+        <path d="M13.2 3.2 5.5 20.8h4.3L17.5 3.2h-4.3Z" fill="#0078D4" />
+        <path
+          d="M10.2 12.2 5.5 20.8h4.3l2.4-4.4-2-4.2Z"
+          fill="#50E6FF"
+          fillOpacity="0.9"
+        />
+        <path d="m13.2 3.2 4.3 17.6H21L17.5 3.2h-4.3Z" fill="#50E6FF" />
+      </svg>
+      <span className="font-display text-[15px] font-bold tracking-tight text-on-dark">
+        Azure
+      </span>
+    </span>
+  );
+}
 
 function FooterLink({ href, label }: { href: string; label: string }) {
   const className =
@@ -58,7 +160,7 @@ export function Footer() {
       </div>
 
       <Container className="py-14 md:py-16">
-        <div className="grid gap-10 lg:grid-cols-[1.5fr_repeat(4,1fr)]">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.4fr_repeat(5,minmax(0,1fr))]">
           <div>
             <Link
               href="/"
@@ -106,7 +208,43 @@ export function Footer() {
           ))}
         </div>
 
-        <div className="mt-12 flex flex-col gap-2 border-t border-white/10 pt-7 text-xs text-on-dark-muted/80 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-12 border-t border-white/10 pt-8">
+          <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-between sm:gap-6">
+            <div className="text-center sm:text-left">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-brand-accent">
+                {poweredBySection.eyebrow}
+              </p>
+              <p className="mt-1 text-[13px] text-on-dark-muted">
+                {poweredBySection.stripLine}
+              </p>
+            </div>
+            <ul
+              className="flex flex-wrap items-center justify-center gap-2 sm:justify-end"
+              role="list"
+            >
+              {poweredByPartners.map((partner) => (
+                <li key={partner.id}>
+                  <a
+                    href={partner.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={partner.name}
+                    title={partner.role}
+                    className={cn(
+                      "inline-flex items-center rounded-xl border border-white/10 bg-white/5 px-3.5 py-2.5",
+                      "transition-colors hover:border-brand-accent/40 hover:bg-white/10",
+                      "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-accent",
+                    )}
+                  >
+                    <PartnerMark id={partner.id} />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <div className="mt-8 flex flex-col gap-2 border-t border-white/10 pt-7 text-xs text-on-dark-muted/80 sm:flex-row sm:items-center sm:justify-between">
           <p>{footer.copyright}</p>
           <p>{footer.location}</p>
         </div>

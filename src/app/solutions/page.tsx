@@ -71,7 +71,7 @@ export default function SolutionsHubPage() {
 
         <PageCTA
           title="Not sure which workflow fits?"
-          description="Tell us about your pipeline — we'll recommend lead calling, inbound support, or bulk campaigns during a 30-minute demo."
+          description="Tell us about your pipeline - we'll recommend lead calling, inbound support, or bulk campaigns during a 30-minute demo."
         />
       </MarketingPageShell>
     </>

@@ -16,7 +16,7 @@ type DiyaAvatarProps = {
   className?: string;
 };
 
-/** Portrait avatar for Diya — AI voice guide persona. */
+/** Portrait avatar for Diya - AI voice guide persona. */
 export function DiyaAvatar({ size = "md", showOnline = false, className }: DiyaAvatarProps) {
   return (
     <div className={cn("relative shrink-0", sizeMap[size], className)}>

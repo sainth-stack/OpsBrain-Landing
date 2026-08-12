@@ -18,7 +18,7 @@ interface EmployeeAvatarProps {
   size?: keyof typeof MARK_SIZES;
 }
 
-/** Industry-specific agent mark — tinted gradient shell + geometric glyph. */
+/** Industry-specific agent mark - tinted gradient shell + geometric glyph. */
 export function EmployeeAvatar({ type, className, size = "md" }: EmployeeAvatarProps) {
   const { theme } = useTheme();
   const markTheme = theme === "dark" ? "dark" : "light";

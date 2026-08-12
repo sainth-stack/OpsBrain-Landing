@@ -77,7 +77,7 @@ export default async function AIEmployeePage({ params }: PageProps) {
           <p className="mt-4 text-body leading-relaxed text-text-secondary">
             {employee.fullDescription}
           </p>
-          <p className="mt-4 inline-flex rounded-full bg-brand-accent-light px-4 py-1.5 text-small font-medium text-brand-accent">
+          <p className="mt-4 inline-flex rounded-md bg-brand-primary-light px-3 py-1.5 text-small font-medium text-brand-primary">
             {employee.outcomeMetric}
           </p>
           {paragraphs.map((paragraph) => (
@@ -156,7 +156,7 @@ export default async function AIEmployeePage({ params }: PageProps) {
 
         <PageCTA
           title={`Deploy ${employee.name} today`}
-          description={`Get started with AI employees configured for ${employee.industry.toLowerCase()} workflows — scripts, voice, and CRM sync included.`}
+          description={`Get started with AI employees configured for ${employee.industry.toLowerCase()} workflows - scripts, voice, and CRM sync included.`}
           secondaryHref="/pricing"
         />
       </MarketingPageShell>

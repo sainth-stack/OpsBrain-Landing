@@ -18,7 +18,10 @@ Open [http://localhost:3000](http://localhost:3000).
 | `NEXT_PUBLIC_USE_DUMMY_API` | Set to `false` when OpsBrain landing API is live (default: dummy mode on) |
 | `NEXT_PUBLIC_API_BASE_URL` | OpsBrain API base URL (default: `https://app.opsbrainai.com/api/v1`) |
 | `NEXT_PUBLIC_LANDING_API_BASE` | Landing endpoints base (default: `{API_BASE_URL}/landing`) |
-| `NEXT_PUBLIC_LOGIN_PAGE` | App login URL for navbar (default: `https://app.opsbrainai.com`) |
+| `NEXT_PUBLIC_LOGIN_PAGE` | OpsBrain AI app login for navbar (default: `https://app.opsbrainai.com`) |
+| `NEXT_PUBLIC_OPSBRAIN_LOGIN_PAGE` | OpsBrain AI product login (default: `https://app.opsbrainai.com`) |
+| `NEXT_PUBLIC_OPSSPARK_LOGIN_PAGE` | OpsSpark product login (default: `https://peers.opsbrainai.com`) |
+| `NEXT_PUBLIC_OPSMEET_LOGIN_PAGE` | OpsMeet product login (default: `https://opsmeet.opsbrainai.com/login`) |
 | `LEAD_WEBHOOK_URL` | Optional webhook URL when using `/api/leads` BFF route |
 | `NEXT_PUBLIC_ANALYTICS_ENABLED` | Set to `true` in production to enable analytics |
 | `NEXT_PUBLIC_GA_ID` | Google Analytics 4 measurement ID (e.g. `G-XXXXXXXXXX`) |
@@ -60,6 +63,8 @@ src/app/robots.ts   # Allows /, disallows /api/
 | URL | Target keywords |
 |-----|-----------------|
 | `/` | AI employees, AI voice agents, lead calling automation |
+| `/products/spark` | AI social for founders, social media scheduler |
+| `/products/meet` | AI meeting notes, meeting action plan |
 | `/platform` | AI workforce platform, revenue operations AI |
 | `/pricing` | OpsBrain pricing, AI employee pilot |
 | `/integrations` | OpsBrain Salesforce integration, CRM voice AI |

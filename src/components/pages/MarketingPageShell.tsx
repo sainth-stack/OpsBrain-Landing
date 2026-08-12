@@ -5,7 +5,7 @@ import type { ReactNode } from "react";
 
 export function MarketingPageShell({
   breadcrumbs,
-  backHref = "/",
+  backHref,
   backLabel = "Back to home",
   children,
 }: {

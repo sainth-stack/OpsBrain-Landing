@@ -58,7 +58,7 @@ export default function TermsPage() {
                 <a href="/privacy" className="text-brand-primary hover:underline">
                   Privacy Policy
                 </a>{" "}
-                (Section 2 — Google API Services Limited Use Disclosure) solely for the purposes stated therein.
+                (Section 2 - Google API Services Limited Use Disclosure) solely for the purposes stated therein.
               </li>
               <li>
                 Acknowledge that our use of Google API data adheres to the{" "}

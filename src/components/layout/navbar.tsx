@@ -1,11 +1,17 @@
 "use client";
 
-import { useDiyaAssistant } from "@/components/assistant/DiyaAssistantContext";
 import { CtaLink } from "@/components/ui/cta-link";
 import { Container } from "@/components/ui/container";
 import { Logo } from "@/components/ui/logo";
 import { LOGIN_PAGE } from "@/lib/api-config";
-import { trackDemoClick } from "@/lib/analytics";
+import {
+  ProductsNavDesktop,
+  ProductsNavMobile,
+} from "@/components/layout/ProductsNav";
+import {
+  UseCasesNavDesktop,
+  UseCasesNavMobile,
+} from "@/components/layout/UseCasesNav";
 import { ctaLinks, navLinks } from "@/content/site";
 import { isNavLinkActive } from "@/lib/navigation";
 import { cn } from "@/lib/utils";
@@ -13,32 +19,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
-
-function NavDiyaButton({
-  label,
-  className,
-  onAfterOpen,
-}: {
-  label: string;
-  className?: string;
-  onAfterOpen?: () => void;
-}) {
-  const { openDiya } = useDiyaAssistant();
-
-  return (
-    <button
-      type="button"
-      onClick={() => {
-        trackDemoClick("navbar_talk_to_diya");
-        openDiya({ autoStart: true, withBackdrop: true });
-        onAfterOpen?.();
-      }}
-      className={className}
-    >
-      {label}
-    </button>
-  );
-}
 
 export function Navbar() {
   const pathname = usePathname();
@@ -86,17 +66,16 @@ export function Navbar() {
           </Link>
 
           <ul className="hidden items-center gap-7 lg:flex" role="list">
-            {navLinks.map((link) => (
-              <li key={link.label}>
-                {"action" in link && link.action === "diya" ? (
-                  <NavDiyaButton
-                    label={link.label}
-                    className={cn(
-                      "text-sm font-medium text-text-secondary transition-colors hover:text-text-primary",
-                      "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary",
-                    )}
-                  />
-                ) : (
+            {navLinks.map((link) => {
+              if ("kind" in link && link.kind === "products") {
+                return <ProductsNavDesktop key={link.label} />;
+              }
+              if ("kind" in link && link.kind === "use-cases") {
+                return <UseCasesNavDesktop key={link.label} />;
+              }
+
+              return (
+                <li key={link.label}>
                   <Link
                     href={"href" in link ? link.href : "/"}
                     className={cn(
@@ -108,12 +87,28 @@ export function Navbar() {
                   >
                     {link.label}
                   </Link>
-                )}
-              </li>
-            ))}
+                </li>
+              );
+            })}
           </ul>
 
-          <div className="hidden items-center gap-3 lg:flex">
+          <div className="hidden items-center gap-2 lg:flex">
+            <CtaLink
+              href={ctaLinks.tryLiveCall.href}
+              variant="ghost"
+              size="sm"
+              trackAsDemo="navbar_try_live_call"
+            >
+              {ctaLinks.tryLiveCall.label}
+            </CtaLink>
+            <CtaLink
+              href={ctaLinks.talkToAgent.href}
+              variant="ghost"
+              size="sm"
+              trackAsDemo="navbar_talk_to_agent"
+            >
+              {ctaLinks.talkToAgent.label}
+            </CtaLink>
             <CtaLink href={LOGIN_PAGE} variant="ghost" size="sm">
               Login
             </CtaLink>
@@ -145,17 +140,31 @@ export function Navbar() {
       </Container>
 
       {mobileOpen && (
-        <div id="mobile-menu" className="border-t border-border-default bg-surface-white lg:hidden">
+        <div
+          id="mobile-menu"
+          className="border-t border-border-default bg-surface-white lg:hidden"
+        >
           <ul className="flex flex-col gap-1 px-5 py-4 sm:px-8">
-            {navLinks.map((link) => (
-              <li key={link.label}>
-                {"action" in link && link.action === "diya" ? (
-                  <NavDiyaButton
-                    label={link.label}
-                    onAfterOpen={closeMobile}
-                    className="block w-full rounded-lg px-3 py-3 text-left text-base font-medium text-text-primary hover:bg-surface-muted"
+            {navLinks.map((link) => {
+              if ("kind" in link && link.kind === "products") {
+                return (
+                  <ProductsNavMobile
+                    key={link.label}
+                    onNavigate={closeMobile}
                   />
-                ) : (
+                );
+              }
+              if ("kind" in link && link.kind === "use-cases") {
+                return (
+                  <UseCasesNavMobile
+                    key={link.label}
+                    onNavigate={closeMobile}
+                  />
+                );
+              }
+
+              return (
+                <li key={link.label}>
                   <Link
                     href={"href" in link ? link.href : "/"}
                     className="block rounded-lg px-3 py-3 text-base font-medium text-text-primary hover:bg-surface-muted"
@@ -163,10 +172,28 @@ export function Navbar() {
                   >
                     {link.label}
                   </Link>
-                )}
-              </li>
-            ))}
+                </li>
+              );
+            })}
             <li className="mt-2 flex flex-col gap-2 px-3">
+              <CtaLink
+                href={ctaLinks.tryLiveCall.href}
+                variant="outline"
+                className="w-full"
+                trackAsDemo="mobile_nav_try_live_call"
+                onClick={closeMobile}
+              >
+                {ctaLinks.tryLiveCall.label}
+              </CtaLink>
+              <CtaLink
+                href={ctaLinks.talkToAgent.href}
+                variant="outline"
+                className="w-full"
+                trackAsDemo="mobile_nav_talk_to_agent"
+                onClick={closeMobile}
+              >
+                {ctaLinks.talkToAgent.label}
+              </CtaLink>
               <CtaLink href={LOGIN_PAGE} variant="outline" className="w-full">
                 Login
               </CtaLink>

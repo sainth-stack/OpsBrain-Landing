@@ -9,13 +9,13 @@
  * own voice echoing through the speakers, which must not reach STT or the agent
  * would "interrupt" itself. So during agent speech we only forward audio while
  * we detect real voiced energy, and we keep a short rolling PRE-ROLL buffer that
- * we flush the moment speech starts — so STT receives the user's interruption
+ * we flush the moment speech starts - so STT receives the user's interruption
  * from its very first word (no clipped onset). A hangover keeps forwarding
  * through natural short pauses mid-sentence, then re-gates on silence.
  *
  * The decision of whether an utterance actually interrupts the agent is made on
  * the SERVER from the recognised words (backchannels like "yeah"/"go ahead" are
- * ignored) — this worklet only controls which audio is worth sending.
+ * ignored) - this worklet only controls which audio is worth sending.
  *
  * When the agent is not speaking, the mic is fully open (forward everything).
  *
@@ -130,6 +130,7 @@ class VadCaptureProcessor extends AudioWorkletProcessor {
       this._pushPreroll(pcm);
       if (this._voicedRun >= this._minVoicedFrames) {
         this._active = true;
+        this.port.postMessage({ type: "interrupt" });
         this._flushPreroll(); // includes onset + current audio
       }
     } else {
@@ -150,11 +151,11 @@ export const VAD_PROCESSOR_NAME = "vad-capture-processor";
 
 export const DEFAULT_VAD_OPTIONS = {
   // RMS threshold for a "voiced" frame while the agent is speaking.
-  bargeInRms: 0.02,
+  bargeInRms: 0.012,
   // Sustained voiced audio (ms) before we start forwarding an interruption.
-  minVoicedMs: 220,
+  minVoicedMs: 90,
   // Keep forwarding this long after voice drops (rides over mid-sentence pauses).
-  hangoverMs: 500,
+  hangoverMs: 420,
   // Rolling audio kept so the interruption's first words aren't clipped.
-  prerollMs: 350,
+  prerollMs: 320,
 } as const;

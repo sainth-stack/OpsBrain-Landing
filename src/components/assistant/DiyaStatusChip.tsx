@@ -28,7 +28,7 @@ const STATUS_CONFIG: Record<
     spin: true,
   },
   active: {
-    label: "Listening — speak now",
+    label: "Listening - speak now",
     icon: Mic,
     className: "bg-emerald-50 text-emerald-700 ring-emerald-200/70",
     iconClassName: "text-emerald-500",

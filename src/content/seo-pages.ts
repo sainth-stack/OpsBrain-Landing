@@ -51,7 +51,7 @@ export const solutionPages: Record<
       {
         question: "How fast can OpsBrain call a new lead?",
         answer:
-          "OpsBrain AI employees typically place the first outbound call in under 60 seconds after a form submission, ad lead, or CRM trigger — so prospects hear from you while intent is highest.",
+          "OpsBrain AI employees typically place the first outbound call in under 60 seconds after a form submission, ad lead, or CRM trigger - so prospects hear from you while intent is highest.",
       },
       {
         question: "Can lead calling run in Telugu and Hindi?",
@@ -93,7 +93,7 @@ export const solutionPages: Record<
       {
         question: "Can AI inbound support replace my entire call center?",
         answer:
-          "OpsBrain is designed to handle tier-1 volume autonomously while routing complex or high-value calls to your team with full context — reducing cost without sacrificing customer experience.",
+          "OpsBrain is designed to handle tier-1 volume autonomously while routing complex or high-value calls to your team with full context - reducing cost without sacrificing customer experience.",
       },
       {
         question: "How does escalation to a human agent work?",
@@ -117,7 +117,7 @@ export const solutionPages: Record<
     label: "Bulk Outbound Campaigns",
     title: "Bulk AI Outbound Campaigns",
     description:
-      "Launch parallel AI outbound call campaigns from CSV uploads or CRM lists. Configure scripts, languages, and schedules — then review conversions and recordings.",
+      "Launch parallel AI outbound call campaigns from CSV uploads or CRM lists. Configure scripts, languages, and schedules - then review conversions and recordings.",
     keywords: [
       "AI outbound campaigns",
       "bulk AI calling",
@@ -135,7 +135,7 @@ export const solutionPages: Record<
       {
         question: "How many calls can OpsBrain run in parallel?",
         answer:
-          "OpsBrain scales to thousands of concurrent AI voice sessions depending on your plan and compliance requirements — far beyond what a manual outbound team can dial in a day.",
+          "OpsBrain scales to thousands of concurrent AI voice sessions depending on your plan and compliance requirements - far beyond what a manual outbound team can dial in a day.",
       },
       {
         question: "Can I use different scripts per campaign?",
@@ -163,33 +163,33 @@ export const hubPages = {
     description:
       "Browse pre-built OpsBrain AI employees for sales, healthcare, hospitality, HR, insurance, and more. Deploy voice agents with CRM sync in under 30 minutes.",
     intro:
-      "Choose a pre-configured AI employee persona — complete with industry scripts, multilingual voice, and CRM integrations — and go live without building from scratch.",
+      "Choose a pre-configured AI employee persona - complete with industry scripts, multilingual voice, and CRM integrations - and go live without building from scratch.",
   },
   pricing: {
     path: "/pricing",
-    title: "Pricing & Plans",
+    title: "Pricing",
     description:
-      "OpsBrain AI pricing from $399/mo, or save 20% with annual billing. AI-employee plans with included voice minutes — Starter 2,000 min/mo, Growth 7,500 min/mo — plus email, WhatsApp, and CRM sync.",
+      "Pay per minute for voice (₹3/min from prepaid credits). Optional Gmail & WhatsApp campaigns add-on at ₹499/month. 50 free credits on signup.",
     faq: [
       {
         question: "How much does OpsBrain AI cost?",
         answer:
-          "OpsBrain has three plans: Starter at $399/mo ($3,830/year billed annually) for 5 AI employees and 2,000 included voice minutes per month, Growth at $1,499/mo ($14,390/year billed annually) for 20 AI employees and 7,500 included voice minutes per month, and Enterprise with custom pricing, minutes, and SLAs. Every plan includes multilingual voice calling, email (Gmail) campaigns, WhatsApp campaigns, and CRM integration.",
+          "Voice is pay-as-you-go: ₹3 per connected minute from prepaid credits (1 credit = ₹1). You get 50 free credits when you sign up. Gmail and WhatsApp campaign tools are an optional add-on at ₹499/month. Enterprise teams get custom rates and bundled messaging.",
       },
       {
-        question: "Is there a discount for annual billing?",
+        question: "Are email and WhatsApp included with voice?",
         answer:
-          "Yes. Annual plans are 20% off. Starter is $3,830/year and Growth is $14,390/year. Voice minutes still refresh monthly (2,000 on Starter, 7,500 on Growth).",
+          "No. Voice runs on credits. Email and WhatsApp campaigns require the ₹499/month messaging add-on. WhatsApp Meta conversation fees and Gmail sending limits still apply on your own accounts.",
       },
       {
-        question: "Which channels are included?",
+        question: "Which channels can I use?",
         answer:
-          "All plans include multilingual voice calling (Telugu, Hindi, English), email campaigns via Gmail, WhatsApp campaigns, built-in CRM and calendar integration, and the Diya AI site assistant (text + voice). Growth adds bulk multi-channel sequences, two-way CRM sync with Salesforce, HubSpot, and Pipedrive, and social media automation.",
+          "Voice (inbound and outbound) is always available with credits. Email and WhatsApp campaign launch requires the messaging add-on. CRM, scripts, and AI employees are included on the voice tier.",
       },
       {
         question: "How do voice minutes work?",
         answer:
-          "Each plan includes a monthly pool of connected voice minutes — 2,000 on Starter and 7,500 on Growth. Unused minutes do not roll over. If you exceed your pool, additional minutes are billed at $0.12/min, or you can upgrade. Enterprise minutes are custom.",
+          "You buy credits (1 credit = ₹1). Connected talk time is billed at ₹3/min. Credits never expire. Add credits any time from the app via Razorpay.",
       },
       {
         question: "What is included in Enterprise plans?",
@@ -199,7 +199,7 @@ export const hubPages = {
       {
         question: "Do you charge per minute or per seat?",
         answer:
-          "OpsBrain is priced as an AI-employee subscription — 5 on Starter, 20 on Growth, unlimited on Enterprise — with a clear included voice-minute pool. You are not buying a raw dialer API. Email and WhatsApp campaign tools are included; voice overage beyond the pool is $0.12/min.",
+          "OpsBrain is priced as an AI-employee subscription - 5 on Starter, 20 on Growth, unlimited on Enterprise - with a clear included voice-minute pool. You are not buying a raw dialer API. Email and WhatsApp campaign tools are included; voice overage beyond the pool is $0.12/min.",
       },
     ] satisfies FaqItem[],
   },
@@ -213,15 +213,37 @@ export const hubPages = {
     path: "/platform",
     title: "AI Workforce Platform",
     description:
-      "The OpsBrain platform unifies lead prospecting, AI voice calling, CRM sync, scheduling, and analytics — one operating system for autonomous revenue teams.",
+      "The OpsBrain platform unifies lead prospecting, AI voice calling, CRM sync, scheduling, and analytics - one operating system for autonomous revenue teams.",
   },
   solutions: {
     path: "/solutions",
     title: "AI Voice Solutions",
     description:
-      "Instant lead calling, 24/7 inbound support, and bulk outbound campaigns — three OpsBrain workflows that deploy AI voice agents with CRM sync in under 30 minutes.",
+      "Instant lead calling, 24/7 inbound support, and bulk outbound campaigns - three OpsBrain workflows that deploy AI voice agents with CRM sync in under 30 minutes.",
     intro:
       "Pick the workflow that matches your revenue motion. Each solution includes multilingual voice, script configuration, and real-time CRM integration.",
+  },
+  howItWorks: {
+    path: "/how-it-works",
+    title: "How OpsBrain Works",
+    description:
+      "From ringing phone to booked meeting in four steps. See how OpsBrain AI employees call, qualify, and sync to your CRM.",
+    intro: "Four steps. That's the product.",
+  },
+  products: {
+    path: "/products",
+    title: "OpsBrain Products",
+    description:
+      "OpsBrain for voice employees, OpsSpark for founder social, and OpsMeet for meeting notes and action plans.",
+    intro:
+      "One company, three focused products. Start with OpsBrain AI employees, or use OpsSpark and OpsMeet on their own.",
+  },
+  tryLiveCall: {
+    path: "/try-a-live-call",
+    title: "Try a Live Call with OpsBrain AI Agents",
+    description:
+      "Pick a hyper-realistic AI agent, choose a language, and get a live demo call on your phone.",
+    intro: "Call a hyper-realistic AI agent",
   },
 } as const;
 
@@ -244,10 +266,10 @@ const industrySeoMeta: Record<
   sales: {
     title: "AI Sales Employee for Outbound Teams",
     description:
-      "Deploy an AI sales employee that calls leads in 60 seconds, qualifies buyers, books demos, and syncs to Salesforce or HubSpot — 24/7 SDR automation.",
+      "Deploy an AI sales employee that calls leads in 60 seconds, qualifies buyers, books demos, and syncs to Salesforce or HubSpot - 24/7 SDR automation.",
     keywords: ["AI SDR", "AI sales agent", "outbound sales automation"],
     paragraphs: [
-      "Revenue teams lose deals when reps cannot respond fast enough. An OpsBrain AI Sales Employee acts as an always-on SDR — dialing new leads within a minute of form submission, running qualification questions, handling objections from your playbook, and booking meetings on the right rep's calendar.",
+      "Revenue teams lose deals when reps cannot respond fast enough. An OpsBrain AI Sales Employee acts as an always-on SDR - dialing new leads within a minute of form submission, running qualification questions, handling objections from your playbook, and booking meetings on the right rep's calendar.",
       "Unlike static chatbots, the AI Sales Employee places real voice calls in Telugu, Hindi, or English. Every conversation is transcribed, scored, and written back to Salesforce, HubSpot, or Pipedrive so managers see pipeline impact without manual data entry.",
     ],
     faq: [
@@ -269,7 +291,7 @@ const industrySeoMeta: Record<
       {
         question: "Does it handle objection handling on live calls?",
         answer:
-          "Yes. Scripts include branching logic for common objections — pricing, timing, authority — and the AI adapts follow-up questions based on responses before booking or escalating.",
+          "Yes. Scripts include branching logic for common objections - pricing, timing, authority - and the AI adapts follow-up questions based on responses before booking or escalating.",
       },
     ],
   },
@@ -279,7 +301,7 @@ const industrySeoMeta: Record<
       "Automate first-round candidate screening, interview scheduling, and ATS updates with an AI HR recruiter that calls 50+ candidates per day in multiple languages.",
     keywords: ["AI recruiter", "AI HR screening", "automated interview scheduling"],
     paragraphs: [
-      "Talent teams drown in applications while strong candidates accept other offers. The OpsBrain AI HR Recruiter runs structured screening calls, confirms availability, schedules interviews, and pushes notes into Greenhouse, Lever, or your ATS — without recruiters copying transcripts by hand.",
+      "Talent teams drown in applications while strong candidates accept other offers. The OpsBrain AI HR Recruiter runs structured screening calls, confirms availability, schedules interviews, and pushes notes into Greenhouse, Lever, or your ATS - without recruiters copying transcripts by hand.",
       "Multilingual outreach helps you engage candidates in their preferred language across regions. The AI follows compliance-friendly scripts, captures structured responses, and flags edge cases for human review.",
     ],
     faq: [
@@ -296,7 +318,7 @@ const industrySeoMeta: Record<
       {
         question: "Does it support multilingual candidate outreach?",
         answer:
-          "Yes. Screening flows run in English, Hindi, Telugu, and 50+ additional languages with natural voice — not robotic translation.",
+          "Yes. Screening flows run in English, Hindi, Telugu, and 50+ additional languages with natural voice - not robotic translation.",
       },
       {
         question: "What happens when a candidate needs a human recruiter?",
@@ -308,7 +330,7 @@ const industrySeoMeta: Record<
   hospital: {
     title: "AI Hospital Assistant for Patient Front Desk",
     description:
-      "24/7 AI hospital front desk for appointment booking, insurance pre-verification, and patient FAQs — with HIPAA-aware logs and EHR-friendly workflows.",
+      "24/7 AI hospital front desk for appointment booking, insurance pre-verification, and patient FAQs - with HIPAA-aware logs and EHR-friendly workflows.",
     keywords: ["AI healthcare front desk", "hospital appointment AI", "patient call automation"],
     paragraphs: [
       "Front desks miss calls during peak volume and after hours, leading to lost appointments and frustrated patients. The OpsBrain AI Hospital Assistant books and reschedules visits, pre-verifies insurance, answers common patient questions, and escalates urgent cases to staff with complete context.",
@@ -323,7 +345,7 @@ const industrySeoMeta: Record<
       {
         question: "Can it book appointments in Epic or Cerner?",
         answer:
-          "Yes, via scheduling integrations and API connectors configured to your EHR workflow — including insurance pre-verification before the visit.",
+          "Yes, via scheduling integrations and API connectors configured to your EHR workflow - including insurance pre-verification before the visit.",
       },
       {
         question: "How are urgent patient calls handled?",
@@ -344,13 +366,13 @@ const industrySeoMeta: Record<
     keywords: ["AI collections calls", "payment reminder automation", "billing outreach AI"],
     paragraphs: [
       "Collections teams struggle to reach every overdue account without damaging customer relationships. The OpsBrain AI Payment Reminder Agent runs courteous outbound campaigns, offers approved payment plans during the conversation, and logs outcomes to Stripe, QuickBooks, or Salesforce.",
-      "Parallel calling lets finance teams cover entire aging buckets in hours instead of weeks — with consistent messaging and compliance-friendly scripts.",
+      "Parallel calling lets finance teams cover entire aging buckets in hours instead of weeks - with consistent messaging and compliance-friendly scripts.",
     ],
     faq: [
       {
         question: "Can the AI negotiate payment plans on a live call?",
         answer:
-          "Yes, within limits you configure — installment amounts, dates, and exceptions route to human collectors when needed.",
+          "Yes, within limits you configure - installment amounts, dates, and exceptions route to human collectors when needed.",
       },
       {
         question: "Which billing systems integrate with payment reminders?",
@@ -365,7 +387,7 @@ const industrySeoMeta: Record<
     ],
   },
   support: {
-    title: "AI Customer Support Agent — 24/7 Tier 1",
+    title: "AI Customer Support Agent - 24/7 Tier 1",
     description:
       "Resolve 70% of tier-1 support calls without escalation. AI answers FAQs from your knowledge base, updates Zendesk or Intercom, and hands off with full CRM context.",
     keywords: ["AI customer support agent", "tier 1 AI support", "24/7 helpdesk AI"],
@@ -397,7 +419,7 @@ const industrySeoMeta: Record<
       "Engage prospective students and parents in their language, answer program and fee questions, and book campus visits or counselor interviews automatically.",
     keywords: ["AI admissions counselor", "EdTech enrollment AI", "school lead calling"],
     paragraphs: [
-      "Admissions teams juggle inquiries across time zones and languages while campus visit slots fill unpredictably. The OpsBrain AI School Admission Counselor guides families through programs, fees, and eligibility — then books campus tours or counselor sessions on your calendar.",
+      "Admissions teams juggle inquiries across time zones and languages while campus visit slots fill unpredictably. The OpsBrain AI School Admission Counselor guides families through programs, fees, and eligibility - then books campus tours or counselor sessions on your calendar.",
       "HubSpot, Google Calendar, and Canvas LMS integrations keep enrollment pipelines current so counselors focus on high-intent applicants.",
     ],
     faq: [
@@ -424,7 +446,7 @@ const industrySeoMeta: Record<
       "Zero missed calls during peak dining hours. AI takes reservations, manages waitlists, processes takeout orders, and sends confirmations in English, Hindi, or Telugu.",
     keywords: ["AI restaurant phone agent", "reservation automation", "hospitality AI receptionist"],
     paragraphs: [
-      "Restaurants lose revenue when phones ring busy during service. The OpsBrain AI Restaurant Receptionist answers every call, manages reservations and waitlists, captures takeout orders, and sends confirmation texts — freeing hosts to focus on in-house guests.",
+      "Restaurants lose revenue when phones ring busy during service. The OpsBrain AI Restaurant Receptionist answers every call, manages reservations and waitlists, captures takeout orders, and sends confirmation texts - freeing hosts to focus on in-house guests.",
       "Toast POS, OpenTable, and SMS integrations keep front-of-house systems aligned without manual re-entry.",
     ],
     faq: [
@@ -441,7 +463,7 @@ const industrySeoMeta: Record<
       {
         question: "Can it answer in Hindi or Telugu for local guests?",
         answer:
-          "Yes. Multilingual reception flows cover English, Hindi, and Telugu — common for hospitality teams serving diverse neighborhoods.",
+          "Yes. Multilingual reception flows cover English, Hindi, and Telugu - common for hospitality teams serving diverse neighborhoods.",
       },
     ],
   },
@@ -458,7 +480,7 @@ const industrySeoMeta: Record<
       {
         question: "How fast does the AI follow up on new listing leads?",
         answer:
-          "Portal and form leads receive an outbound call in under 60 seconds — while buyer intent is highest and before competing agents respond.",
+          "Portal and form leads receive an outbound call in under 60 seconds - while buyer intent is highest and before competing agents respond.",
       },
       {
         question: "Can it schedule property viewings on agent calendars?",
@@ -478,7 +500,7 @@ const industrySeoMeta: Record<
       "Proactive renewal outreach at scale. AI explains coverage changes, processes updates, and routes complex cases to licensed agents with full policy context.",
     keywords: ["AI insurance renewal calls", "policyholder outreach automation", "insurance AI agent"],
     paragraphs: [
-      "Renewal season overwhelms licensed agents with repetitive outreach while policyholders wait on hold. The OpsBrain AI Insurance Renewal Agent runs proactive campaigns, explains coverage changes in plain language, and processes straightforward renewals — escalating complex underwriting questions to licensed staff with context.",
+      "Renewal season overwhelms licensed agents with repetitive outreach while policyholders wait on hold. The OpsBrain AI Insurance Renewal Agent runs proactive campaigns, explains coverage changes in plain language, and processes straightforward renewals - escalating complex underwriting questions to licensed staff with context.",
       "Guidewire, Salesforce, and policy-admin integrations keep records accurate without double entry across teams.",
     ],
     faq: [
@@ -555,118 +577,55 @@ export function getAllIntegrationNames() {
   return [...new Set([...fromTrust, ...fromEmployees])].sort();
 }
 
-/** Annual discount off the full 12-month monthly total. */
-export const PRICING_ANNUAL_DISCOUNT = 0.2;
-
 export const pricingTiers = [
   {
-    name: "Starter",
-    monthlyPriceUsd: 399,
-    headline: "5 AI employees",
-    includedMinutes: "2,000 voice minutes / mo",
-    minutesNote: "~670 answered calls · overage $0.12/min",
-    description:
-      "Everything a small revenue team needs to launch AI employees across voice, email, and WhatsApp.",
+    name: "Voice",
+    badge: "Core product",
+    price: "₹3",
+    priceUnit: "per minute",
+    tagline: "50 free credits on signup · prepaid credits never expire",
     features: [
-      "Multilingual voice calling (Telugu, Hindi, English)",
-      "Email campaigns (Gmail integration)",
-      "WhatsApp campaigns",
+      "Multilingual voice (Telugu, Hindi, English)",
+      "Inbound + outbound voice campaigns",
+      "AI employees, scripts & knowledge base",
       "Built-in CRM + calendar integration",
-      "AI site assistant (text + Diya voice chat)",
-      "Standard analytics dashboard",
-      "Email support & standard onboarding",
+      "Test calls and analytics",
     ],
-    cta: { label: "Get started", href: "/#contact" },
-  },
-  {
-    name: "Growth",
-    monthlyPriceUsd: 1499,
-    headline: "20 AI employees",
-    includedMinutes: "7,500 voice minutes / mo",
-    minutesNote: "~2,500 answered calls · overage $0.12/min",
-    description:
-      "Scale multi-channel campaigns across teams with automation, deeper analytics, and CRM sync.",
-    features: [
-      "Everything in Starter, plus:",
-      "Bulk outbound campaigns (CSV upload)",
-      "Multi-channel sequences (voice + email + WhatsApp)",
-      "Two-way CRM sync (Salesforce, HubSpot, Pipedrive)",
-      "Social media automation & approval workflows",
-      "Advanced pipeline & agent analytics",
-      "Higher parallel call capacity",
-      "Priority support",
-    ],
-    cta: { label: "Get started", href: "/#contact" },
+    cta: { label: "Get started", href: "https://app.opsbrainai.com" },
     featured: true,
   },
   {
-    name: "Enterprise",
-    monthlyPriceUsd: null,
-    headline: "Unlimited AI employees",
-    includedMinutes: "Custom voice minute pool",
-    minutesNote: "Committed volume negotiated with you",
-    description:
-      "Custom scale with enterprise security, compliance, and dedicated solution engineering.",
+    name: "Messaging",
+    badge: "Add-on",
+    price: "₹499",
+    priceUnit: "per month",
+    tagline: "Gmail & WhatsApp campaigns when you need them",
     features: [
-      "Everything in Growth, plus:",
-      "Custom integrations & API access",
-      "SSO & advanced security controls",
+      "Gmail campaign sequences",
+      "WhatsApp template campaigns",
+      "Multi-channel with voice",
+      "Email & WA template library",
+      "Uses your Gmail + WABA accounts",
+    ],
+    cta: { label: "Get started", href: "https://app.opsbrainai.com" },
+  },
+  {
+    name: "Enterprise",
+    price: "Custom",
+    priceUnit: "",
+    tagline: "Volume pricing with messaging bundled",
+    features: [
+      "Custom voice rates & minute pools",
+      "SSO & advanced security",
       "99.9% uptime SLA",
-      "SOC 2 Type II + GDPR / data residency",
-      "Custom playbooks & compliance rules",
-      "Dedicated customer success manager",
+      "SOC 2 + data residency options",
+      "Custom integrations & API access",
+      "Dedicated customer success",
     ],
     cta: { label: "Talk to us", href: "/#contact" },
   },
 ] as const;
 
 export type PricingTier = (typeof pricingTiers)[number];
-export type BillingPeriod = "monthly" | "annual";
-
-export function formatUsd(amount: number): string {
-  return new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-    maximumFractionDigits: 0,
-  }).format(amount);
-}
-
-export function getAnnualTotalUsd(monthlyPriceUsd: number): number {
-  return Math.round(monthlyPriceUsd * 12 * (1 - PRICING_ANNUAL_DISCOUNT));
-}
-
-export function getTierPricing(tier: PricingTier, period: BillingPeriod) {
-  if (tier.monthlyPriceUsd == null) {
-    return {
-      kind: "custom" as const,
-      displayPrice: "Talk to us",
-      priceSuffix: "",
-      billingNote: "Custom monthly or annual contract",
-      totalLabel: null,
-    };
-  }
-
-  const monthly = tier.monthlyPriceUsd;
-  const annualTotal = getAnnualTotalUsd(monthly);
-  const annualEffectiveMonthly = Math.round(annualTotal / 12);
-
-  if (period === "annual") {
-    return {
-      kind: "priced" as const,
-      displayPrice: formatUsd(annualEffectiveMonthly),
-      priceSuffix: "/mo",
-      billingNote: `${formatUsd(annualTotal)}/year · ${formatUsd(monthly)}/mo on monthly`,
-      totalLabel: null,
-    };
-  }
-
-  return {
-    kind: "priced" as const,
-    displayPrice: formatUsd(monthly),
-    priceSuffix: "/mo",
-    billingNote: `or ${formatUsd(annualTotal)}/year with annual (save 20%)`,
-    totalLabel: null,
-  };
-}
 
 export { aiEmployeesSection, capabilities, capabilitiesSection, platformOverview, siteConfig };

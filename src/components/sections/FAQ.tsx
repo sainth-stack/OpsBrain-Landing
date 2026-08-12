@@ -100,31 +100,33 @@ export function FAQ() {
           />
         </motion.div>
 
-        <div
-          className="mx-auto mt-10 flex max-w-lg flex-wrap justify-center gap-2"
-          role="tablist"
-          aria-label="FAQ categories"
-        >
-          {faqCategories.map((cat) => (
-            <button
-              key={cat.id}
-              type="button"
-              role="tab"
-              aria-selected={activeTab === cat.id}
-              aria-controls={`faq-panel-${cat.id}`}
-              onClick={() => handleTabChange(cat.id)}
-              className={cn(
-                "inline-flex min-h-11 items-center rounded-full border px-5 py-2 text-small font-medium transition-all",
-                "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary",
-                activeTab === cat.id
-                  ? "border-brand-primary bg-brand-primary-light text-brand-primary"
-                  : "border-border-default bg-surface-white text-text-muted hover:text-text-primary",
-              )}
-            >
-              {cat.label}
-            </button>
-          ))}
-        </div>
+        {faqCategories.length > 1 ? (
+          <div
+            className="mx-auto mt-10 flex max-w-lg flex-wrap justify-center gap-2"
+            role="tablist"
+            aria-label="FAQ categories"
+          >
+            {faqCategories.map((cat) => (
+              <button
+                key={cat.id}
+                type="button"
+                role="tab"
+                aria-selected={activeTab === cat.id}
+                aria-controls={`faq-panel-${cat.id}`}
+                onClick={() => handleTabChange(cat.id)}
+                className={cn(
+                  "inline-flex min-h-11 items-center rounded-full border px-5 py-2 text-small font-medium transition-all",
+                  "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary",
+                  activeTab === cat.id
+                    ? "border-brand-primary bg-brand-primary-light text-brand-primary"
+                    : "border-border-default bg-surface-white text-text-muted hover:text-text-primary",
+                )}
+              >
+                {cat.label}
+              </button>
+            ))}
+          </div>
+        ) : null}
 
         {faqCategories.map((category) => {
           const openIndex = openByCategory[category.id] ?? null;

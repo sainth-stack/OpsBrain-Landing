@@ -3,23 +3,18 @@
 import { getCapabilityIcon, IconBox } from "@/components/icons/icon-map";
 import { Container, Section } from "@/components/ui/container";
 import { SectionHeader } from "@/components/ui/section-header";
-import { capabilities, capabilitiesSection } from "@/content/site";
+import { homeCapabilitiesSection, homeProductCapabilities } from "@/content/site";
 import { cn } from "@/lib/utils";
 import { fadeScaleVariants, viewportOnce } from "@/lib/motion";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
-type Capability = (typeof capabilities)[number] & { featured?: boolean };
-
 export function Capabilities() {
-  const featured = capabilities.filter((c) => "featured" in c && c.featured) as Capability[];
-  const standard = capabilities.filter((c) => !("featured" in c && c.featured));
-
   return (
     <Section
       id="capabilities"
       surface="white"
-      aria-label={capabilitiesSection.title}
+      aria-label={homeCapabilitiesSection.title}
     >
       <Container>
         <motion.div
@@ -30,15 +25,15 @@ export function Capabilities() {
           variants={fadeScaleVariants}
         >
           <SectionHeader
-            eyebrow={capabilitiesSection.eyebrow}
-            title={capabilitiesSection.title}
-            subtitle={capabilitiesSection.subtitle}
+            eyebrow={homeCapabilitiesSection.eyebrow}
+            title={homeCapabilitiesSection.title}
+            subtitle={homeCapabilitiesSection.subtitle}
             align="center"
           />
         </motion.div>
 
-        <div className="mt-12 grid gap-4 lg:grid-cols-4 lg:gap-5">
-          {featured.map((capability, index) => {
+        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {homeProductCapabilities.map((capability, index) => {
             const Icon = getCapabilityIcon(capability.icon);
             return (
               <motion.article
@@ -49,7 +44,7 @@ export function Capabilities() {
                 custom={index * 0.08}
                 variants={fadeScaleVariants}
                 className={cn(
-                  "card-marketing lg:col-span-2",
+                  "card-marketing",
                   "transition-all duration-300 hover:-translate-y-1",
                 )}
               >
@@ -63,37 +58,6 @@ export function Capabilities() {
                   {capability.title}
                 </h3>
                 <p className="mt-2 text-body leading-relaxed text-text-secondary">
-                  {capability.description}
-                </p>
-              </motion.article>
-            );
-          })}
-
-          {standard.map((capability, index) => {
-            const Icon = getCapabilityIcon(capability.icon);
-            return (
-              <motion.article
-                key={capability.title}
-                initial="hidden"
-                whileInView="visible"
-                viewport={viewportOnce}
-                custom={(index + 2) * 0.06}
-                variants={fadeScaleVariants}
-                className={cn(
-                  "card-marketing p-5",
-                  "transition-all duration-300 hover:-translate-y-1",
-                )}
-              >
-                <IconBox
-                  icon={Icon}
-                  variant="primary"
-                  size="sm"
-                  className="transition-colors group-hover:bg-brand-accent-light group-hover:text-brand-accent"
-                />
-                <h3 className="mt-4 text-small font-semibold text-text-primary md:text-body">
-                  {capability.title}
-                </h3>
-                <p className="mt-2 text-small leading-relaxed text-text-muted">
                   {capability.description}
                 </p>
               </motion.article>

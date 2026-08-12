@@ -9,14 +9,27 @@ export const API_BASE_URL =
 export const LANDING_API_BASE =
   process.env.NEXT_PUBLIC_LANDING_API_BASE ?? `${API_BASE_URL}/landing`;
 
+/** Per-product app login URLs. */
+export const PRODUCT_LOGIN = {
+  opsbrain:
+    process.env.NEXT_PUBLIC_OPSBRAIN_LOGIN_PAGE ?? "https://app.opsbrainai.com",
+  spark:
+    process.env.NEXT_PUBLIC_OPSSPARK_LOGIN_PAGE ?? "https://peers.opsbrainai.com",
+  meet:
+    process.env.NEXT_PUBLIC_OPSMEET_LOGIN_PAGE ??
+    "https://opsmeet.opsbrainai.com/login",
+} as const;
+
+/** OpsBrain AI app login (navbar). */
 export const LOGIN_PAGE =
-  process.env.NEXT_PUBLIC_LOGIN_PAGE ?? "https://app.opsbrainai.com";
+  process.env.NEXT_PUBLIC_LOGIN_PAGE ?? PRODUCT_LOGIN.opsbrain;
 
 /** Brand key sent with landing form submissions. */
 export const LANDING_BRAND = "opsbrain";
 
 export const LANDING = {
   leads: `${LANDING_API_BASE}/leads`,
+  liveCallRequests: `${LANDING_API_BASE}/live-call-requests`,
   pageview: `${LANDING_API_BASE}/pageview`,
   chat: `${LANDING_API_BASE}/chat`,
   chatSpeak: `${LANDING_API_BASE}/chat/speak`,

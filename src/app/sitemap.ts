@@ -7,6 +7,7 @@ import {
   hubPages,
   solutionPages,
 } from "@/content/seo-pages";
+import { productPages } from "@/content/products";
 import { siteConfig } from "@/content/site";
 
 const LAST_CONTENT_UPDATE = new Date("2026-07-18T00:00:00.000Z");
@@ -58,6 +59,36 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: LAST_CONTENT_UPDATE,
       changeFrequency: "monthly",
       priority: 0.7,
+    },
+    {
+      url: `${base}${hubPages.howItWorks.path}`,
+      lastModified: LAST_CONTENT_UPDATE,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${base}${hubPages.products.path}`,
+      lastModified: LAST_CONTENT_UPDATE,
+      changeFrequency: "monthly",
+      priority: 0.75,
+    },
+    {
+      url: `${base}${hubPages.tryLiveCall.path}`,
+      lastModified: LAST_CONTENT_UPDATE,
+      changeFrequency: "weekly",
+      priority: 0.85,
+    },
+    {
+      url: `${base}${productPages.spark.path}`,
+      lastModified: LAST_CONTENT_UPDATE,
+      changeFrequency: "monthly",
+      priority: 0.75,
+    },
+    {
+      url: `${base}${productPages.meet.path}`,
+      lastModified: LAST_CONTENT_UPDATE,
+      changeFrequency: "monthly",
+      priority: 0.75,
     },
     {
       url: `${base}${compareHub.path}`,

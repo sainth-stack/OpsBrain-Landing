@@ -102,7 +102,7 @@ export function BlogArticle({ post }: { post: BlogPost }) {
           <div className="mt-12">
             <PageCTA
               title="Put these playbooks into production"
-              description={`Deploy ${siteConfig.name} AI employees on your scripts and CRM — get started or talk to us.`}
+              description={`Deploy ${siteConfig.name} AI employees on your scripts and CRM - get started or talk to us.`}
             />
           </div>
         </Container>

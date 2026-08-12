@@ -9,7 +9,7 @@
  *
  * This worklet instead keeps a single continuous ring buffer of 16 kHz source
  * samples and produces the context's native-rate output with linear
- * interpolation — one uninterrupted stream, no per-chunk seams. On underrun it
+ * interpolation - one uninterrupted stream, no per-chunk seams. On underrun it
  * emits silence (never a click or a timeline jump) and re-buffers a small
  * jitter cushion before resuming, then reports "drained" so the main thread can
  * open the mic once the agent has truly finished speaking.

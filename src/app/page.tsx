@@ -1,6 +1,7 @@
 import dynamic from "next/dynamic";
 import { ClientHeavySections } from "@/components/sections/ClientHeavySections";
 import { Hero } from "@/components/sections/Hero";
+import { TalkToAgent } from "@/components/sections/TalkToAgent";
 import { TrustBar } from "@/components/sections/TrustBar";
 import { SectionSkeleton } from "@/components/ui/SectionSkeleton";
 import { siteConfig } from "@/content/site";
@@ -12,10 +13,6 @@ const Problem = dynamic(
 );
 const HowItWorks = dynamic(
   () => import("@/components/sections/HowItWorks").then((m) => m.HowItWorks),
-  { loading: () => <SectionSkeleton /> },
-);
-const Workflow = dynamic(
-  () => import("@/components/sections/Workflow").then((m) => m.Workflow),
   { loading: () => <SectionSkeleton /> },
 );
 const Capabilities = dynamic(
@@ -51,15 +48,13 @@ export default function Home() {
       />
       <main className="flex-1">
         <Hero />
+        <TalkToAgent />
         <TrustBar />
         <div className="below-fold-section">
           <Problem />
         </div>
         <div className="below-fold-section">
           <HowItWorks />
-        </div>
-        <div className="below-fold-section">
-          <Workflow />
         </div>
         <div className="below-fold-section">
           <Capabilities />

@@ -262,7 +262,7 @@ export function AudioPlayer({
         }
         return;
       } catch {
-        // File playback blocked or unavailable — try speech only as last resort
+        // File playback blocked or unavailable - try speech only as last resort
       }
     }
 
@@ -294,7 +294,7 @@ export function AudioPlayer({
   return (
     <div className={cn(compact ? "space-y-0" : "space-y-3", className)}>
       {showDemoLabel && (
-        <p className="text-[11px] font-medium text-brand-accent">
+        <p className="text-[11px] font-medium text-brand-primary">
           {playbackMode === "speech" && isPlaying
             ? "▶ Browser voice preview (Web Speech API)"
             : playbackMode === "file" && isPlaying
@@ -338,7 +338,10 @@ export function AudioPlayer({
       <div
         className={cn(
           "flex items-center gap-3",
-          isDark && compact && "rounded-xl border border-white/10 bg-white/[0.04] px-3 py-2.5",
+          compact &&
+            (isDark
+              ? "rounded-xl border border-white/10 bg-white/[0.04] px-3 py-2.5"
+              : "rounded-xl border border-border-default bg-surface-muted/60 px-3 py-2.5"),
         )}
       >
         <button
@@ -348,17 +351,16 @@ export function AudioPlayer({
           aria-label={isPlaying ? `Pause ${label} demo` : `Play ${label} demo`}
           aria-pressed={isPlaying}
           className={cn(
-            "flex shrink-0 items-center justify-center rounded-full transition-all",
+            "flex shrink-0 items-center justify-center rounded-lg transition-colors",
             compact ? "size-9" : "size-11",
             "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary",
             isDark
               ? isPlaying && isGlobalActive
-                ? "bg-brand-accent text-ink shadow-[0_0_20px_rgba(52,211,153,0.35)]"
-                : "bg-white/10 text-white hover:bg-brand-accent hover:text-ink"
+                ? "bg-brand-primary text-white"
+                : "bg-white/10 text-white hover:bg-white/20"
               : isPlaying && isGlobalActive
-                ? "bg-brand-primary text-white ring-2 ring-brand-primary/30"
+                ? "bg-brand-primary text-white"
                 : "bg-brand-primary-light text-brand-primary hover:bg-brand-primary hover:text-white",
-            isActiveCard && isPlaying && !isDark && "ring-2 ring-brand-accent ring-offset-2",
           )}
         >
           {isPlaying && isGlobalActive ? (
@@ -372,13 +374,13 @@ export function AudioPlayer({
         </button>
 
         <div className="min-w-0 flex-1">
-          {compact && isDark && (
+          {compact && (
             <div className="mb-1.5 flex h-3.5 items-end gap-[2px]" aria-hidden="true">
               {Array.from({ length: 18 }).map((_, i) => (
                 <span
                   key={i}
                   className={cn(
-                    "w-[2.5px] rounded-full bg-brand-accent/80",
+                    "w-[2.5px] rounded-full bg-brand-primary/70",
                     isPlaying && isGlobalActive ? "animate-waveform-bar" : "h-1 opacity-40",
                   )}
                   style={
@@ -408,9 +410,7 @@ export function AudioPlayer({
             <div
               className={cn(
                 "h-full rounded-full transition-all duration-150",
-                isDark
-                  ? "bg-brand-accent"
-                  : "bg-gradient-to-r from-brand-primary to-brand-accent",
+                "bg-brand-primary",
               )}
               style={{ width: `${progress}%` }}
             />

@@ -37,9 +37,9 @@ export default function PrivacyPage() {
             </p>
           </section>
 
-          {/* 2. Google API Services — Limited Use Disclosure */}
+          {/* 2. Google API Services - Limited Use Disclosure */}
           <section>
-            <h2 className="text-h3 font-semibold text-text-primary">2. Google API Services — Limited Use Disclosure</h2>
+            <h2 className="text-h3 font-semibold text-text-primary">2. Google API Services - Limited Use Disclosure</h2>
             <p className="mt-2">
               OpsBrain AI&apos;s use and transfer to any other application of information received from Google APIs adheres to the{" "}
               <a
@@ -101,7 +101,7 @@ export default function PrivacyPage() {
             <ul className="mt-1 list-disc space-y-1 pl-6">
               <li>AI employee call logs and conversation transcripts</li>
               <li>Campaign performance data (emails sent, delivery status)</li>
-              <li>Email engagement data: whether recipients of emails sent through your Gmail account opened the email (tracked via a 1×1 tracking pixel) or clicked links (tracked via redirect URLs)</li>
+              <li>Email engagement data: whether recipients of emails sent through your Gmail account opened the email (tracked via a 1x1 tracking pixel) or clicked links (tracked via redirect URLs)</li>
               <li>Unsubscribe events from campaign emails</li>
             </ul>
 
@@ -125,7 +125,7 @@ export default function PrivacyPage() {
               <li>Sending service-related communications about your account</li>
             </ul>
             <p className="mt-3">
-              We do <strong>not</strong> use your information — including any data received from Google APIs — to develop or improve generalised AI or machine learning models, train language models, or enhance our platform in any way beyond the features you explicitly enabled.
+              We do <strong>not</strong> use your information - including any data received from Google APIs - to develop or improve generalised AI or machine learning models, train language models, or enhance our platform in any way beyond the features you explicitly enabled.
             </p>
             <p className="mt-2">We do not sell your personal data to third parties.</p>
           </section>
@@ -138,7 +138,7 @@ export default function PrivacyPage() {
             </p>
             <ul className="mt-2 list-disc space-y-2 pl-6">
               <li>
-                <span className="font-medium text-text-primary">Open tracking:</span> A 1×1 invisible pixel image is embedded in each email. When a recipient opens the email, their email client loads the image, which signals an open event. The pixel URL contains a one-time token — it does not reveal the recipient&apos;s personal data to us beyond the fact that the email was opened.
+                <span className="font-medium text-text-primary">Open tracking:</span> A 1x1 invisible pixel image is embedded in each email. When a recipient opens the email, their email client loads the image, which signals an open event. The pixel URL contains a one-time token - it does not reveal the recipient&apos;s personal data to us beyond the fact that the email was opened.
               </li>
               <li>
                 <span className="font-medium text-text-primary">Click tracking:</span> Links in campaign emails are wrapped in a redirect URL. When a recipient clicks a link, they are briefly routed through our servers before reaching the destination. This records the click event and the original URL.

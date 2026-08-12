@@ -31,7 +31,7 @@ function parseUTMs(): Partial<Attribution> {
 
 /**
  * Captures UTM params + referrer on first call per session and stores in sessionStorage.
- * Safe to call multiple times — only writes once per session.
+ * Safe to call multiple times - only writes once per session.
  */
 export function captureAttribution(): void {
   if (typeof window === "undefined") return;

@@ -18,7 +18,7 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
-      // Prefer apex host — fixes GSC "duplicate without user-selected canonical"
+      // Prefer apex host - fixes GSC "duplicate without user-selected canonical"
       {
         source: "/:path*",
         has: [{ type: "host", value: "www.opsbrainai.com" }],

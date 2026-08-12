@@ -93,8 +93,50 @@ export async function trackPageView(page: string): Promise<void> {
       }),
     });
   } catch {
-    // Silently fail — pageview tracking is non-critical
+    // Silently fail - pageview tracking is non-critical
   }
+}
+
+export async function submitLiveCallRequest(fields: {
+  phone: string;
+  fullName: string;
+  language: string;
+  agentId: string;
+  agentName: string;
+  agentRole?: string;
+  consent: boolean;
+}): Promise<ApiResult> {
+  if (USE_DUMMY_API) {
+    await delay(700);
+    if (process.env.NODE_ENV !== "production") {
+      console.log("[landing-api dummy] live call:", fields);
+    }
+    return { success: true, message: "Request received" };
+  }
+
+  const attribution = getAttribution();
+
+  return postJson<ApiResult>(
+    LANDING.liveCallRequests,
+    withLandingBrand({
+      phone: fields.phone,
+      fullName: fields.fullName,
+      language: fields.language,
+      agentId: fields.agentId,
+      agentName: fields.agentName,
+      agentRole: fields.agentRole,
+      consent: fields.consent,
+      submittedAt: new Date().toISOString(),
+      source: "try-live-call",
+      utmSource: attribution.utm_source,
+      utmMedium: attribution.utm_medium,
+      utmCampaign: attribution.utm_campaign,
+      utmContent: attribution.utm_content,
+      utmTerm: attribution.utm_term,
+      referrer: attribution.referrer,
+      landingPage: attribution.landing_page || "/try-a-live-call",
+    }),
+  );
 }
 
 export async function submitEmailSignup(email: string): Promise<ApiResult> {

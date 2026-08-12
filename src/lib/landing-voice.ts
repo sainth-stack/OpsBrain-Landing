@@ -19,9 +19,15 @@ export type VoiceSessionResult =
   | { ok: true; sessionToken: string; expiresIn: number }
   | { ok: false; error: string };
 
-export async function createLandingVoiceSession(): Promise<VoiceSessionResult> {
+export async function createLandingVoiceSession(
+  agentId?: string,
+): Promise<VoiceSessionResult> {
   try {
-    const res = await fetch(`${LANDING.voiceSession}`, { method: "POST" });
+    const res = await fetch(`${LANDING.voiceSession}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ agent: agentId ?? "" }),
+    });
     if (!res.ok) {
       return { ok: false, error: "Voice assistant is temporarily unavailable." };
     }
@@ -40,16 +46,33 @@ export async function createLandingVoiceSession(): Promise<VoiceSessionResult> {
 }
 
 const PREFETCH_MAX_AGE_MS = 4 * 60 * 1000;
-let prefetchedSession: { sessionToken: string; fetchedAt: number } | null = null;
+let prefetchedSession: {
+  sessionToken: string;
+  fetchedAt: number;
+  agentId: string;
+} | null = null;
 let prefetchInFlight: Promise<void> | null = null;
+let prefetchAgentId = "";
 
 /** Warm session token while the panel is visible (saves ~200–400ms on start). */
-export function prefetchLandingVoiceSession(): void {
-  if (prefetchedSession || prefetchInFlight) return;
-  prefetchInFlight = createLandingVoiceSession()
+export function prefetchLandingVoiceSession(agentId?: string): void {
+  const key = agentId ?? "";
+  if (
+    prefetchedSession?.agentId === key &&
+    Date.now() - prefetchedSession.fetchedAt < PREFETCH_MAX_AGE_MS
+  ) {
+    return;
+  }
+  if (prefetchInFlight && prefetchAgentId === key) return;
+  prefetchAgentId = key;
+  prefetchInFlight = createLandingVoiceSession(agentId)
     .then((result) => {
       if (result.ok) {
-        prefetchedSession = { sessionToken: result.sessionToken, fetchedAt: Date.now() };
+        prefetchedSession = {
+          sessionToken: result.sessionToken,
+          fetchedAt: Date.now(),
+          agentId: key,
+        };
       }
     })
     .finally(() => {
@@ -57,17 +80,29 @@ export function prefetchLandingVoiceSession(): void {
     });
 }
 
-export async function consumeLandingVoiceSession(): Promise<VoiceSessionResult> {
+export async function consumeLandingVoiceSession(
+  agentId?: string,
+): Promise<VoiceSessionResult> {
+  const key = agentId ?? "";
   const cached = prefetchedSession;
   prefetchedSession = null;
-  if (cached && Date.now() - cached.fetchedAt < PREFETCH_MAX_AGE_MS) {
+  if (
+    cached &&
+    cached.agentId === key &&
+    Date.now() - cached.fetchedAt < PREFETCH_MAX_AGE_MS
+  ) {
     return { ok: true, sessionToken: cached.sessionToken, expiresIn: 300 };
   }
-  return createLandingVoiceSession();
+  return createLandingVoiceSession(agentId);
 }
 
-export function buildLandingVoiceWsUrl(sessionToken: string): string {
+export function buildLandingVoiceWsUrl(
+  sessionToken: string,
+  agentId?: string,
+): string {
   const api = new URL(API_BASE_URL);
   const proto = api.protocol === "https:" ? "wss:" : "ws:";
-  return `${proto}//${api.host}/ws/v1/landing/voice?token=${encodeURIComponent(sessionToken)}`;
+  const params = new URLSearchParams({ token: sessionToken });
+  if (agentId) params.set("agent", agentId);
+  return `${proto}//${api.host}/ws/v1/landing/voice?${params.toString()}`;
 }

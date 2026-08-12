@@ -143,7 +143,7 @@ export default async function SolutionPage({ params }: PageProps) {
 
         <PageCTA
           title={`Launch ${page.label.toLowerCase()} with OpsBrain`}
-          description="Configure scripts, languages, and CRM mappings during onboarding — most teams go live in under 30 minutes."
+          description="Configure scripts, languages, and CRM mappings during onboarding - most teams go live in under 30 minutes."
         />
       </MarketingPageShell>
     </>

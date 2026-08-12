@@ -23,7 +23,7 @@ export function DiyaFloatingPill({ onClick, className }: DiyaFloatingPillProps) 
         "lg:bottom-6",
         className,
       )}
-      aria-label="Open OpsBrain voice assistant — Talk to Diya"
+      aria-label="Open OpsBrain voice assistant - Talk to Diya"
     >
       <DiyaAvatar size="sm" showOnline />
       <span className="flex flex-col items-start leading-tight">

@@ -2,6 +2,7 @@ import { AnalyticsScripts } from "@/components/analytics/AnalyticsScripts";
 import { PageViewTracker } from "@/components/analytics/PageViewTracker";
 import { DiyaAssistantProvider } from "@/components/assistant/DiyaAssistantContext";
 import { Footer } from "@/components/layout/footer";
+import { HashScroll } from "@/components/layout/HashScroll";
 import { DeferredMobileCTA } from "@/components/layout/DeferredMobileCTA";
 import { Navbar } from "@/components/layout/navbar";
 import { MotionProvider } from "@/components/providers/MotionProvider";
@@ -133,6 +134,7 @@ export default function RootLayout({
         <ThemeProvider>
           <MotionProvider>
             <DiyaAssistantProvider>
+              <HashScroll />
               <Navbar />
               {children}
               <Footer />

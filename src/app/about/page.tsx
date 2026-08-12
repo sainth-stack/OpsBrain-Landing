@@ -4,6 +4,10 @@ import { PageCTA } from "@/components/pages/PageCTA";
 import { PageHero } from "@/components/pages/PageHero";
 import { RelatedLinks } from "@/components/pages/RelatedLinks";
 import { SectionHeader } from "@/components/ui/section-header";
+import {
+  aboutAlsoFromOpsBrain,
+  moreFromOpsBrain,
+} from "@/content/products";
 import { aboutPage, founders, siteConfig } from "@/content/site";
 import { buildPageMetadata, getAboutJsonLd } from "@/lib/seo";
 import Image from "next/image";
@@ -213,12 +217,46 @@ export default function AboutPage() {
           </ul>
         </section>
 
+        <section aria-labelledby="also-from-opsbrain-heading">
+          <SectionHeader
+            eyebrow={aboutAlsoFromOpsBrain.eyebrow}
+            title={aboutAlsoFromOpsBrain.title}
+            subtitle={aboutAlsoFromOpsBrain.subtitle}
+            align="left"
+            className="mb-6 md:mb-8"
+          />
+          <div className="grid gap-4 md:grid-cols-2">
+            {moreFromOpsBrain.cards.map((card) => (
+              <Link
+                key={card.slug}
+                href={card.href}
+                className="group rounded-2xl border border-border-default bg-surface-white p-6 transition-colors hover:border-brand-primary/40 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary"
+              >
+                <p className="text-small font-semibold uppercase tracking-wider text-brand-primary">
+                  {card.name}
+                </p>
+                <h3 className="mt-2 font-display text-lg font-bold text-text-primary">
+                  {card.line}
+                </h3>
+                <p className="mt-2 text-body leading-relaxed text-text-secondary">
+                  {card.body}
+                </p>
+                <span className="mt-4 inline-block text-small font-semibold text-brand-primary group-hover:underline">
+                  {card.cta} →
+                </span>
+              </Link>
+            ))}
+          </div>
+        </section>
+
         <RelatedLinks
           links={[
             { href: "/platform", label: "Platform" },
             { href: "/ai-employees", label: "AI Employees" },
             { href: "/solutions", label: "Solutions" },
             { href: "/pricing", label: "Pricing" },
+            { href: "/products/spark", label: "OpsSpark" },
+            { href: "/products/meet", label: "OpsMeet" },
             { href: "/blog", label: "Blog" },
           ]}
         />

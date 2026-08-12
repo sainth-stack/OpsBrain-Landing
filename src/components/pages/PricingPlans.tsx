@@ -1,11 +1,6 @@
 "use client";
 
-import { useState } from "react";
-import {
-  getTierPricing,
-  pricingTiers,
-  type BillingPeriod,
-} from "@/content/seo-pages";
+import { pricingTiers } from "@/content/seo-pages";
 import { cn } from "@/lib/utils";
 
 function CheckIcon({ className }: { className?: string }) {
@@ -15,7 +10,7 @@ function CheckIcon({ className }: { className?: string }) {
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
-      strokeWidth={3}
+      strokeWidth={2.5}
       strokeLinecap="round"
       strokeLinejoin="round"
       aria-hidden="true"
@@ -26,160 +21,80 @@ function CheckIcon({ className }: { className?: string }) {
 }
 
 export function PricingPlans() {
-  const [period, setPeriod] = useState<BillingPeriod>("annual");
-
   return (
-    <section aria-labelledby="pricing-tiers-heading" className="space-y-8">
-      <div className="flex flex-col items-center gap-3">
-        <h2 id="pricing-tiers-heading" className="sr-only">
-          Pricing tiers
-        </h2>
-        <div
-          className="inline-flex items-center rounded-full border border-border-default bg-surface-muted p-1"
-          role="group"
-          aria-label="Billing period"
-        >
-          <button
-            type="button"
-            onClick={() => setPeriod("monthly")}
-            aria-pressed={period === "monthly"}
-            className={cn(
-              "rounded-full px-5 py-2 text-small font-semibold transition-colors",
-              "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary",
-              period === "monthly"
-                ? "bg-brand-primary text-white shadow-sm"
-                : "text-text-secondary hover:text-text-primary",
-            )}
-          >
-            Monthly
-          </button>
-          <button
-            type="button"
-            onClick={() => setPeriod("annual")}
-            aria-pressed={period === "annual"}
-            className={cn(
-              "inline-flex items-center gap-2 rounded-full px-5 py-2 text-small font-semibold transition-colors",
-              "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary",
-              period === "annual"
-                ? "bg-brand-primary text-white shadow-sm"
-                : "text-text-secondary hover:text-text-primary",
-            )}
-          >
-            Annual
-            <span
-              className={cn(
-                "rounded-full px-2 py-0.5 text-[11px] font-bold uppercase tracking-wide",
-                period === "annual"
-                  ? "bg-white/20 text-white"
-                  : "bg-brand-primary/10 text-brand-primary",
-              )}
-            >
-              Save 20%
-            </span>
-          </button>
-        </div>
-        <p className="max-w-xl text-center text-small text-text-secondary">
-          {period === "annual"
-            ? "Annual plans are 20% off and billed upfront. Voice minutes still refresh every month."
-            : "Pay month to month. Switch to annual anytime to save 20%."}
-        </p>
-      </div>
-
-      <div className="grid gap-6 lg:grid-cols-3">
+    <section aria-label="Pricing plans" className="mt-14 lg:mt-16">
+      <div className="grid gap-6 lg:grid-cols-3 lg:items-stretch lg:gap-5">
         {pricingTiers.map((tier) => {
-          const pricing = getTierPricing(tier, period);
           const featured = "featured" in tier && tier.featured;
+          const badge = "badge" in tier ? tier.badge : null;
 
           return (
             <article
               key={tier.name}
               className={cn(
-                "relative flex flex-col rounded-2xl border bg-surface-white p-6 md:p-8",
+                "relative flex flex-col rounded-2xl border bg-surface-white p-7 md:p-8",
                 featured
-                  ? "border-brand-primary shadow-md ring-1 ring-brand-primary/20"
-                  : "border-border-default",
+                  ? "border-brand-primary/25 shadow-[0_24px_48px_-28px_rgba(79,70,229,0.55)] ring-1 ring-brand-primary/10"
+                  : "border-border-default shadow-[0_1px_2px_rgba(15,23,42,0.04),0_8px_24px_-12px_rgba(15,23,42,0.08)]",
               )}
             >
-              {featured ? (
-                <span className="absolute -top-3 right-6 inline-flex items-center rounded-full bg-brand-primary px-3 py-1 text-xs font-semibold uppercase tracking-wider text-white">
-                  Most popular
-                </span>
-              ) : null}
-
-              <p className="text-small font-semibold uppercase tracking-wider text-brand-primary">
-                {tier.name}
-              </p>
-
-              <div className="mt-2 flex items-baseline gap-1">
-                <p className="text-h2 font-bold text-text-primary">
-                  {pricing.displayPrice}
+              <div className="flex items-start justify-between gap-3">
+                <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-text-secondary">
+                  {tier.name}
                 </p>
-                {pricing.priceSuffix ? (
-                  <span className="text-body font-medium text-text-secondary">
-                    {pricing.priceSuffix}
+                {badge ? (
+                  <span
+                    className={cn(
+                      "shrink-0 rounded-full px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider",
+                      featured
+                        ? "bg-brand-primary text-white"
+                        : "bg-surface-muted text-text-secondary",
+                    )}
+                  >
+                    {badge}
                   </span>
                 ) : null}
               </div>
 
-              <p className="mt-1 text-xs leading-relaxed text-text-secondary">
-                {pricing.billingNote}
-              </p>
-              {pricing.totalLabel ? (
-                <p className="mt-2 text-small font-semibold text-text-primary">
-                  {pricing.totalLabel}
-                </p>
-              ) : null}
-
-              <h3 className="mt-4 text-h3 font-bold text-text-primary">
-                {tier.headline}
-              </h3>
-
-              <div className="mt-4 rounded-xl border border-brand-primary/20 bg-brand-primary/5 px-4 py-3">
-                <p className="text-small font-semibold text-text-primary">
-                  {tier.includedMinutes}
-                </p>
-                <p className="mt-0.5 text-xs leading-relaxed text-text-secondary">
-                  {tier.minutesNote}
-                </p>
+              <div className="mt-6">
+                <div className="flex items-baseline gap-2">
+                  <p className="font-display text-[2.75rem] font-bold leading-none tracking-tight text-text-primary">
+                    {tier.price}
+                  </p>
+                  {tier.priceUnit ? (
+                    <span className="text-body text-text-secondary">{tier.priceUnit}</span>
+                  ) : null}
+                </div>
+                <p className="mt-3 text-small leading-relaxed text-text-secondary">{tier.tagline}</p>
               </div>
 
-              <p className="mt-3 text-body leading-relaxed text-text-secondary">
-                {tier.description}
-              </p>
+              <div className="my-7 h-px bg-border-default" aria-hidden />
 
-              <ul className="mt-6 flex-1 space-y-2.5" role="list">
-                {tier.features.map((feature) => {
-                  const isSectionLabel = feature.endsWith("plus:");
-                  if (isSectionLabel) {
-                    return (
-                      <li
-                        key={feature}
-                        className="pt-1 text-small font-semibold text-text-primary"
-                      >
-                        {feature}
-                      </li>
-                    );
-                  }
-                  return (
-                    <li
-                      key={feature}
-                      className="flex items-start gap-2 text-small leading-relaxed text-text-secondary"
-                    >
-                      <CheckIcon className="mt-0.5 h-4 w-4 flex-none text-brand-primary" />
-                      <span>{feature}</span>
-                    </li>
-                  );
-                })}
+              <ul className="flex-1 space-y-3.5" role="list">
+                {tier.features.map((feature) => (
+                  <li
+                    key={feature}
+                    className="flex items-start gap-3 text-small leading-relaxed text-text-secondary"
+                  >
+                    <CheckIcon
+                      className={cn(
+                        "mt-0.5 size-4 shrink-0",
+                        featured ? "text-brand-primary" : "text-text-secondary/70",
+                      )}
+                    />
+                    <span>{feature}</span>
+                  </li>
+                ))}
               </ul>
 
               <a
                 href={tier.cta.href}
                 className={cn(
-                  "mt-4 inline-flex min-h-11 items-center justify-center rounded-lg px-5 text-body font-medium transition-colors",
+                  "mt-8 inline-flex min-h-11 items-center justify-center rounded-lg px-5 text-small font-semibold transition-colors",
                   "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary",
                   featured
                     ? "btn-gradient text-white"
-                    : "border border-border-default bg-surface-white text-text-primary hover:bg-surface-muted",
+                    : "border border-border-default bg-surface-white text-text-primary hover:border-brand-primary/25 hover:bg-surface-muted",
                 )}
               >
                 {tier.cta.label}
