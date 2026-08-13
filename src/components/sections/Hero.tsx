@@ -13,7 +13,7 @@ export function Hero() {
   return (
     <section
       id="hero"
-      className="relative overflow-hidden hero-surface-gradient text-text-primary"
+      className="relative overflow-x-clip hero-surface-gradient text-text-primary"
       aria-label="Hero"
     >
       <div className="absolute inset-0" aria-hidden="true">
@@ -22,9 +22,9 @@ export function Hero() {
         <div className="hero-grid absolute inset-0" />
       </div>
 
-      <Container className="relative py-20 md:py-28">
-        <div className="grid items-center gap-14 lg:grid-cols-[1.05fr_1fr] lg:gap-16">
-          <div>
+      <Container className="relative py-14 sm:py-20 md:py-28">
+        <div className="grid items-center gap-10 sm:gap-12 lg:grid-cols-[1.05fr_1fr] lg:gap-16">
+          <div className="min-w-0">
             <p
               className="mb-5 flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-brand-primary motion-safe:animate-fade-up"
             >
@@ -36,7 +36,7 @@ export function Hero() {
             </p>
 
             <h1
-              className="font-display text-4xl font-bold leading-[1.08] tracking-tight text-text-primary sm:text-5xl xl:text-[3.6rem] motion-safe:animate-fade-up"
+              className="font-display text-[2rem] font-bold leading-[1.1] tracking-tight text-text-primary min-[400px]:text-4xl sm:text-5xl xl:text-[3.6rem] motion-safe:animate-fade-up"
               style={{ animationDelay: "90ms" }}
             >
               {headlineLead}
@@ -49,7 +49,7 @@ export function Hero() {
             </h1>
 
             <p
-              className="mt-6 max-w-xl text-lg leading-relaxed text-text-secondary motion-safe:animate-fade-up"
+              className="mt-5 max-w-xl text-base leading-relaxed text-text-secondary motion-safe:animate-fade-up sm:mt-6 sm:text-lg"
               style={{ animationDelay: "180ms" }}
             >
               {hero.subheadline}
@@ -92,11 +92,13 @@ export function Hero() {
             </p>
           </div>
 
-          <HeroOrbVisual />
+          <div className="mx-auto w-full max-w-[min(100%,22rem)] sm:max-w-[min(100%,26rem)] lg:max-w-none">
+            <HeroOrbVisual />
+          </div>
         </div>
 
         <div
-          className="mt-14 motion-safe:animate-fade-up md:mt-16"
+          className="mt-10 motion-safe:animate-fade-up sm:mt-14 md:mt-16"
           style={{ animationDelay: "420ms" }}
         >
           <HeroStats />

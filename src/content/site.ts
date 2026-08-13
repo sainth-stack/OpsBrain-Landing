@@ -59,6 +59,7 @@ export const founders = [
 export const navLinks = [
   { label: "Products", kind: "products" as const },
   { label: "Use cases", kind: "use-cases" as const },
+  { label: "Conversations", href: "/#industries" },
   { label: "How it works", href: "/how-it-works" },
   { label: "Pricing", href: "/pricing" },
 ] as const;
@@ -68,6 +69,7 @@ export const homepageAnchors = {
   contact: "#contact",
   faq: "#faq",
   talkToAgent: "#talk-to-an-agent",
+  conversations: "#industries",
 } as const;
 
 /** Global CTAs - use `/#contact` so navbar and sticky bar work from every page. */
@@ -1002,13 +1004,13 @@ export const multilingualSection = {
 export const voiceDemos = [
   {
     id: "sales-en",
-    voiceId: "cartesia:3b554273-4299-48b9-9aaf-eefd438e3941:en",
+    voiceId: "cartesia:07bc462a-c644-49f1-baf7-82d5599131be:en",
     language: "English",
     languageNative: "English",
     scriptBadge: "EN",
-    persona: "Simi",
-    trait: "Warm & Conversational",
-    audioSrc: "/audio/sales-en.mp3?v=cartesia-simi1",
+    persona: "Sindhu",
+    trait: "Clear & Professional",
+    audioSrc: "/audio/sales-en.mp3?v=cartesia-sindhu115",
     fallbackLang: "en-IN",
     fallbackDuration: 17,
   },
@@ -1020,7 +1022,7 @@ export const voiceDemos = [
     scriptBadge: "HI",
     persona: "Arushi",
     trait: "Hinglish & Natural",
-    audioSrc: "/audio/sales-hi.mp3?v=cartesia-arushi1",
+    audioSrc: "/audio/sales-hi.mp3?v=cartesia-sindhu115",
     fallbackLang: "hi-IN",
     fallbackDuration: 22,
   },
@@ -1032,7 +1034,7 @@ export const voiceDemos = [
     scriptBadge: "TE",
     persona: "Sindhu",
     trait: "Conversational Partner",
-    audioSrc: "/audio/sales-te.mp3?v=cartesia-sindhu1",
+    audioSrc: "/audio/sales-te.mp3?v=cartesia-sindhu115",
     fallbackLang: "te-IN",
     fallbackDuration: 24,
   },
@@ -1057,7 +1059,7 @@ export const industryVoiceLangs = [
 
 export type IndustryVoiceLangId = (typeof industryVoiceLangs)[number]["id"];
 
-const V = "cartesia-en8";
+const V = "cartesia-skyline1";
 
 export const industryVoiceCards = [
   {
@@ -1520,6 +1522,7 @@ export const footerLinks = {
   product: [
     { label: "OpsBrain AI", href: "/" },
     { label: "Products", href: "/products" },
+    { label: "Conversations", href: "/#industries" },
     { label: "Try a live call", href: "/try-a-live-call" },
     { label: "How it works", href: "/how-it-works" },
     { label: "Platform", href: "/platform" },

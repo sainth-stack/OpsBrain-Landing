@@ -9,8 +9,9 @@ import { MotionProvider } from "@/components/providers/MotionProvider";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { brandLogos, founder, siteConfig } from "@/content/site";
 import { themeInitScript } from "@/lib/theme-script";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Plus_Jakarta_Sans } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 
 // TODO(hreflang): Add hreflang alternates when dedicated Hindi/Telugu landing pages ship.
@@ -112,6 +113,10 @@ export const metadata: Metadata = {
     : {}),
 };
 
+export const viewport: Viewport = {
+  themeColor: "#4f46e5",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -124,11 +129,10 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${inter.variable} ${plusJakarta.variable} h-full scroll-smooth`}
     >
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
-        <meta name="theme-color" content="#4f46e5" />
-      </head>
       <body className="flex min-h-full flex-col bg-surface-white font-sans antialiased pb-24 lg:pb-0">
+        <Script id="theme-init" strategy="beforeInteractive">
+          {themeInitScript}
+        </Script>
         <AnalyticsScripts />
         <PageViewTracker />
         <ThemeProvider>

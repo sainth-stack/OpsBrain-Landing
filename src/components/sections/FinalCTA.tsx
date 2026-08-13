@@ -15,7 +15,7 @@ export function FinalCTA() {
       className="scroll-mt-24 md:scroll-mt-28"
       aria-label={finalCTASection.title}
     >
-      <Container className="grid items-center gap-14 lg:grid-cols-2">
+      <Container className="grid items-center gap-10 sm:gap-14 lg:grid-cols-2">
         <div>
           <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-brand-accent">
             {finalCTASection.eyebrow}

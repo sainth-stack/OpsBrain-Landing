@@ -6,10 +6,10 @@ Industry carousel (`/#industries`): Telugu / English / Hindi filters. Each indus
 
 | File | Persona | Language |
 |------|---------|----------|
-| `sales-en.mp3` | Simi | English |
+| `sales-en.mp3` | Sindhu | English |
 | `sales-hi.mp3` | Arushi | Hindi |
 | `sales-te.mp3` | Sindhu | Telugu |
-| `hero-demo.mp3` | Simi | English |
+| `hero-demo.mp3` | Sindhu | English (1.15×) |
 | `industry-*-{te,en,hi}.mp3` | TE: Sindhu / Ramya / Bhavani · EN: Sindhu / Devansh / Simi · HI: Arushi / Aadhya / Sameer | per card |
 
 Generator: `OpsBrain-Backend/scripts/generate_landing_voice_demos.py`
